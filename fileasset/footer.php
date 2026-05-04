@@ -1,4 +1,4 @@
-﻿<footer class="bg-white py-5 border-top">
+﻿<footer class="bg-white py-5 border-top px-2 px-sm-4 px-md-5 px-xl-0">
     <div class="container-xl">
         <div class="row">
             <div class="col-lg-4 mb-5 mb-lg-0">
@@ -40,7 +40,7 @@
     <a href="#" class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center shadow-lg hover-scale" style="width: 56px; height: 56px; text-decoration: none;">
         <span class="material-symbols-outlined fs-2">chat</span>
     </a>
-    <button class="btn btn-primary btn-lg rounded-pill px-4 py-3 fw-bold shadow-lg d-flex align-items-center gap-2">
+    <button class="btn fs-7 btn-primary btn-lg rounded-pill px-4 py-3 fw-bold shadow-lg d-flex align-items-center gap-2">
         <span class="material-symbols-outlined">bolt</span>
         Quick Book
     </button>
@@ -50,8 +50,11 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
 <script src="./js/bootstrap.js"></script>
+<script src="./js/live.js"></script>
+<script src="./js/popup.js"></script>
 <script src="./js/script.js"></script>
 <script src="./js/navbar.js"></script>
 <script src="./js/scroll.js"></script>
+
 </body>
 </html>

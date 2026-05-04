@@ -1,0 +1,56 @@
+.filter-title {
+    font-size: 18px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+
+.card-expert img {
+    height: 210px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.verify {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255,255,255,.9);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 18px;
+}
+
+.role {
+    font-size: 11px;
+    font-weight: 800;
+    color: #00288e;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+}
+
+.meta {
+    padding: 14px 0;
+    border-top: 1px solid #e6ebf3;
+    border-bottom: 1px solid #e6ebf3;
+    margin-bottom: 18px;
+}
+
+
+
+        

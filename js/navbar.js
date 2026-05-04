@@ -1,55 +1,82 @@
 const slider = document.querySelector(".allNavLinks");
 const scrollNav = document.querySelectorAll(".scrollNav");
 const mobileNav = document.querySelector(".mobile-nav");
-const screenWidth = window.innerWidth;
 const categories = document.querySelector("#categories-link");
 const explore = document.querySelector("#explore-link");
 const categoriesBack = document.querySelector("#categories-back-link");
 const exploreBack = document.querySelector("#explore-back-link");
 const navIcon = document.querySelectorAll(".navIcon");
+const bodyTag = document.querySelector("body");
+const screenWidth = window.innerWidth;
 
-if(screenWidth <= 992){
+
+// Adjusting navigation widths for smaller screens
+
+window.addEventListener("resize", () => {
     
+    resizeNavigation(window.innerWidth);
+    resizeHero("100px");
+});
+
+
+resizeNavigation(window.innerWidth);
+
+function resizeNavigation(screenWidth) {
+
     scrollNav.forEach(navBoard => {
-        navBoard.style.minWidth =  `${screenWidth}px`;
+
+        if(screenWidth <= 992){
+
+            navBoard.style.minWidth = `${screenWidth}px`;
+            navBoard.style.width = `${screenWidth}px`;
+        } else {
+
+            navBoard.style.minWidth = "unset";
+            navBoard.style.width = "unset";
+        }
     });
-    
 }
+
+
+// Adding event listeners to navigation icons
+
 navIcon.forEach(navMethod => {
     
-    navMethod.addEventListener("click", function(){
+    navMethod.addEventListener("click", () => {
         mobileNav.classList.toggle("mobile-nav-active");
     });
 });
 
 
-explore.addEventListener("click", function(e){
-    e.preventDefault();
-    scrollSlider(1);
-});
+// Adding event listeners to scroll buttons in mobile navigation
 
-categories.addEventListener("click", function(e){
+explore.addEventListener("click", e => {
     e.preventDefault();
     scrollSlider(2);
 });
 
-exploreBack.addEventListener("click", function(e){
+categories.addEventListener("click", e => {
     e.preventDefault();
-    scrollBack(1);
+    scrollSlider(1);
 });
 
-categoriesBack.addEventListener("click", function(e){
+exploreBack.addEventListener("click", e => {
     e.preventDefault();
     scrollBack(2);
 });
 
+categoriesBack.addEventListener("click", e => {
+    e.preventDefault();
+    scrollBack(1);
+});
 
 
+// Functions to handle smooth scrolling in mobile navigation
 
 function scrollSlider(num){
 
     slider.scrollBy({
-        left: screenWidth * num,
+        left: window.innerWidth * num,
         behavior: "smooth"
     });
 }
@@ -57,7 +84,7 @@ function scrollSlider(num){
 function scrollBack(num){
 
     slider.scrollBy({
-        left: -screenWidth * num,
+        left: -window.innerWidth * num,
         behavior: "smooth"
     });
 }
