@@ -8,19 +8,19 @@ let slides = document.querySelectorAll(".hero-slide");
     }, 5000);
 
 
-let modal=document.getElementById('modal');
+let modal = document.querySelector('#modal');
 
 function openModal(){modal.style.display='flex';reset();}
 function closeModal(){modal.style.display='none';}
 
 function reset(){
     document.querySelectorAll('.step').forEach(e=>e.classList.remove('active'));
-    document.getElementById('step1').classList.add('active');
+    document.querySelector('#step1').classList.add('active');
 }
 
 function nextStep(n){
     document.querySelectorAll('.step').forEach(e=>e.classList.remove('active'));
-    document.getElementById('step'+n).classList.add('active');
+    document.querySelector('#step'+n).classList.add('active');
 }
 
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});

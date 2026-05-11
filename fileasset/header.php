@@ -1,6 +1,6 @@
 ﻿<?php
     $site_url = "http://localhost/work/localproviders/";
-    $section_title = "font-headline display-6 fw-bold";
+    $section_title = "headline display-6";
     $body_text = "text-muted fs-6";
     $body_text_sm = "fw-bold text-muted fs-7";
     $body_text_sm = "fw-bold text-muted fs-7";

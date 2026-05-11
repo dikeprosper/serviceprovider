@@ -1,25 +1,113 @@
-﻿<?php include './fileasset/header.php'; ?>
+﻿<?php include './fileasset/header.php';
+
+// Reviews
+
+$reviews = [
+    [
+        'name' => 'Sarah J.',
+        'role' => 'Homeowner in Austin',
+        'img' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuD54v7OddbKYdAKyf0LtkPRueyZf7Z8IsekzymdMo3h4IpVKS2d2Ia1MA-gFEvQm68wvYUrYkuwgo8KJTzJZ39qPPMZm7s8Pw_tz9vD1At5DKbXk7pW2sxSxbyF_qhSZmWZSXxFoUn8jyGROrWNJOAwW5R8WjnUs1XPYRUzFrrq8s9oA3ikPPZrWGcbUZrGCmpK9TC5sJogqGkeVFQD84DiR1xXSNSPKFitKmupdPsDhf3qBmm48wtOMxuwh-dv-f4nQWVPDcd4iX5O',
+        'text' => 'ProMarket saved my weekend. Finding a reliable plumber on a Friday night used to be impossible. I had David at my door in under an hour.'
+    ],
+    [
+        'name' => 'Michael R.',
+        'role' => 'Property Manager',
+        'img' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuA2DtCOkFruFn83uw7qGlQbcH8GodExlxJdhDwwD0-9NAuVlghaA7kI6tR8WsdlxZHOOuVf_O4tyzgdg5-RHPVHiMjt4DAaDw81L3jkzsgN8Hc9mbGPkYttM6w8_kZjz2ukN3Hcaf1iBsYBrG62DeI143zZgH3VfuyZe58KgJQk0ZHrTrr7vlPMSl6mui6eWGJ690sU1sn0klZfS5cLWfMSSdFzREkAGBfkTQXNaU0yBuYz7QhdW82GwV190OOIRp6uVUxoU6uSxgJj',
+        'text' => 'As a property manager, I need pros who show up and do the work right. The vetting process on ProMarket is the best I\'ve seen in the industry.'
+    ]
+];
+
+// How It Works
+
+$steps = [
+    [
+        "title"   => "Post a job for free",
+        "desc"    => "Tell us what you need. Provide a few detail.",
+        "btn"     => "Get Started",
+        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuCv8QS1h9v7fP6D7RzeQs6rdcRypDVKgHDYJDKdc_ojn0k3KbM9Wp5YC6zRqTzeQzorZ0ujR8bxKZB3daF44h8MphqiTQUqQlVkkEqHKNYQ0YGL8esSR6ZreNcDP5NvKtwx_QlS_4v-D8rGBe8MUyfV3dnTvsiYOXX_O4MXiJvxTj_Ji0j9ot-tPCpRh3cjXDcNgrACYCfBWg4Kr0zRJqNGEkqJo2MbF2RUIX1i_fsjRqeSLSfofoU08iNbDSRkRBeZOsaouPtFJ3YV",
+        "alt"     => "Post a job",
+    ],
+    [
+        "title"   => "Get proposals and hire",
+        "desc"    => "Top-rated pros will send you quotes. Review their.",
+        "btn"     => "Find Pros",
+        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuA60_bMmosfkhQKFjpM6XTAmRFSjcLp0_nduCPZbRHn2OtecLB-JuK4OOwq6Zk6DsKUX0hHyCmJ1qXiq_iD972VKBzx-hbDKSy6xlWYirigz8arPxUiEwwRoB8-GS7wMZ_Sr4tLBoO2Jik0nGK8DQ2JQ2KQlyd1c53sXlMeK4uExYYPFfx8Zfr0b2ecGAS41DScG1UL_RCzzX7S96_ZoTPvBwUTt8AMNs9hQoLq92KrIINMNEPnQW7VKjePjPr0PpDOOYQP2a7pZ3tz",
+        "alt"     => "Hire experts",
+    ],
+    [
+        "title"   => "Pay when work is done",
+        "desc"    => "Secure payments released only when you're 100%.",
+        "btn"     => "Learn More",
+        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuAGtwMfAUW2SJ5HPcxpYqdSDF_3q6yJ0HYmkfNQbTASFFYh-C-Fo194mKbAGDeo1zESshi6_WBJkIqzYPyYZtu-8XcPSh_ww0lk8EFp3ehE2e59a8vAzfN7bUbXGtPfZ7qUPuDxQbuw9nPhAJR3116CRFlBg8e0S52X2vrBcCfuIIXMDihlKo9qScqa_JSdFvhrU7d-7WuED0-OxkgxOVWZvP1fsJdmcR2u6f9l5LPQnm2DupT4NY_wScdoQAt3OfpXsn6piILnH2PB",
+        "alt"     => "Pay securely",
+    ],
+];
+
+$specials = [
+    [
+        "title"   => "24 Hours delivery",
+        "desc"    => "Have your cloth ready to wear in less than 2 days.",
+        "btn"     => "Browse Tailors",
+        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuCv8QS1h9v7fP6D7RzeQs6rdcRypDVKgHDYJDKdc_ojn0k3KbM9Wp5YC6zRqTzeQzorZ0ujR8bxKZB3daF44h8MphqiTQUqQlVkkEqHKNYQ0YGL8esSR6ZreNcDP5NvKtwx_QlS_4v-D8rGBe8MUyfV3dnTvsiYOXX_O4MXiJvxTj_Ji0j9ot-tPCpRh3cjXDcNgrACYCfBWg4Kr0zRJqNGEkqJo2MbF2RUIX1i_fsjRqeSLSfofoU08iNbDSRkRBeZOsaouPtFJ3YV",
+        "alt"     => "24 hours delivery",
+    ],
+    [
+        "title"   => "Discount deals and special offers",
+        "desc"    => "See tailors offering discounts and giveaway.",
+        "btn"     => "View Promo",
+        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuA60_bMmosfkhQKFjpM6XTAmRFSjcLp0_nduCPZbRHn2OtecLB-JuK4OOwq6Zk6DsKUX0hHyCmJ1qXiq_iD972VKBzx-hbDKSy6xlWYirigz8arPxUiEwwRoB8-GS7wMZ_Sr4tLBoO2Jik0nGK8DQ2JQ2KQlyd1c53sXlMeK4uExYYPFfx8Zfr0b2ecGAS41DScG1UL_RCzzX7S96_ZoTPvBwUTt8AMNs9hQoLq92KrIINMNEPnQW7VKjePjPr0PpDOOYQP2a7pZ3tz",
+        "alt"     => "Discounts and promo",
+    ],
+    [
+        "title"   => "Bulk oders and arrangement",
+        "desc"    => "Get large number jobs done fast and easy.",
+        "btn"     => "Learn More",
+        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuAGtwMfAUW2SJ5HPcxpYqdSDF_3q6yJ0HYmkfNQbTASFFYh-C-Fo194mKbAGDeo1zESshi6_WBJkIqzYPyYZtu-8XcPSh_ww0lk8EFp3ehE2e59a8vAzfN7bUbXGtPfZ7qUPuDxQbuw9nPhAJR3116CRFlBg8e0S52X2vrBcCfuIIXMDihlKo9qScqa_JSdFvhrU7d-7WuED0-OxkgxOVWZvP1fsJdmcR2u6f9l5LPQnm2DupT4NY_wScdoQAt3OfpXsn6piILnH2PB",
+        "alt"     => "bulk order",
+    ],
+];
+
+// Banners
+
+$imgs = [
+    "img1" => "https://lh3.googleusercontent.com/aida-public/AB6AXuCv8QS1h9v7fP6D7RzeQs6rdcRypDVKgHDYJDKdc_ojn0k3KbM9Wp5YC6zRqTzeQzorZ0ujR8bxKZB3daF44h8MphqiTQUqQlVkkEqHKNYQ0YGL8esSR6ZreNcDP5NvKtwx_QlS_4v-D8rGBe8MUyfV3dnTvsiYOXX_O4MXiJvxTj_Ji0j9ot-tPCpRh3cjXDcNgrACYCfBWg4Kr0zRJqNGEkqJo2MbF2RUIX1i_fsjRqeSLSfofoU08iNbDSRkRBeZOsaouPtFJ3YV",
+    "img2" => "https://lh3.googleusercontent.com/aida-public/AB6AXuA60_bMmosfkhQKFjpM6XTAmRFSjcLp0_nduCPZbRHn2OtecLB-JuK4OOwq6Zk6DsKUX0hHyCmJ1qXiq_iD972VKBzx-hbDKSy6xlWYirigz8arPxUiEwwRoB8-GS7wMZ_Sr4tLBoO2Jik0nGK8DQ2JQ2KQlyd1c53sXlMeK4uExYYPFfx8Zfr0b2ecGAS41DScG1UL_RCzzX7S96_ZoTPvBwUTt8AMNs9hQoLq92KrIINMNEPnQW7VKjePjPr0PpDOOYQP2a7pZ3tz",
+    "img3" => "https://lh3.googleusercontent.com/aida-public/AB6AXuAGtwMfAUW2SJ5HPcxpYqdSDF_3q6yJ0HYmkfNQbTASFFYh-C-Fo194mKbAGDeo1zESshi6_WBJkIqzYPyYZtu-8XcPSh_ww0lk8EFp3ehE2e59a8vAzfN7bUbXGtPfZ7qUPuDxQbuw9nPhAJR3116CRFlBg8e0S52X2vrBcCfuIIXMDihlKo9qScqa_JSdFvhrU7d-7WuED0-OxkgxOVWZvP1fsJdmcR2u6f9l5LPQnm2DupT4NY_wScdoQAt3OfpXsn6piILnH2PB",
+];
+
+$carousel_primary = [
+    ["src" => $imgs["img1"], "alt" => "Project 1"],
+    ["src" => $imgs["img2"], "alt" => "Project 2"],
+    ["src" => $imgs["img3"], "alt" => "Project 3"],
+];
+
+$carousel_secondary = [
+    ["src" => $imgs["img2"], "alt" => "Process 1"],
+    ["src" => $imgs["img3"], "alt" => "Process 2"],
+    ["src" => $imgs["img1"], "alt" => "Process 3"],
+]; 
+?>
 
 <!-- Hero Section -->
 <section class="hero <?=$section_padding ?>">
 
-    <div class="container-xl">
+    <div class="container-xl py-3 mb-3 py-md-0 mb-md-0">
 
-        <div class="hero-content px-2 px-sm-4 px-md-5 py-5 overflow-hidden">
+        <div class="hero-content px-2 px-sm-4 px-md-5 overflow-hidden">
             
-            <div class="col-12 col-lg-8 py-3 mt-3 mb-5 mb-md-0" id="hire">
+            <div class="col-12 col-lg-8" id="hire">
 
-                <h2 class="font-headline display-3 tracking-tight text-white mb-3">
+                <h2 class="font-headline display-4 tracking-tight text-white mb-3">
                     <span class="text-primary-light display-5"> Port Harcourt's best </span>  <br> Tailors, all in one place
                 </h2>
                 <p class="mb-5 fs-6-plus text-white w-md-100" style="width: 85%;">
-                    100% money back guarantee if your job isn't done.
                     Browse their work, read reviews from real customers, and pay safely.
+                    100% money back guarantee if your job isn't done.
                 </p>
 
                 <div class="switchRole rounded-5 mb-4 d-flex w-md-100">
-                    <button class="w-50 btn btn-outline-light btn-sm py-1 rounded-5 text-light">Hire</button>
-                    <button class="w-50 btn text-light btn-sm py-1 rounded-5">Get Hire</button>
+                    <button class="w-50 btn btn-outline-light btn-sm py-2 rounded-5 text-light">Hire</button>
+                    <button class="w-50 btn text-light btn-sm py-2 rounded-5">Get Hire</button>
                 </div>
 
                 <div class="bg-white p-1 rounded-4 rounded-md-5 shadow-lg d-flex flex-column flex-md-row gap-0" id="searchBar">
@@ -31,7 +119,7 @@
                         <span class="material-symbols-outlined text-primary me-2 icon-fill">location_on</span>
                         <input type="text" class="form-control border-0 shadow-none" placeholder="Port harcourt" style="width: 130px;">
                     </div>
-                    <button class="hero-gradient px-4 rounded-5 fs-6">Search</button>
+                    <button class="hero-gradient px-4 rounded-5 fs-6 py-1">Search</button>
                 </div>
                 <div class="mt-4 d-flex gap-2">
 
@@ -43,7 +131,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 inActive offset-6 py-3 mt-3 text-center" id="getHired">
+            <div class="col-12 inActive offset-6 py-5 my-5 text-center" id="getHired">
 
                 <h2 class="font-headline display-2 fw-bolder tracking-tight text-white mb-3">
                     <span class="text-primary-light display-6"> Are you a tailor in </span> <br> Port Harcourt?
@@ -56,8 +144,8 @@
                 <button class="btn btn-primary rounded-5 px-5 py-2 fs-6 mb-5 mx-auto" style="width: 200px;">Get started</button>
 
                 <div class="switchRole rounded-5 d-flex w-md-100 mx-auto mt-3">
-                    <button class="w-50 btn btn-sm py-1 rounded-5 text-light">Hire</button>
-                    <button class="w-50 btn text-light btn-sm py-1 rounded-5 btn-outline-light">Get Hire</button>
+                    <button class="w-50 btn btn-sm py-2 rounded-5 text-light">Hire</button>
+                    <button class="w-50 btn text-light btn-sm py-2 rounded-5 btn-outline-light">Get Hire</button>
                 </div>
             </div>
         </div>
@@ -65,283 +153,211 @@
 </section>
 
 <!-- Features slidder -->
-<section class="feature-slidder py-5 container-xl bg-white">
+<section class="features py-3 bg-white <?=$section_padding ?>">
 
-    <div class="py-5 container-xl">
-    </div>
-</section>
+    <div class="container-xl feature-slider py-3 py-md-5">
 
-<!-- Popular Categories (Bento Grid) -->
-<section class="Categories py-5 container-xl">
-
-    <div class="py-5 container-xl">
-
-        <div class="bento-grid <?=$section_padding ?>">
-            <!-- Large Card -->
-            <a href="#" class="bento-large position-relative overflow-hidden rounded-4 text-decoration-none d-flex flex-column justify-content-end p-4 p-md-5 group">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGtwMfAUW2SJ5HPcxpYqdSDF_3q6yJ0HYmkfNQbTASFFYh-C-Fo194mKbAGDeo1zESshi6_WBJkIqzYPyYZtu-8XcPSh_ww0lk8EFp3ehE2e59a8vAzfN7bUbXGtPfZ7qUPuDxQbuw9nPhAJR3116CRFlBg8e0S52X2vrBcCfuIIXMDihlKo9qScqa_JSdFvhrU7d-7WuED0-OxkgxOVWZvP1fsJdmcR2u6f9l5LPQnm2DupT4NY_wScdoQAt3OfpXsn6piILnH2PB" class="position-absolute start-0 bottom-0 inset-0 w-100 object-fit-cover transition-all group-hover-scale" alt="Cleaner" style="z-index: -1;">
-                <div class="position-absolute inset-0 transition-all" style="background: linear-gradient(to top, rgba(13, 28, 47, 0.8), transparent); z-index: 0;"></div>
-                <div class="position-relative z-1 text-white">
-                    <h3 class="h3 fw-bold font-headline mb-2">Home Cleaners</h3>
-                    <p class="mb-0 opacity-75">Book deep cleaning from top pros</p>
-                </div>
-            </a>
-            
-            <?php
-            $cats = [
-                ['icon' => 'build', 'label' => 'Plumbers'],
-                ['icon' => 'ac_unit', 'label' => 'AC Repair'],
-                ['icon' => 'brush', 'label' => 'Painters'],
-                ['icon' => 'carpenter', 'label' => 'Carpenters'],
-                ['icon' => 'face', 'label' => 'Makeup'],
-                ['icon' => 'photo_camera', 'label' => 'Photography']
-            ];
-            foreach($cats as $cat): ?>
-            <a href="#" class="bento-card-small site-radius">
-                <div class="icon-circle">
-                    <span class="material-symbols-outlined text-primary fs-2"><?= $cat['icon'] ?></span>
-                </div>
-                <span class="fw-bold text-dark fs-7"><?= $cat['label'] ?></span>
-            </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
-<!-- Top Rated Professionals -->
-<section class="py-5 my-5 container-xl pro-stack">
-
-    <div class="<?=$section_padding ?>">
-
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <h2 class="<?=$section_title; ?>">Top-Rated Providers</h2>
-            <a href="#" class="d-sm-blocktext-primary text-decoration-none fs-7">View All Pros →</a>
-        </div>
+        <div class="edge left"></div>
+        <div class="edge right"></div>
+        <div class="slider-track" id="track">
         
-        <div class="row">
-            <!-- Pro Card 1 -->
-
-            <?php for($topRated = 0; $topRated < 3; $topRated++): ?>
-                <div class="col-md-6 mb-4">
-
-                    <div class="overlapping-card p-3 p-md-4 border site-radius">
-                        <div class="row g-5 align-items-center <?php if($topRated == 1): echo 'flex-row-reverse'; endif; ?>">
-                            <div class="col-lg-6">
-                                <div class="img rounded-3" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA60_bMmosfkhQKFjpM6XTAmRFSjcLp0_nduCPZbRHn2OtecLB-JuK4OOwq6Zk6DsKUX0hHyCmJ1qXiq_iD972VKBzx-hbDKSy6xlWYirigz8arPxUiEwwRoB8-GS7wMZ_Sr4tLBoO2Jik0nGK8DQ2JQ2KQlyd1c53sXlMeK4uExYYPFfx8Zfr0b2ecGAS41DScG1UL_RCzzX7S96_ZoTPvBwUTt8AMNs9hQoLq92KrIINMNEPnQW7VKjePjPr0PpDOOYQP2a7pZ3tz');"></div>
-                            </div>
-                            <div class="col-lg-6">
-
-                                <h3 class="font-headline h4 fw-bold mb-1">David Miller</h3>
-                                <p class="text-primary fs-7 mb-2">Master Electrician</p>
-                                <p class="<?=$body_text?> mb-4">Specializing in smart home fintegration and emergency electrical repairs...</p>
-                                <hr>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <p class="small fw-bold fs-8 text-uppercase text-muted mb-1">Response</p>
-                                        <p class="fw-bold fs-9 mb-0">~ 15 mins</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="small fw-bold fs-8 text-uppercase text-muted mb-1">Reviews</p>
-                                        <p class="fw-bold fs-9 mb-0">124 verified</p>
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary rounded-2 px-5 py-2 fs-7 fw-bold w-md-100">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endfor; ?>
-
-
-            <!-- More pro cards would follow the same pattern... -->
         </div>
     </div>
 </section>
 
-<?php
-    $steps = [
-        [
-            'num' => '1',
-            'title' => 'Search Services',
-            'desc' => 'Tell us what you need. From emergency repairs to seasonal maintenance, we cover it all.'
-        ],
-        [
-            'num' => '2',
-            'title' => 'Select Your Pro',
-            'desc' => 'Compare profiles, read verified reviews, and check transparent pricing in real-time.'
-        ],
-        [
-            'num' => '3',
-            'title' => 'Book & Relax',
-            'desc' => 'Secure your slot instantly. No phone tag, no stress. Pay safely through the platform.'
-        ]
-    ];
-
-    $reviews = [
-        [
-            'name' => 'Sarah J.',
-            'role' => 'Homeowner in Austin',
-            'img' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuD54v7OddbKYdAKyf0LtkPRueyZf7Z8IsekzymdMo3h4IpVKS2d2Ia1MA-gFEvQm68wvYUrYkuwgo8KJTzJZ39qPPMZm7s8Pw_tz9vD1At5DKbXk7pW2sxSxbyF_qhSZmWZSXxFoUn8jyGROrWNJOAwW5R8WjnUs1XPYRUzFrrq8s9oA3ikPPZrWGcbUZrGCmpK9TC5sJogqGkeVFQD84DiR1xXSNSPKFitKmupdPsDhf3qBmm48wtOMxuwh-dv-f4nQWVPDcd4iX5O',
-            'text' => 'ProMarket saved my weekend. Finding a reliable plumber on a Friday night used to be impossible. I had David at my door in under an hour.'
-        ],
-        [
-            'name' => 'Michael R.',
-            'role' => 'Property Manager',
-            'img' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuA2DtCOkFruFn83uw7qGlQbcH8GodExlxJdhDwwD0-9NAuVlghaA7kI6tR8WsdlxZHOOuVf_O4tyzgdg5-RHPVHiMjt4DAaDw81L3jkzsgN8Hc9mbGPkYttM6w8_kZjz2ukN3Hcaf1iBsYBrG62DeI143zZgH3VfuyZe58KgJQk0ZHrTrr7vlPMSl6mui6eWGJ690sU1sn0klZfS5cLWfMSSdFzREkAGBfkTQXNaU0yBuYz7QhdW82GwV190OOIRp6uVUxoU6uSxgJj',
-            'text' => 'As a property manager, I need pros who show up and do the work right. The vetting process on ProMarket is the best I\'ve seen in the industry.'
-        ]
-    ];
-?>
-
-<!-- How it Works -->
-<section class="py-5 bg-light mt-5 <?=$section_padding ?>">
-    <div class="container-xl py-5">
-        <div class="text-center mb-5">
-            <h2 class="<?=$section_title; ?>">Three Simple Steps</h2>
-            <p class="<?=$body_text?>">From search to finish, we've got you covered.</p>
+<!-- HOW IT WORKS SECTION -->
+<section class="pt-4 pb-5 <?=$section_padding ?>">
+    <div class="container-xl pb-md-2">
+        <!-- Header row -->
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-md-between mb-5 gap-4">
+            <h2 class="<?=$section_title; ?>">How it works</h2>
+            <div class="toggle-pill">
+                <button class="toggle-btn active" id="btn-hiring">For hiring</button>
+                <button class="toggle-btn" id="btn-finding">For finding work</button>
+            </div>
         </div>
-        <div class='row g-4'>
-            <?php foreach($steps as $i=>$step): ?>
-                <div class='col-md-6 col-lg-4 '>
-                    <div class='cardx site-radius border'>
-                        <?php if($i==0): ?>
-                        <div class='soft rounded-3 p-3 border'>
-                            <div class='bg-primary opacity1 rounded mb-2' style='height:12px;width:50%'></div>
-                            <div class='bg-primary opacity2 rounded mb-2' style='height:12px'></div>
-                            <div class='bg-primary opacity2 rounded mb-4' style='height:12px;width:75%'></div>
-                            <div class='row g-2 mt-4'>
-                                <div class='col-6'>
-                                    <div class='bg-white rounded p-4 text-center border'>
-                                        <span class='opacity3 material-symbols-outlined fs-1 text-primary'>cleaning_services</span>
-                                    </div>
-                                </div>
-                                <div class='col-6'>
-                                    <div class='bg-white rounded p-4 text-center border'>
-                                        <span class='opacity3 material-symbols-outlined fs-1 text-primary'>plumbing</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php elseif($i==1): ?>
-                        <div class='bg-white rounded-4 shadow p-3 mx-auto' style='max-width:240px;aspect-ratio:4/3'>
-                            <div class='d-flex align-items-center gap-2 mb-3'>
-                                <div class='rounded-circle' style='width:40px;height:40px;background:#d5e3fd'></div>
-                                <div class='flex-grow-1'>
-                                    <div class='bg-dark rounded mb-1' style='height:8px;width:70px'></div>
-                                    <div class='bg-secondary-subtle rounded' style='height:8px;width:45px'></div>
-                                </div>
-                                <small class='fw-bold text-primary'>$$$</small>
-                            </div>
-                            <hr>
-                            <div class='d-flex align-items-center gap-2 mb-3'>
-                                <div class='rounded-circle bg-primary' style='width:40px;height:40px'></div>
-                                <div class='flex-grow-1'>
-                                    <div class='bg-dark rounded mb-1' style='height:8px;width:90px'></div>
-                                    <div class='bg-secondary-subtle rounded' style='height:8px;width:40px'></div>
-                                </div>
-                                <small class='fw-bold text-primary'>$$</small>
-                            </div>
-                            <button class='btn btn-primary btn-sm w-100 rounded-2'>Select Pro</button>
-                        </div>
-                        
-                        <?php else: ?>
 
-                           <div class='bg-primary text-white rounded-3 d-flex flex-column justify-content-center align-items-center text-center p-4'>
-                                <span class='material-symbols-outlined' style='font-size:60px'>event_available</span>
-                                <p class='fw-bold fs-5 mb-1 mt-2 mt-1'>Booking Confirmed!</p>
-                                <small>Friday, Oct 24 at 10:00 AM</small>
-                            </div>
-                        <?php endif; ?>
+        <!-- Slider container -->
+        <div class="position-relative" id="slider-wrapper">
+            <div class="steps-slider" id="slider">
+
+                <?php foreach ($steps as $i => $step): ?>
+                <div class="step-card d-flex flex-column">
+                    <!-- Image -->
+                    <div class="card-img-wrap site-radius">
+                        <img
+                            class="h-100 w-100 object-fit-cover"
+                            src="<?php echo htmlspecialchars($step['img']); ?>"
+                            alt="<?php echo htmlspecialchars($step['alt']); ?>"
+                            loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
+                        />
                     </div>
 
-                    <div class='d-flex gap-3 mt-4'>
-                        <div class='num px-3'><?= $step['num'] ?></div>
-                        <div>
-                            <h4 class='headline fw-bold fs-5'><?= $step['title'] ?></h4>
-                            <p class='<?=$body_text?> mb-0'><?= $step['desc'] ?></p>
+                    <!-- Title + mobile body -->
+                    <div class="d-flex flex-column flex-grow-1">
+                        <h3 class="h5 headline-light fw-bolder mb-2"><?php echo htmlspecialchars($step['title']); ?></h3>
+                        <div class="card-mobile-body">
+                            <p class="mb-2 <?=$body_text; ?>"><?php echo htmlspecialchars($step['desc']); ?></p>
+                            <button class="btn btn-primary btn-sm w-100 rounded-2 fs-7"><?php echo htmlspecialchars($step['btn']); ?></button>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+
+            </div>
+
+            <!-- Scroll indicator (mobile / tablet only) -->
+            <div class="scroll-track">
+                <div class="scroll-thumb" id="scroll-indicator"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- BANNERS -->
+<section class="container-xl py-5 overflow-hidden" id="banners">
+    
+    <!-- SAMPLING EXPERTS BANNER (light bg) -->
+    <div class="pb-4" id="section-primary">
+        <div class="<?=$section_padding ?>">
+            <div class="banner-wrap site-radius">
+    
+                <div class="row flex-column-reverse flex-lg-row">
+    
+                    <!-- Banner Heading -->
+                    <div class="banner-content col-lg-6">
+                        <h2 class="display-6 <?=$section_title; ?>"> Jobs done by experts</h2>
+                        <p style="color:var(--on-surface-variant);font-size:1.1rem;margin-bottom:2.5rem;">From high-end residential renovations to critical electrical infrastructure, see the caliber of work our verified professionals deliver daily.</p>
+                        <button class="btn btn-primary rounded-2 px-5 py-2 fs-6 w-100 w-md-75 w-lg-75 w-xl-50">Explore Portfolio</button>
+                    </div>
+        
+                    <!-- Sample Jobs Slider -->
+                    <div class="carousel-outer carousel-primary col-lg-6" id="carousel-primary-outer">
+                        <div class="carousel-track-internal p-0 m-0 w-100" id="carousel-primary">
+                            <?php foreach ($carousel_primary as $item): ?>
+                            <div class="c-item p-0 m-0 w-100">
+                                <img src="<?php echo htmlspecialchars($item['src']); ?>" alt="<?php echo htmlspecialchars($item['alt']); ?>"/>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- UNDECIDED BANNER (Primary bg) -->
+    <div class="pb-2" id="section-secondary">
+        <div class="<?=$section_padding ?>">
+            <div class="banner-wrap site-radius overflow-hidden position-relative" style="background: linear-gradient(105deg, #001c64 0%,  #001A41 90%);">
+    
+                <div class="" style="position: absolute;inset: 0px; opacity: .1; pointer-events: none;background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+                
+                <div class="row flex-column-reverse flex-lg-row  position-relative" style="z-index: 10;">
+    
+                    <!-- Banner Heading -->
+                    <div class="banner-content col-lg-6">
+                        <div class="font-headline fs-7 btn btn-outline-light rounded-5 px-4 py-0 mb-4">
+                            Unmatched Professional Standards
+                        </div>
+                        <h2 class="display-6 <?=$section_title; ?> text-white mb-3 fw-lighter"> Building Trust Through <span class="font-headline">Technical Precision</span> </h2>
+                        <p class="text-white fs-6-plus mb-4"> Every professional on our platform undergoes a rigorous multi-step vetting process. We guarantee not just quality, but the absolute peace of mind that comes with hiring the best in the business. </p>
+                        <a class="btn btn-light rounded-2 px-5 py-2 fs-6 w-100 w-md-75 w-lg-75 w-xl-50">Get Started</a>
+                    </div>
+        
+                    <!-- Sample Jobs Slider -->
+                    <div class="carousel-outer carousel-secondary col-lg-6" id="carousel-secondary-outer">
+                        <div class="carousel-track-internal p-0 m-0 w-100" id="carousel-secondary">
+                            <?php foreach ($carousel_secondary as $item): ?>
+                            <div class="c-item p-0 m-0 w-100">
+                                <img src="<?php echo htmlspecialchars($item['src']); ?>" alt="<?php echo htmlspecialchars($item['alt']); ?>"/>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Gallery Section (Simplified for Bootstrap) -->
-<section class="py-5 bg-light-subtle <?=$section_padding ?>">
-    <div class="container-xl py-5">
+<!-- EXTRA SPECIAL -->
+<section class="py-5 <?=$section_padding ?>">
+    <div class="container-xl pb-md-2">
+        <!-- Header row -->
+        <div class="mb-5 gap-4">
+            <h2 class="<?=$section_title; ?>"> Extra Special </h2>
+            <p class='<?=$body_text?>' style='max-width:450px'>Read about the experiences of homeowners and property managers who trust ProMarket.</p>
+        </div>
 
-    <div class="mb-5">
+        <!-- Slider container -->
+        <div>
+            <div class="row g-5">
 
-        <h2 class="<?=$section_title; ?>">See the Quality</h2>
-        <p class='<?=$body_text?>' style='max-width:450px'>Read about the experiences of homeowners and property managers who trust ProMarket.</p>
-    </div>
+                <?php foreach ($specials as $i => $special): ?>
+                <div class="col-md-6 col-lg-4">
+                    <div class="d-flex flex-column">
+                        <!-- Image -->
+                        <div class="card-img-wrap site-radius">
+                            <img
+                                class="h-100 w-100 object-fit-cover"
+                                src="<?php echo htmlspecialchars($special['img']); ?>"
+                                alt="<?php echo htmlspecialchars($special['alt']); ?>"
+                                loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
+                            />
+                        </div>
 
-    <div class="row g-4">
-        <!-- Gallery Item 1 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="gallery-card rounded-5 shadow-lg border-0">
-                <div class="d-flex" style="height: 320px;">
-                    <div class="flex-grow-1 position-relative">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCanAUrc35DN-XBTtihR2YDplXfVlJANhkqDKtAzdbPvqhJRn4ki-lP3XyZc4ZkVGzPlv82PNw6iyBI0N7fA_pO2CMT_yWcwtXqY5MOV4tSnnfLWzE5BdueThW0FpaWRba73q0EhX4_3i2CoB-WEpvqbK5CDi44zDnvvvV2zaI5Hc8EMedGPns1rNZAhOSAplqiPYfLby_VQTeGm0v9vyRKaLrx9eIP0BVWNGz24v-GUWFGfLIHlueiz0WIAgPNbtZvgukMkroGn_7E" class="w-100 h-100 object-fit-cover">
-                        <span class="badge bg-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill opacity-75">BEFORE</span>
-                    </div>
-                    <div class="flex-grow-1 position-relative">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKuaEFJJfkyq22ni9xok_pxCUAVCgmH2paOP0w1EpAWZA9rd1Np-gigQTRLh4qNMwieD5WOECwPGv_MWkvwBvikLGHRjprJjJL0r7xqfH0il8naxIVxWzq7SAgE9VjQqhZ47vYnhD_mw3nOlDjBgeYvZJOqkNl6Yd55dwiASQK-qL1EgUs2s_PtKfjXr9WhukZNE30BusD0PKnkXhVdyS5bfSN7Yp2j9d9-5ZxHG9VKYJioVVD2jkUWu_NUh3-4BW_LyHi5uBeTuWL" class="w-100 h-100 object-fit-cover">
-                        <span class="badge bg-primary position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill">AFTER</span>
+                        <!-- Title + mobile body -->
+                        <div class="d-flex flex-column flex-grow-1">
+                            <h3 class="h5 headline-light fw-bolder mb-2"><?php echo htmlspecialchars($special['title']); ?></h3>
+                            <div class="card-mobile-body">
+                                <p class="mb-2 <?=$body_text; ?>"><?php echo htmlspecialchars($special['desc']); ?></p>
+                                <button class="btn btn-primary btn-sm w-100 rounded-2 fs-7"><?php echo htmlspecialchars($special['btn']); ?></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-caption">
-                    <h5 class="fw-bold mb-1 fs-6">Full Kitchen Remodel — Marcus Chen</h5>
-                    <p class="<?=$body_text?> mb-0">Completed in 14 days • 5-star service</p>
-                </div>
+                <?php endforeach; ?>
+
             </div>
         </div>
-        <!-- Gallery Item 2 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="gallery-card rounded-5 shadow-lg border-0">
-                <div class="d-flex" style="height: 320px;">
-                    <div class="flex-grow-1 position-relative">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3qS_O_0nw-wI9tYm5cj-rNygLt9WiK5uMYRCn8UBYN-qUHZvVqSIkV6Wu_jwzGmO2Y3FzWNrx_kgvH5AJ7rrkcbvS6IaHDUHX6Xc1G_EcHdmHqbZfazzq45LaSu77flHVFT_zLZjrMJKVZBQomW9BhnXG6vwf60SOgUT67u2_mqc2Kq501qdQrPcLCAjhCjIjaOTvhPUkyg9eIlSpHPoyk4i9lwtr679pRtm2ue2U6hLhFbUZ9IVmKB_1XmPRzGfg-p_Vj0wNLTeg" class="w-100 h-100 object-fit-cover">
-                        <span class="badge bg-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill opacity-75">BEFORE</span>
-                    </div>
-                    <div class="flex-grow-1 position-relative">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm09QaHgpi0Fb_8-QIi2unDxoqmTaWjJT0WFkstkrrvsJ0O9NkdkDcSf5BPP1jwFmbnThM4DU3dUQs8fFPRjNyyoMJ2sXZ4RB1aSAgoVcRCpVUw9GrOUffxqnTW5Y0V52jSur8rA271qAkshfoxRgiuxEZwx9N37Zq00fo3V6YTkhBl8UjuRIjVJt3Qd1d1F_i2NIqKY7kWY7fEjhoukxy2QNMQSw9CUhzU9AFwNNKXgEspkqH12DP-OL7X2AEea7AIHoUqAk2Fevl" class="w-100 h-100 object-fit-cover">
-                        <span class="badge bg-primary position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill">AFTER</span>
-                    </div>
-                </div>
-                <div class="gallery-caption">
-                    <h5 class="fw-bold mb-1 fs-6">Garden Transformation — GreenThumb Pros</h5>
-                    <p class="<?=$body_text?> mb-0">Completed in 2 days • Elite Partner</p>
-                </div>
-            </div>
-        </div>
-        <!-- Gallery Item 3 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="gallery-card rounded-5 shadow-lg border-0">
-                <div class="d-flex" style="height: 320px;">
-                    <div class="flex-grow-1 position-relative">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3qS_O_0nw-wI9tYm5cj-rNygLt9WiK5uMYRCn8UBYN-qUHZvVqSIkV6Wu_jwzGmO2Y3FzWNrx_kgvH5AJ7rrkcbvS6IaHDUHX6Xc1G_EcHdmHqbZfazzq45LaSu77flHVFT_zLZjrMJKVZBQomW9BhnXG6vwf60SOgUT67u2_mqc2Kq501qdQrPcLCAjhCjIjaOTvhPUkyg9eIlSpHPoyk4i9lwtr679pRtm2ue2U6hLhFbUZ9IVmKB_1XmPRzGfg-p_Vj0wNLTeg" class="w-100 h-100 object-fit-cover">
-                        <span class="badge bg-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill opacity-75">BEFORE</span>
-                    </div>
-                    <div class="flex-grow-1 position-relative">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm09QaHgpi0Fb_8-QIi2unDxoqmTaWjJT0WFkstkrrvsJ0O9NkdkDcSf5BPP1jwFmbnThM4DU3dUQs8fFPRjNyyoMJ2sXZ4RB1aSAgoVcRCpVUw9GrOUffxqnTW5Y0V52jSur8rA271qAkshfoxRgiuxEZwx9N37Zq00fo3V6YTkhBl8UjuRIjVJt3Qd1d1F_i2NIqKY7kWY7fEjhoukxy2QNMQSw9CUhzU9AFwNNKXgEspkqH12DP-OL7X2AEea7AIHoUqAk2Fevl" class="w-100 h-100 object-fit-cover">
-                        <span class="badge bg-primary position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill">AFTER</span>
-                    </div>
-                </div>
-                <div class="gallery-caption">
-                    <h5 class="fw-bold mb-1 fs-6">Garden Transformation — GreenThumb Pros</h5>
-                    <p class="<?=$body_text?> mb-0">Completed in 2 days • Elite Partner</p>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 </section>
 
-<!-- Reviews Section-->
-<section class="container-xl py-5 bg-white">
-    <div class='py-5 <?=$section_margin ?>'>
+<!-- EASY USE SECTION -->
+<section class="easyuse py-5">
+
+    <div class="container-xl <?=$section_padding; ?> pb-md-2">
+        
+    </div>
+</section>
+
+<!-- REFERRAL PROGRAM -->
+<section class="py-5">
+    <div class="pb-md-2">
+
+        <div class="text-center mb-5 mx-auto px-3" style="max-width:48rem;">
+            <h2 class="<?=$section_title; ?>">Join our Referral Program</h2>
+            <p class="<?=$body_text ?>">Earn rewards by inviting friends and professionals to the ProMarket community. Whether you're a service provider or a client, there's a place for you to grow with us.</p>
+        </div>
+    
+        <div class="video-wrap d-flex align-items-center justify-content-center">
+            <img class="thumb" src="<?php echo htmlspecialchars($imgs['img1']); ?>" alt="Referral Program Video Thumbnail"/>
+            <div class="play-btn">
+                <span class="material-symbols-outlined fill-1">play_arrow</span>
+            </div>
+            <div class="video-caption">
+                <p style="font-weight:700;font-size:1.4rem;margin:0;">Watch our referral guide</p>
+                <p style="color:rgba(255,255,255,.7);font-size:.95rem;margin:0;">2:45 &bull; High Fidelity</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews Section -->
+<section class="py-5 container-xl bg-white">
+    <div class='<?=$section_margin ?> py-md-2'>
         <div class='text-center mb-5'>
             <h2 class='<?=$section_title; ?>'>Customer Testimonials</h2>
             <p class='<?=$body_text?> mx-auto' style='max-width:450px'>Read about the experiences of homeowners and property managers who trust ProMarket.</p>
@@ -375,7 +391,7 @@
 </section>
 
 <!-- Discount Banner -->
-<section class="container-xl pt-5 mt-5">
+<section class="container-xl py-5">
     <div class="<?=$section_margin ?> hero-gradient p-5 site-radius shadow-lg d-flex flex-column flex-md-row justify-content-between align-items-center position-relative">
         <div class="text-center text-md-start mb-4 mb-md-0">
             <span class="badge bg-white bg-opacity-25 mb-3 fs-9 px-3 pt-2 pb-1 rounded-pill">LIMITED TIME OFFER</span>
@@ -387,9 +403,9 @@
 </section>
 
 <!-- FAQ -->
-<section class="<?=$section_padding ?>">
+<section class="<?=$section_padding ?> py-5">
 
-    <div class="container-xl d-flex flex-column align-items-center">
+    <div class="container-xl d-flex flex-column align-items-center py-md-2">
 
         <div class="my-5 <?=$section_margin ?> w-100" style="max-width: 800px;">
             <h2 class="<?=$section_title; ?> text-center mb-5">Common Questions</h2>
@@ -414,7 +430,7 @@
 
 <!-- CTA -->
 <section class="py-5 bg-dark text-white text-center position-relative <?=$section_padding ?>">
-    <div class="container py-5 z-1">
+    <div class="container pb-5 z-1">
         <h2 class="<?=$section_title; ?> mb-4">Grow your business with Architecto</h2>
         <p class="fs-6 text-secondary-emphasis mb-5 mx-auto" style="max-width: 600px;">Join thousands of professionals finding new customers every day. No lead fees. Just quality bookings.</p>
         <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">

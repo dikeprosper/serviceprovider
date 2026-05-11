@@ -15,7 +15,6 @@ const screenWidth = window.innerWidth;
 window.addEventListener("resize", () => {
     
     resizeNavigation(window.innerWidth);
-    resizeHero("100px");
 });
 
 
