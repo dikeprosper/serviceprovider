@@ -81,11 +81,40 @@ $carousel_primary = [
     ["src" => $imgs["img3"], "alt" => "Project 3"],
 ];
 
-$carousel_secondary = [
-    ["src" => $imgs["img2"], "alt" => "Process 1"],
-    ["src" => $imgs["img3"], "alt" => "Process 2"],
-    ["src" => $imgs["img1"], "alt" => "Process 3"],
-]; 
+// Second Banner
+
+$stats = [
+    [
+        'icon'       => 'verified',
+        'icon_class' => 'icon-box-primary',
+        'text_class' => 'icon-primary',
+        'value'      => '50k+',
+        'label'      => 'Verified Pros',
+        'size'       => 'lg',
+        'pos'        => 'card-top-right',
+    ],
+    [
+        'icon'       => 'lock',
+        'icon_class' => 'icon-box-green',
+        'text_class' => 'icon-green',
+        'value'      => 'Secure Escrow',
+        'label'      => 'Payment Protection',
+        'size'       => 'md',
+        'pos'        => 'card-mid-left',
+    ],
+    [
+        'icon'       => 'support_agent',
+        'icon_class' => 'icon-box-blue',
+        'text_class' => 'icon-blue',
+        'value'      => '24/7 Support',
+        'label'      => 'Dedicated Help',
+        'size'       => 'md',
+        'pos'        => 'card-bottom-right',
+    ],
+];
+
+$success_rate = '99.9%';
+
 ?>
 
 <!-- Hero Section -->
@@ -250,11 +279,13 @@ $carousel_secondary = [
     <!-- UNDECIDED BANNER (Primary bg) -->
     <div class="pb-2" id="section-secondary">
         <div class="<?=$section_padding ?>">
-            <div class="banner-wrap site-radius overflow-hidden position-relative" style="background: linear-gradient(105deg, #001c64 0%,  #001A41 90%);">
+            <div class="banner-wrap site-radius overflow-hidden position-relative px-2 py-2">
     
-                <div class="" style="position: absolute;inset: 0px; opacity: .1; pointer-events: none;background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
-                
-                <div class="row flex-column-reverse flex-lg-row  position-relative" style="z-index: 10;">
+                <!-- Overlay layers -->
+                <div class="banner__grid" aria-hidden="true"></div>
+                <div class="banner__gradient" aria-hidden="true"></div> 
+
+                <div class="row flex-column-reverse align-items-center flex-lg-row position-relative" style="z-index: 2;">
     
                     <!-- Banner Heading -->
                     <div class="banner-content col-lg-6">
@@ -267,13 +298,49 @@ $carousel_secondary = [
                     </div>
         
                     <!-- Sample Jobs Slider -->
-                    <div class="carousel-outer carousel-secondary col-lg-6" id="carousel-secondary-outer">
-                        <div class="carousel-track-internal p-0 m-0 w-100" id="carousel-secondary">
-                            <?php foreach ($carousel_secondary as $item): ?>
-                            <div class="c-item p-0 m-0 w-100">
-                                <img src="<?php echo htmlspecialchars($item['src']); ?>" alt="<?php echo htmlspecialchars($item['alt']); ?>"/>
+                    <div class="col-12 col-lg-6">
+                        <div class="visual-col">
+
+                            <!-- Spinning rings -->
+                            <div class="ring-outer" aria-hidden="true">
+                                <div class="ring-inner"></div>
+                            </div>
+
+                            <?php foreach ($stats as $stat): ?>
+                            <!-- Float card: <?= htmlspecialchars($stat['value']) ?> -->
+                            <div class="float-card <?= htmlspecialchars($stat['pos']) ?>">
+                                <div class="d-flex align-items-center gap-3">
+                                <div class="icon-box <?= htmlspecialchars($stat['icon_class']) ?>">
+                                    <span class="material-symbols-outlined <?= htmlspecialchars($stat['text_class']) ?>">
+                                    <?= htmlspecialchars($stat['icon']) ?>
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="font-headline <?= $stat['size'] === 'lg' ? 'card-value-lg' : 'card-value-md' ?> mb-0">
+                                    <?= htmlspecialchars($stat['value']) ?>
+                                    </p>
+                                    <p class="card-label mb-0"><?= htmlspecialchars($stat['label']) ?></p>
+                                </div>
+                                </div>
                             </div>
                             <?php endforeach; ?>
+
+                            <!-- Live success-rate pill -->
+                            <div class="live-pill" role="status" aria-live="polite">
+                                <div class="ping-wrap" aria-hidden="true">
+                                <span class="ping-ring"></span>
+                                <span class="ping-dot"></span>
+                                </div>
+                                <p class="pill-text mb-0">
+                                <?= htmlspecialchars($success_rate) ?>
+                                <span class="pill-muted">Success Rate</span>
+                                </p>
+                            </div>
+
+                            <!-- Crosshair decorations -->
+                            <div class="cross-h" aria-hidden="true"></div>
+                            <div class="cross-v" aria-hidden="true"></div>
+
                         </div>
                     </div>
                 </div>
@@ -322,14 +389,6 @@ $carousel_secondary = [
 
             </div>
         </div>
-    </div>
-</section>
-
-<!-- EASY USE SECTION -->
-<section class="easyuse py-5">
-
-    <div class="container-xl <?=$section_padding; ?> pb-md-2">
-        
     </div>
 </section>
 
@@ -405,9 +464,9 @@ $carousel_secondary = [
 <!-- FAQ -->
 <section class="<?=$section_padding ?> py-5">
 
-    <div class="container-xl d-flex flex-column align-items-center py-md-2">
+    <div class="container-xl d-flex flex-column align-items-center pb-md-2">
 
-        <div class="my-5 <?=$section_margin ?> w-100" style="max-width: 800px;">
+        <div class="<?=$section_margin ?> w-100" style="max-width: 800px;">
             <h2 class="<?=$section_title; ?> text-center mb-5">Common Questions</h2>
             <div class="accordion accordion-flush" id="faqAccordion">
                 <div class="accordion-item bg-white rounded-4 border shadow-sm mb-3">
@@ -430,7 +489,7 @@ $carousel_secondary = [
 
 <!-- CTA -->
 <section class="py-5 bg-dark text-white text-center position-relative <?=$section_padding ?>">
-    <div class="container pb-5 z-1">
+    <div class="container pb-2 z-1">
         <h2 class="<?=$section_title; ?> mb-4">Grow your business with Architecto</h2>
         <p class="fs-6 text-secondary-emphasis mb-5 mx-auto" style="max-width: 600px;">Join thousands of professionals finding new customers every day. No lead fees. Just quality bookings.</p>
         <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">

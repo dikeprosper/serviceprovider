@@ -132,22 +132,7 @@
                 </div>
             </div>
         </nav>
-        <!-- <div class="bg-primary border-bottom">
-        
-            <div class="overflow-hidden container-xl">
-        
-                <div class="scrollCategory d-flex justify-content-between align-items-center gap-4 py-2 text-white" style="min-width: 100%; width: 100%;">
-        
-                    <?php
-                    $subCats = ['Weaving','Light make-up','Weag making','Native wears','Bobo gown','wedding Make-up','Acrylic nails','Braiding','Tailored Suit','Ankara shirt & short','Press-on Nails'];
-                    
-                    foreach($subCats as $subCat): ?>
-                        <a href="<?=$site_url.$subCat ?>" class="fs-8 text-decoration-none font-headline text-white" style="min-width: 130px"> <?= $subCat; ?> </a>
-                    <?php endforeach; ?>
-        
-                </div>
-            </div>
-        </div> -->
+
     </div>
     
     <div class="px-0 px-md-5 px-xl-0">

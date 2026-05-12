@@ -1,379 +1,390 @@
 <?php
-// Architecto | How It Works — PHP + Bootstrap conversion
-$page_title = "Architecto | How It Works";
-$steps = [
+/**
+ * Architecto | Secondary Showcase Banner
+ * PHP + Bootstrap 5 conversion — retains all original animations & effects
+ */
+
+// --- Data (easy to swap from DB/API) ---
+$stats = [
     [
-        "title"   => "Post a job for free",
-        "desc"    => "Tell us what you need. Provide a few details and we'll help you find the right professional for your project.",
-        "btn"     => "Get Started",
-        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuCv8QS1h9v7fP6D7RzeQs6rdcRypDVKgHDYJDKdc_ojn0k3KbM9Wp5YC6zRqTzeQzorZ0ujR8bxKZB3daF44h8MphqiTQUqQlVkkEqHKNYQ0YGL8esSR6ZreNcDP5NvKtwx_QlS_4v-D8rGBe8MUyfV3dnTvsiYOXX_O4MXiJvxTj_Ji0j9ot-tPCpRh3cjXDcNgrACYCfBWg4Kr0zRJqNGEkqJo2MbF2RUIX1i_fsjRqeSLSfofoU08iNbDSRkRBeZOsaouPtFJ3YV",
-        "alt"     => "Post a job",
+        'icon'       => 'verified',
+        'icon_class' => 'icon-box-primary',
+        'text_class' => 'icon-primary',
+        'value'      => '50k+',
+        'label'      => 'Verified Pros',
+        'size'       => 'lg',
+        'pos'        => 'card-top-right',
     ],
     [
-        "title"   => "Get proposals and hire",
-        "desc"    => "Top-rated pros will send you quotes. Review their portfolios, read reviews, and hire the best match for your needs.",
-        "btn"     => "Find Pros",
-        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuA60_bMmosfkhQKFjpM6XTAmRFSjcLp0_nduCPZbRHn2OtecLB-JuK4OOwq6Zk6DsKUX0hHyCmJ1qXiq_iD972VKBzx-hbDKSy6xlWYirigz8arPxUiEwwRoB8-GS7wMZ_Sr4tLBoO2Jik0nGK8DQ2JQ2KQlyd1c53sXlMeK4uExYYPFfx8Zfr0b2ecGAS41DScG1UL_RCzzX7S96_ZoTPvBwUTt8AMNs9hQoLq92KrIINMNEPnQW7VKjePjPr0PpDOOYQP2a7pZ3tz",
-        "alt"     => "Hire experts",
+        'icon'       => 'lock',
+        'icon_class' => 'icon-box-green',
+        'text_class' => 'icon-green',
+        'value'      => 'Secure Escrow',
+        'label'      => 'Payment Protection',
+        'size'       => 'md',
+        'pos'        => 'card-mid-left',
     ],
     [
-        "title"   => "Pay when work is done",
-        "desc"    => "Secure payments released only when you're 100% satisfied with the completed project. Quality guaranteed.",
-        "btn"     => "Learn More",
-        "img"     => "https://lh3.googleusercontent.com/aida-public/AB6AXuAGtwMfAUW2SJ5HPcxpYqdSDF_3q6yJ0HYmkfNQbTASFFYh-C-Fo194mKbAGDeo1zESshi6_WBJkIqzYPyYZtu-8XcPSh_ww0lk8EFp3ehE2e59a8vAzfN7bUbXGtPfZ7qUPuDxQbuw9nPhAJR3116CRFlBg8e0S52X2vrBcCfuIIXMDihlKo9qScqa_JSdFvhrU7d-7WuED0-OxkgxOVWZvP1fsJdmcR2u6f9l5LPQnm2DupT4NY_wScdoQAt3OfpXsn6piILnH2PB",
-        "alt"     => "Pay securely",
+        'icon'       => 'support_agent',
+        'icon_class' => 'icon-box-blue',
+        'text_class' => 'icon-blue',
+        'value'      => '24/7 Support',
+        'label'      => 'Dedicated Help',
+        'size'       => 'md',
+        'pos'        => 'card-bottom-right',
     ],
 ];
+
+$success_rate = '99.9%';
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title><?php echo htmlspecialchars($page_title); ?></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecto | Premium Professional Marketplace</title>
 
-    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Manrope:wght@500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
 
-    <style>
-        /* ── Custom Design Tokens (mirrors original Tailwind config) ── */
-        :root {
-            --color-primary:               #00288e;
-            --color-primary-container:     #1e40af;
-            --color-primary-fixed:         #dde1ff;
-            --color-on-primary:            #ffffff;
-            --color-on-primary-fixed:      #001453;
-            --color-on-background:         #0d1c2f;
-            --color-on-surface:            #0d1c2f;
-            --color-on-surface-variant:    #444653;
-            --color-surface:               #f8f9ff;
-            --color-surface-container-low: #eff4ff;
-            --color-surface-container:     #e6eeff;
-            --color-outline-variant:       #c4c5d5;
-            --color-primary-fixed-dim:     #b8c4ff;
-        }
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
 
-        /* ── Base ── */
-        html { scroll-behavior: smooth; }
-        body {
-            background: #ffffff;
-            color: var(--color-on-background);
-            font-family: 'Manrope', sans-serif;
-            font-weight: 500;
-        }
-        ::selection {
-            background: var(--color-primary-fixed);
-            color: var(--color-on-primary-fixed);
-        }
+  <style>
+    /* ── Design Tokens ──────────────────────────────────────────── */
+    :root {
+      --color-primary:          #00288e;
+      --color-primary-dim:      #b8c4ff;
+      --color-surface:          #f8f9ff;
+      --color-banner-bg:        #001A41;
+      --color-banner-deep:      #040D21;
+      --font-headline:          'Plus Jakarta Sans', sans-serif;
+      --font-body:              'Manrope', sans-serif;
+      --card-bg:                rgba(255 255 255 / 0.05);
+      --card-border:            rgba(255 255 255 / 0.10);
+    }
 
-        /* ── Section ── */
-        .hiw-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 6rem 0;
-            background: #ffffff;
-            overflow: hidden;
-        }
+    /* ── Reset & Base ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-surface);
+    }
 
-        /* ── Headline ── */
-        .hiw-headline {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
-            font-size: clamp(2.5rem, 6vw, 3.75rem);
-            letter-spacing: -0.02em;
-            color: var(--color-on-background);
-        }
+    /* ── Section ────────────────────────────────────────────────── */
+    .showcase-section {
+      padding-bottom: 6rem;
+      background: #fff;
+      overflow: hidden;
+    }
 
-        /* ── Toggle Pill ── */
-        .toggle-pill {
-            display: inline-flex;
-            padding: 0.25rem;
-            background: var(--color-surface-container-low);
-            border: 1px solid rgba(196,197,213,0.3);
-            border-radius: 9999px;
-            gap: 0;
-        }
-        .toggle-pill .toggle-btn {
-            padding: 0.5rem 2rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 700;
-            border: none;
-            background: transparent;
-            color: var(--color-on-surface-variant);
-            cursor: pointer;
-            transition: color 0.2s;
-            white-space: nowrap;
-        }
-        .toggle-pill .toggle-btn.active {
-            background: #ffffff;
-            color: var(--color-primary);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-        }
-        .toggle-pill .toggle-btn:not(.active):hover {
-            color: var(--color-on-surface);
-        }
+    /* ── Banner Card ────────────────────────────────────────────── */
+    .banner {
+      background-color: var(--color-banner-bg);
+      border-radius: 3rem;
+      overflow: hidden;
+      min-height: 650px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
 
-        /* ── Slider wrapper (mobile / tablet) ── */
-        .steps-slider {
-            display: flex;
-            overflow-x: auto;
-            gap: 1.5rem;
-            padding-bottom: 3rem;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            cursor: grab;
-        }
-        .steps-slider:active { cursor: grabbing; }
-        .steps-slider::-webkit-scrollbar { display: none; }
-        .steps-slider { scrollbar-width: none; -ms-overflow-style: none; }
+    /* Blueprint grid overlay */
+    .banner__grid {
+      position: absolute;
+      inset: 0;
+      opacity: .012;
+      pointer-events: none;
+      background-image:
+        linear-gradient(#fff 1px, transparent 1px),
+        linear-gradient(90deg, #fff 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
 
-        /* ── Step card base ── */
-        .step-card {
-            flex: 0 0 66%;
-            scroll-snap-align: center;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease-out;
-            transform-origin: center;
-        }
+    /* Radial gradient overlay */
+    .banner__gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top right,
+        var(--color-banner-deep),
+        transparent,
+        rgba(0, 40, 142, 0.20)
+      );
+      pointer-events: none;
+    }
 
-        /* ── Card image wrapper ── */
-        .card-img-wrap {
-            aspect-ratio: 4 / 3;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            background: var(--color-surface-container-low);
-            border: 1px solid rgba(196,197,213,0.1);
-            transition: box-shadow 0.5s ease;
-        }
-        .step-card:hover .card-img-wrap {
-            box-shadow: 0 20px 40px rgba(0,40,142,0.05);
-        }
-        .card-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s ease;
-        }
-        .step-card:hover .card-img-wrap img {
-            transform: scale(1.10);
-        }
+    /* ── Inner layout ───────────────────────────────────────────── */
+    .banner__inner {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
 
-        /* ── Card title ── */
-        .step-card h3 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--color-on-background);
-            margin-bottom: 0.75rem;
-        }
+    /* ── Visual column ──────────────────────────────────────────── */
+    .visual-col {
+      position: relative;
+      height: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        /* ── Mobile-only card body (text + button) ── */
-        .card-mobile-body p {
-            color: var(--color-on-surface-variant);
-            font-size: 1.125rem;
-            line-height: 1.65;
-            margin-bottom: 1.5rem;
-        }
-        .card-mobile-body .btn-card {
-            width: 100%;
-            padding: 1rem;
-            background: var(--color-primary);
-            color: var(--color-on-primary);
-            font-weight: 700;
-            font-size: 1rem;
-            border: none;
-            border-radius: 0.75rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .card-mobile-body .btn-card:hover {
-            background: var(--color-primary-container);
-        }
+    /* ── Spinning rings ─────────────────────────────────────────── */
+    .ring-outer {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border: 1px solid rgba(255 255 255 / 0.40);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 30s linear infinite;
+    }
+    .ring-inner {
+      width: 256px;
+      height: 256px;
+      border: 1px dashed rgba(255 255 255 / 0.40);
+      border-radius: 50%;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
 
-        /* ── Scroll indicator ── */
-        .scroll-track {
-            width: 100%;
-            height: 4px;
-            background: var(--color-surface-container);
-            border-radius: 9999px;
-            margin-top: 1rem;
-            overflow: hidden;
-        }
-        .scroll-thumb {
-            height: 100%;
-            width: 33.333%;
-            background: var(--color-primary);
-            border-radius: 9999px;
-            transition: transform 0.1s linear;
-        }
+    /* ── Floating cards ─────────────────────────────────────────── */
+    .float-card {
+      position: absolute;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0 0 0 / 0.50);
+      transition: transform .5s ease;
+      z-index: 30;
+    }
+    .float-card:hover { transform: translateY(-8px); }
 
-        /* ── DESKTOP: 3-column grid ── */
-        @media (min-width: 1024px) {
-            .steps-slider {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-                overflow: visible;
-                padding-bottom: 0;
-                cursor: default;
-            }
-            .step-card {
-                flex: unset;
-                scroll-snap-align: unset;
-            }
-            .step-card h3 {
-                font-size: 1.5rem;
-            }
-            .card-mobile-body {
-                display: none !important;
-            }
-            .scroll-track {
-                display: none !important;
-            }
-        }
+    .card-top-right   { top: 0;    right: -16px; }
+    .card-mid-left    { top: 25%;  left: 0; }
+    .card-bottom-right{ bottom: 32px; right: 0; z-index: 10; }
 
-        /* ── TABLET: 2.5 cards visible ── */
-        @media (min-width: 768px) and (max-width: 1023.9px) {
-            .step-card { flex: 0 0 40%; }
-        }
-    </style>
+    /* ── Card internals ─────────────────────────────────────────── */
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-box-primary { background: rgba(55,  85, 195, 0.30); }
+    .icon-box-green   { background: rgba(34, 197,  94, 0.20); }
+    .icon-box-blue    { background: rgba(59, 130, 246, 0.20); }
+
+    .icon-primary { color: #b8c4ff; }
+    .icon-green   { color: #86efac; }
+    .icon-blue    { color: #93c5fd; }
+
+    .card-value-lg {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-value-md {
+      font-family: var(--font-headline);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-label {
+      color: rgba(255 255 255 / 0.50);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Live pill ──────────────────────────────────────────────── */
+    .live-pill {
+      position: absolute;
+      bottom: 25%;
+      left: 40px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      padding: 12px 16px;
+      border-radius: 9999px;
+      box-shadow: 0 25px 50px -12px rgba(0 0 0 / 0.50);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 40;
+    }
+    .ping-wrap {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+    }
+    .ping-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #4ade80;
+      opacity: .75;
+      animation: ping 1.5s cubic-bezier(0, 0, .2, 1) infinite;
+    }
+    .ping-dot {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      display: block;
+    }
+    @keyframes ping {
+      75%, 100% { transform: scale(2); opacity: 0; }
+    }
+    .pill-text {
+      font-size: .875rem;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .pill-muted {
+      color: rgba(255 255 255 / 0.50);
+      font-weight: 500;
+    }
+
+    /* ── Crosshair decorations ──────────────────────────────────── */
+    .cross-h,
+    .cross-v {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .cross-h::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255 255 255 / 0.10), transparent);
+    }
+    .cross-v::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(255 255 255 / 0.10), transparent);
+    }
+
+    /* ── Material Symbols ───────────────────────────────────────── */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 991.98px) {
+      .banner { border-radius: 2rem; }
+      .banner__inner .px-lg { padding: 2rem; }
+      .visual-col { height: 380px; }
+      .ring-outer { width: 240px; height: 240px; }
+      .ring-inner { width: 190px; height: 190px; }
+      .card-top-right  { right: 0; }
+      .live-pill       { left: 10px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     HOW IT WORKS SECTION
-═══════════════════════════════════════════ -->
-<section class="hiw-section">
-    <div class="container" style="max-width: 88rem;">
+<!-- ═══════════════════════════════════════════════════════════════
+     Secondary Showcase Banner
+════════════════════════════════════════════════════════════════ -->
+<section class="showcase-section">
+  <div class="container" style="max-width:1280px;">
+    <div class="banner">
 
-        <!-- Header row -->
-        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between mb-5 gap-4">
-            <h2 class="hiw-headline mb-0">How it works</h2>
-            <div class="toggle-pill align-self-start">
-                <button class="toggle-btn active" id="btn-hiring">For hiring</button>
-                <button class="toggle-btn" id="btn-finding">For finding work</button>
-            </div>
-        </div>
+      <!-- Overlay layers -->
+      <div class="banner__grid" aria-hidden="true"></div>
+      <div class="banner__gradient" aria-hidden="true"></div>
 
-        <!-- Slider container -->
-        <div class="position-relative" id="slider-wrapper">
-            <div class="steps-slider" id="slider">
+      <!-- Inner two-column row -->
+      <div class="banner__inner px-4 px-md-5" style="padding-top:3rem;padding-bottom:3rem;">
+        <div class="row align-items-center g-5">
 
-                <?php foreach ($steps as $i => $step): ?>
-                <div class="step-card">
-                    <!-- Image -->
-                    <div class="card-img-wrap">
-                        <img
-                            src="<?php echo htmlspecialchars($step['img']); ?>"
-                            alt="<?php echo htmlspecialchars($step['alt']); ?>"
-                            loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
-                        />
-                    </div>
+          <!-- ── Content Column (intentionally empty — fill with copy) ── -->
+          <div class="col-12 col-lg-6">
+            <!-- Add heading/CTA here if needed -->
+          </div>
 
-                    <!-- Title + mobile body -->
-                    <div class="d-flex flex-column flex-grow-1">
-                        <h3><?php echo htmlspecialchars($step['title']); ?></h3>
-                        <div class="card-mobile-body">
-                            <p><?php echo htmlspecialchars($step['desc']); ?></p>
-                            <button class="btn-card"><?php echo htmlspecialchars($step['btn']); ?></button>
-                        </div>
-                    </div>
+          <!-- ── Visual Column ────────────────────────────────────────── -->
+          <div class="col-12 col-lg-6">
+            <div class="visual-col">
+
+              <!-- Spinning rings -->
+              <div class="ring-outer" aria-hidden="true">
+                <div class="ring-inner"></div>
+              </div>
+
+              <?php foreach ($stats as $stat): ?>
+              <!-- Float card: <?= htmlspecialchars($stat['value']) ?> -->
+              <div class="float-card <?= htmlspecialchars($stat['pos']) ?>">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="icon-box <?= htmlspecialchars($stat['icon_class']) ?>">
+                    <span class="material-symbols-outlined <?= htmlspecialchars($stat['text_class']) ?>">
+                      <?= htmlspecialchars($stat['icon']) ?>
+                    </span>
+                  </div>
+                  <div>
+                    <p class="<?= $stat['size'] === 'lg' ? 'card-value-lg' : 'card-value-md' ?> mb-0">
+                      <?= htmlspecialchars($stat['value']) ?>
+                    </p>
+                    <p class="card-label mb-0"><?= htmlspecialchars($stat['label']) ?></p>
+                  </div>
                 </div>
-                <?php endforeach; ?>
+              </div>
+              <?php endforeach; ?>
 
-            </div>
+              <!-- Live success-rate pill -->
+              <div class="live-pill" role="status" aria-live="polite">
+                <div class="ping-wrap" aria-hidden="true">
+                  <span class="ping-ring"></span>
+                  <span class="ping-dot"></span>
+                </div>
+                <p class="pill-text mb-0">
+                  <?= htmlspecialchars($success_rate) ?>
+                  <span class="pill-muted">Success Rate</span>
+                </p>
+              </div>
 
-            <!-- Scroll indicator (mobile / tablet only) -->
-            <div class="scroll-track">
-                <div class="scroll-thumb" id="scroll-indicator"></div>
-            </div>
-        </div>
+              <!-- Crosshair decorations -->
+              <div class="cross-h" aria-hidden="true"></div>
+              <div class="cross-v" aria-hidden="true"></div>
 
-    </div><!-- /.container -->
+            </div><!-- /visual-col -->
+          </div>
+        </div><!-- /row -->
+      </div><!-- /banner__inner -->
+    </div><!-- /banner -->
+  </div><!-- /container -->
 </section>
 
-<!-- Bootstrap 5 JS (Bundle) -->
+<!-- Bootstrap 5 JS bundle (Popper included) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-(function () {
-    "use strict";
-
-    /* ── Toggle pill ── */
-    const btnHiring  = document.getElementById('btn-hiring');
-    const btnFinding = document.getElementById('btn-finding');
-
-    [btnHiring, btnFinding].forEach(btn => {
-        btn.addEventListener('click', () => {
-            btnHiring.classList.toggle('active',  btn === btnHiring);
-            btnFinding.classList.toggle('active', btn === btnFinding);
-        });
-    });
-
-    /* ── Drag-to-scroll (mouse) ── */
-    const slider    = document.getElementById('slider');
-    const indicator = document.getElementById('scroll-indicator');
-    const cards     = document.querySelectorAll('.step-card');
-
-    let isDown   = false;
-    let startX, scrollLeft;
-
-    slider.addEventListener('mousedown', e => {
-        if (window.innerWidth >= 1024) return;
-        isDown     = true;
-        startX     = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-
-    ['mouseleave', 'mouseup'].forEach(ev =>
-        slider.addEventListener(ev, () => { isDown = false; })
-    );
-
-    slider.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x    = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
-        slider.scrollLeft = scrollLeft - walk;
-    });
-
-    /* ── Scroll indicator + card scaling ── */
-    function updateScrollEffects() {
-        if (window.innerWidth >= 1024) {
-            cards.forEach(c => (c.style.transform = 'scale(1)'));
-            return;
-        }
-
-        const maxScroll    = slider.scrollWidth - slider.clientWidth;
-        const fraction     = maxScroll > 0 ? slider.scrollLeft / maxScroll : 0;
-
-        /* indicator */
-        if (indicator) {
-            indicator.style.transform = `translateX(${fraction * 200}%)`;
-        }
-
-        /* card scaling based on distance from viewport centre */
-        const viewportCentre = slider.offsetWidth / 2;
-        cards.forEach(card => {
-            const rect         = card.getBoundingClientRect();
-            const cardCentre   = rect.left + rect.width / 2;
-            const dist         = Math.abs(viewportCentre - cardCentre);
-            const normDist     = Math.min(dist / (slider.offsetWidth / 2), 1);
-            const scale        = 1 - normDist * 0.08;
-            card.style.transform = `scale(${scale})`;
-        });
-    }
-
-    slider.addEventListener('scroll', updateScrollEffects);
-    window.addEventListener('resize', updateScrollEffects);
-    updateScrollEffects(); // initial call
-})();
-</script>
 </body>
 </html>
