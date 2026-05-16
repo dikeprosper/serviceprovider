@@ -9,8 +9,8 @@
             <div class="col-lg-5 col-md-7 col-sm-10">
 
                 <div class="text-center mb-5 brand-wrap">
-                    <h1 class="brand-mark mb-2">Avenue Pro</h1>
-                    <p class="fs-6 brand-note mb-0">Built for Authority.</p>
+                    <h1 class="brand-mark mb-2"> <?=$company_name ?> </h1>
+                    <p class="fs-6 brand-note mb-0"> <?=$tagline ?> </p>
                 </div>
 
                 <div class="auth-card p-4 p-md-5">
@@ -63,10 +63,10 @@
 
                     <div class="row g-3">
 
-                        <div class="col-6">
+                        <div class="col-12">
                             <button class="btn-social w-100 d-flex align-items-center justify-content-center gap-2">
                                 <img
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuADcdfEGB3aABV5P7QWXox0yzzu2y810OwQZyU_-2blAnJtl8WXXXWIYECsSdh7L18qarWbzwc5fX0XZbOeh6VC_3p8lIFsS8hAmqUUEWBNMLHZGMT76rWEkFo8JYMC3LW6h3R2PIwZ4TDmqzxe_ZXrtZ7NM8fHSi1VmhSlaxFhHvYs91MI0lzjZVXZcPTer1GLwcAcZ1VFOaQnMrpfFZ7pB6OFCIbUHrU0Fk5rhRz5IsOYsX0VWhLzfKmVB5mn9qbui68bnJZfGZlf"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Google_Favicon_2025.svg/960px-Google_Favicon_2025.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20251015042304"
                                     alt="Google"
                                     width="18"
                                     height="18"
@@ -75,14 +75,6 @@
                                 <span>Google</span>
                             </button>
                         </div>
-
-                        <div class="col-6">
-                            <button class="btn-social w-100 d-flex align-items-center justify-content-center gap-2">
-                                <span class="material-symbols-outlined">apple</span>
-                                <span>Apple</span>
-                            </button>
-                        </div>
-
                     </div>
 
                     <p class="text-center fs-6 mt-5 mb-0 text-secondary">
@@ -93,31 +85,6 @@
                     </p>
 
                 </div>
-
-                <div class="trust-row mt-5 d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
-
-                    <span class="small text-uppercase fw-bold letter-spacing">
-                        Trusted by the best
-                    </span>
-
-                    <div class="d-flex gap-2">
-
-                        <div class="trust-icon">
-                            <span class="material-symbols-outlined">architecture</span>
-                        </div>
-
-                        <div class="trust-icon">
-                            <span class="material-symbols-outlined">foundation</span>
-                        </div>
-
-                        <div class="trust-icon">
-                            <span class="material-symbols-outlined">account_balance</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
 
         </div>

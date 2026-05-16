@@ -1,12 +1,86 @@
-/*About us*/
+/*==================================
+ABOUT US PAGE
+==================================*/
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
 
+.hero-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); color: var(--primary-color); font-size: 11px; font-weight: 500; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; border: 1px solid var(--primary-fixed-dim); }
+.hero-dot { width: 6px; height: 6px; background: var(--primary-color); border-radius: 50%; flex-shrink: 0; }
 
-.metric-box{
-    text-align:center;
-    padding: 20px;
+/* Tilted Images */
+
+.tilt-wrap {
+  position: relative;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.metric-value{
-    font-size: 3.2rem;
-    font-weight: 800;
+
+.tilt-card {
+  position: absolute;
+  border-radius: .75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  transition: filter .7s;
 }
+
+.tilt-card-a {
+  width: 11rem; height: 13rem;
+  transform: rotate(-9deg) translate(-4rem, .75rem);
+  opacity: .9;
+}
+
+.tilt-card-a img {
+  transform: scaleX(-1);
+}
+
+.tilt-card-b {
+  width: 12rem; height: 16rem;
+  transform: rotate(6deg) translate(3.5rem, -1rem);
+  box-shadow: 0 8px 32px rgba(0,0,0,.12);
+}
+
+.tilt-card img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 576px) {
+
+  .tilt-card-a {
+    transform: translate(-5rem, .75rem);
+  }
+
+}
+
+/* ── PROBLEM ── */
+.problem-card { border-radius: var(--border-radius); padding: 24px; }
+.problem-card.customer { background: var(--color-banner-bg2); }
+.problem-card.tailor { background: var(--color-banner-bg); }
+.prob-item { display: flex; gap: 10px; font-size: 13px; color: var(--on-surface-variant); margin-bottom: 10px; line-height: 1.5; align-items: flex-start; }
+.prob-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+.prob-dot.c { background: var(--primary-color); }
+.prob-dot.t { background: var(--on-primary); }
+
+/* ── WHY ── */
+.why-quote { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; color: var(--primary-color-dark); line-height: 1.4; border-left: 3px solid var(--primary-color); padding-left: 20px; margin-bottom: 16px; }
+.founder-card { background: var(--surface-container-low); border: 1px solid var(--border); border-radius: var(--border-radius); padding: 20px; }
+.founder-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--primary-fixed); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--primary-color-dark); flex-shrink: 0; border: 2px solid var(--primary-fixed-dim); }
+
+/* ── HOW IT WORKS ── */
+.how-step { background: var(--surface-container-lowest); border: 1px solid var(--border); border-radius: var(--border-radius); padding: 20px; }
+.step-num { width: 30px; height: 30px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-icon { font-size: 22px; color: var(--primary-color); margin-bottom: 8px; }
+
+/* ── PROMISE ── */
+.promise-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 22px; }
+.promise-tag { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary-fixed-dim); margin-bottom: 8px; }
+
+/* ── NUMBERS ── */
+.number-card { text-align: center; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 24px 16px; }
+.number-accent { color: var(--primary-fixed-dim); }
+
+/* ── TEAM ── */
+.team-card { background: var(--surface-container-lowest); border: 1px solid var(--border); border-radius: var(--border-radius); padding: 24px; text-align: center; }
+.team-avatar { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; border: 2px solid var(--primary-fixed-dim); }
+
+/* ── BUTTONS ── */
+.btn-ghost-light:hover { background: rgba(255, 255, 255, 0.12); color: white !important; }

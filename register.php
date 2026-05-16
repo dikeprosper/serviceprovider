@@ -33,22 +33,11 @@
                 <h1 class="h3 fw-bold mb-2">Create your account</h1>
                 <p class="text-muted mb-4">Experience a new standard of professional networking.</p>
 
-                <!-- ROLE TOGGLE -->
-                <div class="role-toggle mb-4">
-                    <button class="active">I want to hire</button>
-                    <button>I want to work</button>
-                </div>
-
                 <!-- SOCIAL -->
                 <div class="row g-2 mb-3">
-                    <div class="col-6">
+                    <div class="col-12">
                         <button class="social-btn w-100">
                             Google
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button class="social-btn w-100">
-                            Apple
                         </button>
                     </div>
                 </div>

@@ -4,33 +4,14 @@ function watchSection(sectionId, sectionVisible, toggleClass) {
     var targetSection = document.getElementById(sectionId);
     var sectionVisible = document.getElementById(sectionVisible);
     
-    // Base URL path for local development
-    var urlpath = "/work/localproviders/";
 
     // Get current path
-    let path = window.location.pathname.toLowerCase();
     
     let wasVisible = true;
-    
-    if(liveServer === true) {
-        
-        // For Live Server
-        urlpath = "/";
-        
-        // Remove trailing slash except root
-        if (path.length > 1 && path.endsWith("/")) {
-            path = path.slice(0, -1);
-        }
 
-    }
+    // Checking if we aren't on the homepage
+    if(!isHomePage) {
 
-
-    // Check if homepage
-    if (
-        path !== urlpath &&              // domain.com
-        path !== urlpath + "index.php" &&     // domain.com/index.php
-        path !== urlpath + "home"          // domain.com/home
-    ){
         // If not homepage, make search bar active by default}
         sectionVisible.classList.add(toggleClass);
         return;
@@ -74,9 +55,9 @@ watchSection(
 const banner = document.querySelector("header .small-banner");
 
 function navbarAndBanner() {
-    
-    if(bodyTag.scrollTop > 50) {
-    
+
+    if(window.scrollY > 50) {
+
         banner.classList.add("active");
     } else {
         
@@ -120,7 +101,7 @@ const providerFeatures = [
 // Create Featured slidder Icon buttons
 
 function createBtn (feautures) {
-
+    
     track.innerHTML = "";
 
     for (let i = 0; i <= 10; i++) {
@@ -134,31 +115,39 @@ function createBtn (feautures) {
     }
 }
 
-createBtn (clientFeatures);
+// Checking if we are on the homepage
 
-// Duplicate buttons for seamless loop
-const clone = track.innerHTML;
-track.innerHTML += clone;
+if(isHomePage) { 
 
-let position = 0;
-let speed = 0.5; // adjust speed here
+    createBtn (clientFeatures);
+    
+    // Duplicate buttons for seamless loop
+    const clone = track.innerHTML;
+    track.innerHTML += clone;
 
-function animate() {
-  position -= speed;
-
-  // Reset when half scrolled (because we duplicated content)
-  if (Math.abs(position) >= track.scrollWidth / 2) {
-    position = 0;
-  }
-
-  track.style.transform = `translateX(${position}px)`;
-
-  requestAnimationFrame(animate);
+    let position = 0;
+    let speed = 0.5; // adjust speed here
+    
+    function animate() {
+      position -= speed;
+    
+      // Reset when half scrolled (because we duplicated content)
+      if (Math.abs(position) >= track.scrollWidth / 2) {
+        position = 0;
+      }
+    
+      track.style.transform = `translateX(${position}px)`;
+    
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Optional: Pause on hover
+    
+    track.addEventListener("mouseleave", () => speed = 0.5);
+    track.addEventListener("mouseenter", () => speed = 0);
 }
 
-animate();
 
-// Optional: Pause on hover
 
-track.addEventListener("mouseleave", () => speed = 0.5);
-track.addEventListener("mouseenter", () => speed = 0);

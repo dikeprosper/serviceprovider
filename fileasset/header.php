@@ -1,11 +1,45 @@
 ﻿<?php
     $site_url = "http://localhost/work/localproviders/";
-    $section_title = "headline display-6";
+    $section_title = "headline display-7";
+    $section_title_bold = "font-headline display-7";
     $body_text = "text-muted fs-6";
-    $body_text_sm = "fw-bold text-muted fs-7";
-    $body_text_sm = "fw-bold text-muted fs-7";
+    $body_text_sm = "text-muted fs-7";
+    $body_text_sm = "text-muted fs-7";
     $section_padding = "px-2 px-sm-4 px-md-5 px-xl-0";
     $section_margin = "mx-2 mx-sm-4 mx-md-5 mx-xl-0";
+
+    // Configuration
+    $company_name = "StitchNG";
+    $tagline = "Evolution of Excellence";
+
+    $page = basename($_SERVER['PHP_SELF']);
+
+    $page_title = "Sign in";
+    $page_description = "";
+    if($page == "login.php") {
+
+        $page_title = "Sign in";
+        $page_description = "";
+    }
+
+    if($page == "login.php") {
+
+        $page_title = "Sign in";
+        $page_description = "";
+    }
+
+    if($page == "login.php") {
+
+        $page_title = "Sign in";
+        $page_description = "";
+    }
+
+    if($page == "login.php") {
+
+        $page_title = "Sign in";
+        $page_description = "";
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +47,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecto | Book Trusted Local Professionals</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title> <?=$page_title?> </title>
+    <meta name="description" content="<?=$page_description ?>">
+
     <!-- Bootstrap 5 CSS -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
@@ -37,7 +75,7 @@
                 </div>
         
                 <h1>
-                    <a class="navbar-brand ps-lg-5 px-xl-0 font-headline fw-bold text-primary" href="<?=$site_url?>" style="letter-spacing: -1px; font-size: 1.5rem;">Archi</a>
+                    <a class="navbar-brand ps-lg-5 px-xl-0 font-headline fw-bold text-primary" href="<?=$site_url?>" style="letter-spacing: -1px; font-size: 1.5rem;"><?=$company_name; ?></a>
                 </h1>
                 
                 <!-- Desktop Search -->
@@ -64,7 +102,7 @@
                             <div class="top d-flex d-lg-none justify-content-between align-items-center py-2 px-4 border-bottom">
                                 
                                 <h1>
-                                    <a class="navbar-brand font-headline fs-1 fw-bold text-primary" href="<?=$site_url?>" style="letter-spacing: -1px; font-size: 1.5rem;">Architeco</a>
+                                    <a class="navbar-brand font-headline fs-1 fw-bold text-primary" href="<?=$site_url?>" style="letter-spacing: -1px; font-size: 1.5rem;"><?=$company_name; ?></a>
                                 </h1>
                                 
                                 <span class="navIcon material-symbols-outlined text-primary fs-2">close</span>
@@ -92,7 +130,7 @@
                                 <div class="pop-up-container">
         
                                     <input type="text" name="" class="myToggler" id="category-toggle">
-                                    <div class="d-lg-none pop-up scrollNav secondary-nav-links1">
+                                    <div class="d-lg-none pop-up scrollNav secondary-nav-links1 shadow rounded-2 p-lg-4">
                                         <div class="d-flex flex-column gap-3 px-4 py-2 border-top">
                                             <a class="d-lg-none nav-link justify-content-start text-primary" id="categories-back-link"> <span class="me-3 material-symbols-outlined text-primary">arrow_back</span> Categories</a>
                                             <a href="./categories.php" class="nav-link">Tailoring</a>
@@ -108,8 +146,11 @@
                                     <div class="d-lg-none scrollNav pop-up secondary-nav-links2">
                                         <div class="d-flex flex-column gap-3 px-4 py-2 border-top">
                                             <a class="d-lg-none nav-link justify-content-start text-primary" id="explore-back-link"> <span class="me-3 material-symbols-outlined text-primary">arrow_back</span> Explore</a>
-                                            <a href="./about.php" class="nav-link">Learn more</a>
-                                            <a href="./contact.php" class="nav-link">Contact us</a>
+                                            <a href="./about.php" class="nav-link"> Style inspiration </a>
+                                            <a href="./about.php" class="nav-link"> Fashion Trends </a>
+                                            <a href="./about.php" class="nav-link"> Fabric House </a>
+                                            <a href="./about.php" class="nav-link"> Learn more </a>
+                                            <a href="./contact.php" class="nav-link"> Contact us </a>
                                         </div>
         
                                     </div>
@@ -118,7 +159,7 @@
                         </div>
         
                         <div class="d-flex d-lg-none justify-content-between align-items-center gap-3 p-4 border-top">
-                            <a href="./register.php" class="btn btn-primary btn-lg rounded-2 w-50 px-3 py-2 fs-6">Join Architeco</a>
+                            <a href="./register.php" class="btn btn-primary btn-lg rounded-2 w-50 px-3 py-2 fs-6">Join <?=$company_name; ?></a>
                             <a href="./login.php" class="btn btn-outline-primary btn-lg rounded-2 w-50 px-3 py-2 fs-6">sign in</a>
                         </div>
                     </div>

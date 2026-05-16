@@ -52,7 +52,6 @@
 <script src="./js/bootstrap.js"></script>
 <script src="./js/live.js"></script>
 <script src="./js/popup.js"></script>
-<script src="./js/script.js"></script>
 <script src="./js/navbar.js"></script>
 <script src="./js/scroll.js"></script>
 

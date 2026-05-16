@@ -209,9 +209,13 @@ function scrollSlider(num){
             }
         }
 
-        // Pause on hover over the outer section
+       // Pause on hover over the outer section
         const section = trackEl.closest('section');
         let   timer   = setInterval(next, 3000);
+        if (section) {
+            section.addEventListener('mouseenter', () => clearInterval(timer));
+            section.addEventListener('mouseleave', () => { timer = setInterval(next, 3000); });
+        }
 
         update(true); // initial position
     }

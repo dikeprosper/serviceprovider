@@ -211,26 +211,26 @@ $success_rate = '99.9%';
             <div class="steps-slider" id="slider">
 
                 <?php foreach ($steps as $i => $step): ?>
-                <div class="step-card d-flex flex-column">
-                    <!-- Image -->
-                    <div class="card-img-wrap site-radius">
-                        <img
-                            class="h-100 w-100 object-fit-cover"
-                            src="<?php echo htmlspecialchars($step['img']); ?>"
-                            alt="<?php echo htmlspecialchars($step['alt']); ?>"
-                            loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
-                        />
-                    </div>
+                    <div class="step-card d-flex flex-column">
+                        <!-- Image -->
+                        <div class="card-img-wrap rounded-3 mb-3">
+                            <img
+                                class="h-100 w-100 object-fit-cover"
+                                src="<?php echo htmlspecialchars($step['img']); ?>"
+                                alt="<?php echo htmlspecialchars($step['alt']); ?>"
+                                loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
+                            />
+                        </div>
 
-                    <!-- Title + mobile body -->
-                    <div class="d-flex flex-column flex-grow-1">
-                        <h3 class="h5 headline-light fw-bolder mb-2"><?php echo htmlspecialchars($step['title']); ?></h3>
-                        <div class="card-mobile-body">
-                            <p class="mb-2 <?=$body_text; ?>"><?php echo htmlspecialchars($step['desc']); ?></p>
-                            <button class="btn btn-primary btn-sm w-100 rounded-2 fs-7"><?php echo htmlspecialchars($step['btn']); ?></button>
+                        <!-- Title + mobile body -->
+                        <div class="d-flex flex-column mt-0">
+                            <h3 class="h6 font-headline fw-bolder mb-2"><?php echo htmlspecialchars($step['title']); ?></h3>
+                            <div class="card-mobile-body">
+                                <p class="mb-2 <?=$body_text; ?>"><?php echo htmlspecialchars($step['desc']); ?></p>
+                                <button class="btn btn-primary btn-sm w-100 rounded-2 fs-7"><?php echo htmlspecialchars($step['btn']); ?></button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php endforeach; ?>
 
             </div>
@@ -250,13 +250,13 @@ $success_rate = '99.9%';
     <!-- SAMPLING EXPERTS BANNER (light bg) -->
     <div class="pb-4" id="section-primary">
         <div class="<?=$section_padding ?>">
-            <div class="banner-wrap site-radius">
+            <div class="banner-wrap site-radius p-4 p-md-5">
     
                 <div class="row flex-column-reverse flex-lg-row">
     
                     <!-- Banner Heading -->
                     <div class="banner-content col-lg-6">
-                        <h2 class="display-6 <?=$section_title; ?>"> Jobs done by experts</h2>
+                        <h2 class="<?=$section_title; ?>"> Jobs done by experts</h2>
                         <p style="color:var(--on-surface-variant);font-size:1.1rem;margin-bottom:2.5rem;">From high-end residential renovations to critical electrical infrastructure, see the caliber of work our verified professionals deliver daily.</p>
                         <button class="btn btn-primary rounded-2 px-5 py-2 fs-6 w-100 w-md-75 w-lg-75 w-xl-50">Explore Portfolio</button>
                     </div>
@@ -265,9 +265,9 @@ $success_rate = '99.9%';
                     <div class="carousel-outer carousel-primary col-lg-6" id="carousel-primary-outer">
                         <div class="carousel-track-internal p-0 m-0 w-100" id="carousel-primary">
                             <?php foreach ($carousel_primary as $item): ?>
-                            <div class="c-item p-0 m-0 w-100">
-                                <img src="<?php echo htmlspecialchars($item['src']); ?>" alt="<?php echo htmlspecialchars($item['alt']); ?>"/>
-                            </div>
+                                <div class="c-item p-0 m-0 w-100">
+                                    <img class="rounded-3" src="<?php echo htmlspecialchars($item['src']); ?>" alt="<?php echo htmlspecialchars($item['alt']); ?>"/>
+                                </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -279,20 +279,20 @@ $success_rate = '99.9%';
     <!-- UNDECIDED BANNER (Primary bg) -->
     <div class="pb-2" id="section-secondary">
         <div class="<?=$section_padding ?>">
-            <div class="banner-wrap site-radius overflow-hidden position-relative px-2 py-2">
+            <div class="banner-wrap site-radius overflow-hidden position-relative p-4 p-md-5">
     
                 <!-- Overlay layers -->
                 <div class="banner__grid" aria-hidden="true"></div>
                 <div class="banner__gradient" aria-hidden="true"></div> 
 
-                <div class="row flex-column-reverse align-items-center flex-lg-row position-relative" style="z-index: 2;">
+                <div class="row flex-column-reverse align-items-center flex-lg-row position-relative z-1">
     
                     <!-- Banner Heading -->
                     <div class="banner-content col-lg-6">
                         <div class="font-headline fs-7 btn btn-outline-light rounded-5 px-4 py-0 mb-4">
                             Unmatched Professional Standards
                         </div>
-                        <h2 class="display-6 <?=$section_title; ?> text-white mb-3 fw-lighter"> Building Trust Through <span class="font-headline">Technical Precision</span> </h2>
+                        <h2 class="<?=$section_title; ?> text-white mb-3 fw-lighter"> Building Trust Through <span class="font-headline">Technical Precision</span> </h2>
                         <p class="text-white fs-6-plus mb-4"> Every professional on our platform undergoes a rigorous multi-step vetting process. We guarantee not just quality, but the absolute peace of mind that comes with hiring the best in the business. </p>
                         <a class="btn btn-light rounded-2 px-5 py-2 fs-6 w-100 w-md-75 w-lg-75 w-xl-50">Get Started</a>
                     </div>
@@ -351,7 +351,7 @@ $success_rate = '99.9%';
 
 <!-- EXTRA SPECIAL -->
 <section class="py-5 <?=$section_padding ?>">
-    <div class="container-xl pb-md-2">
+    <div class="container-xl pb-lg-2">
         <!-- Header row -->
         <div class="mb-5 gap-4">
             <h2 class="<?=$section_title; ?>"> Extra Special </h2>
@@ -360,30 +360,32 @@ $success_rate = '99.9%';
 
         <!-- Slider container -->
         <div>
-            <div class="row g-5">
+            <div class="row g-4">
 
                 <?php foreach ($specials as $i => $special): ?>
-                <div class="col-md-6 col-lg-4">
-                    <div class="d-flex flex-column">
-                        <!-- Image -->
-                        <div class="card-img-wrap site-radius">
-                            <img
-                                class="h-100 w-100 object-fit-cover"
-                                src="<?php echo htmlspecialchars($special['img']); ?>"
-                                alt="<?php echo htmlspecialchars($special['alt']); ?>"
-                                loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
-                            />
-                        </div>
+                <div class="col-md-6 col-lg-4 pb-3 pb-lg-0" role="button">
+                    <a href="" class="w-100 text-white" style="text-decoration: none;">
 
-                        <!-- Title + mobile body -->
-                        <div class="d-flex flex-column flex-grow-1">
-                            <h3 class="h5 headline-light fw-bolder mb-2"><?php echo htmlspecialchars($special['title']); ?></h3>
-                            <div class="card-mobile-body">
-                                <p class="mb-2 <?=$body_text; ?>"><?php echo htmlspecialchars($special['desc']); ?></p>
-                                <button class="btn btn-primary btn-sm w-100 rounded-2 fs-7"><?php echo htmlspecialchars($special['btn']); ?></button>
+                        <div class="d-flex flex-column">
+                            <!-- Image -->
+                            <div class="card-img-wrap site-radius position-relative">
+                                <img
+                                    class="h-100 w-100 object-fit-cover"
+                                    src="<?php echo htmlspecialchars($special['img']); ?>"
+                                    alt="<?php echo htmlspecialchars($special['alt']); ?>"
+                                    loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
+                                />
+                                <!-- Title + mobile body -->
+                                <div class="d-flex flex-column flex-grow-1 position-absolute bottom-0 start-0 end-0 p-3 z-1" style="background: rgba(0, 0, 0, 0.8);">
+                                    <h3 class="h5 headline-light fw-bolder mb-0"> <?php echo htmlspecialchars($special['title']); ?> </h3>
+                                    <div class="">
+                                        <p class="mb-0 fs-7"> <?php echo htmlspecialchars($special['desc']); ?> </p>
+                                    </div>
+                                </div>
                             </div>
+    
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <?php endforeach; ?>
 
@@ -393,15 +395,15 @@ $success_rate = '99.9%';
 </section>
 
 <!-- REFERRAL PROGRAM -->
-<section class="py-5">
-    <div class="pb-md-2">
+<section class="py-5 <?=$section_padding ?>">
+    <div class="pb-md-2 container-xl">
 
         <div class="text-center mb-5 mx-auto px-3" style="max-width:48rem;">
             <h2 class="<?=$section_title; ?>">Join our Referral Program</h2>
             <p class="<?=$body_text ?>">Earn rewards by inviting friends and professionals to the ProMarket community. Whether you're a service provider or a client, there's a place for you to grow with us.</p>
         </div>
     
-        <div class="video-wrap d-flex align-items-center justify-content-center">
+        <div class="video-wrap d-flex align-items-center justify-content-center site-radius">
             <img class="thumb" src="<?php echo htmlspecialchars($imgs['img1']); ?>" alt="Referral Program Video Thumbnail"/>
             <div class="play-btn">
                 <span class="material-symbols-outlined fill-1">play_arrow</span>
@@ -437,12 +439,13 @@ $success_rate = '99.9%';
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class='col-md-6 col-lg-4'><div class='cta d-flex flex-column justify-content-between'>
-                <div>
-                    <h3 class='font-headline fw-bold'>Are you a professional?</h3>
-                    <p class='opacity-75 fs-6'>Join 50,000+ local experts and grow your business with a platform that puts professionals first.</p>
-                </div>
-                <button class='btn fs-7 btn-light btn-lg rounded-3 px-5 py-3 fw-bold text-primary'>Become a Provider</button>
+            <div class='col-md-6 col-lg-4'>
+                <div class='cta d-flex flex-column justify-content-between'>
+                    <div>
+                        <h3 class='font-headline fw-bold'>Are you a professional?</h3>
+                        <p class='opacity-75 fs-6'>Join 50,000+ local experts and grow your business with a platform that puts professionals first.</p>
+                    </div>
+                    <button class='btn fs-7 btn-light btn-lg rounded-3 px-5 py-3 fw-bold text-primary'>Become a Provider</button>
                 </div>
             </div>
         </div>
@@ -451,7 +454,7 @@ $success_rate = '99.9%';
 
 <!-- Discount Banner -->
 <section class="container-xl py-5">
-    <div class="<?=$section_margin ?> hero-gradient p-5 site-radius shadow-lg d-flex flex-column flex-md-row justify-content-between align-items-center position-relative">
+    <div class="<?=$section_margin ?> hero-gradient p-4 py-5 site-radius shadow-lg d-flex flex-column flex-md-row justify-content-between align-items-center position-relative">
         <div class="text-center text-md-start mb-4 mb-md-0">
             <span class="badge bg-white bg-opacity-25 mb-3 fs-9 px-3 pt-2 pb-1 rounded-pill">LIMITED TIME OFFER</span>
             <h2 class="font-headline fs-3 display-5 fw-bold mb-3">Get 20% OFF your first booking</h2>
@@ -488,16 +491,35 @@ $success_rate = '99.9%';
 </section>
 
 <!-- CTA -->
-<section class="py-5 bg-dark text-white text-center position-relative <?=$section_padding ?>">
-    <div class="container pb-2 z-1">
-        <h2 class="<?=$section_title; ?> mb-4">Grow your business with Architecto</h2>
-        <p class="fs-6 text-secondary-emphasis mb-5 mx-auto" style="max-width: 600px;">Join thousands of professionals finding new customers every day. No lead fees. Just quality bookings.</p>
-        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-            <button class="btn btn-primary btn-lg rounded-3 px-5 py-3 fw-bold fs-7">Join as a Professional</button>
-            <button class="btn btn-outline-light btn-lg rounded-3 px-5 py-3 fw-bold fs-7">How it works for Pros</button>
+<section class="py-5 text-white text-center position-relative <?=$section_padding ?>">
+    <div class="container py-4 z-1">
+
+        <div class="text-center site-radius p-4 p-md-5 overflow-hidden position-relative" style="background: var(--color-banner-bg);">
+            
+            <!-- Overlay layers -->
+            <div class="banner__grid" aria-hidden="true"></div>
+            <div class="banner__gradient" aria-hidden="true"></div>
+
+            <div class="position-relative z-1">
+                <h2 class="<?=$section_title_bold; ?> mb-3">Grow your business with <?=$company_name?></h2>
+                <p class="<?=$body_text?> mx-auto mb-4" style="color: rgba(255,255,255,0.45) !important; max-width: 430px;">Join thousands of professionals finding new customers every day. No lead fees. Just quality bookings.</p>
+            
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="<?= $site_url ?>browse" class="btn btn-light rounded-pill px-5 py-2 fs-6">
+                        Join as a Tailor
+                    </a>
+                    <a href="<?= $site_url ?>join" class="btn btn-primary fs-6 rounded-pill px-5 py-2 text-white">
+                        How it works for tailors
+                    </a>
+                    <a href="<?= $site_url ?>contact" class="btn btn-outline-light fs-6 btn-ghost-light rounded-pill px-5 py-2">
+                        Contact us
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
+<script src="./js/script.js"></script>
 
 <?php include './fileasset/footer.php'; ?>

@@ -1,29 +1,31 @@
+/* HOMEPAGE */
 /*==================================
-GENERAL STYLING
+GENERAL STYLING FOR ALL PAGES
 ==================================*/
-
 
 /* Color variables */
 :root {
-    --primary-color: #00288e;
-    --primary-color-dark: #001958;
-    --primary-container: #1e40af;
-    --on-primary: #ffffff;
-    --surface: #fbfcff;
-    --on-surface: #001A41;
-    --on-surface-variant: #4f5d76;
-    --surface-container-low: #eff4ff;
-    --surface-container-lowest: #ffffff;
-    --surface-container-high: #dde9ff;
-    --outline-variant: rgba(196, 197, 213, 0.3);
-    --primary-fixed: rgb(221, 225, 255);
-    --border: #dde1ff7c;
-    --primary-fixed-dim: #b8c4ff;
-    --border-radius: 1.5rem;
-    --color-banner-deep:      #040D21;
-    --color-banner-bg:        #001A41;
-    --card-bg:                rgba(255 255 255 / 0.05);
-    --card-border:            rgba(255 255 255 / 0.10);
+      --primary-color: #00288e;
+      --primary-color-dark: #001958;
+      --primary-container: #1e40af;
+      --on-primary: #ffffff;
+      --surface: #e6eeff;
+      --on-surface: #0d1c2f;
+      --on-surface-variant: #4f5d76;
+      --surface-container-low: #eff4ff;
+      --surface-container-lowest: #ffffff;
+      --surface-container-high: #dde9ff;
+      --outline-variant: rgba(196, 197, 213, 0.3);
+      --primary-fixed: #dde1ff;
+      --border: #dde1ff7c;
+      --primary-fixed-dim: #b8c4ff;
+      --border-radius: 1.5rem;
+      --color-banner-deep: #040D21;
+      --color-banner-bg:#001A41;
+      --color-banner-bg2: linear-gradient(105deg, var(--surface) 0%, var(--surface-container-high) 90%);
+      --banner-lines: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;
+      --card-bg: rgba(255 255 255 / 0.05);
+      --card-border: rgba(255 255 255 / 0.10);
 }
 
 
@@ -57,7 +59,7 @@ GENERAL STYLING
 .group:hover .group-hover-scale { transform: scale(1.1); }
 
 
-/* Overriding Bootstrap Button Styles */
+/* Overriding Bootstrap Styles */
 
 .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
 
@@ -77,7 +79,7 @@ GENERAL STYLING
 
 .btn-fade { background-color: #edf2ff !important; color: var(--on-surface-variant); }
 
-.bg-fade { background-color: #edf2ff;}
+.bg-fade { background-color: #edf2ff; }
 
 .btn-select { background-color: var(--on-primary) !important; color: var(--on-surface-variant); }
 
@@ -85,6 +87,9 @@ GENERAL STYLING
 
 .bg-primary-light { background-color: var(--primary-fixed-dim); }
 
+.display-4 { font-size: calc(1.3rem + 2.7vw) !important; }
+
+.display-6 { font-size: calc(1.2rem + 1.5vw) !important; }
 
 /* Additional Bootstrap Classes */
 
@@ -124,7 +129,7 @@ GENERAL STYLING
 
 .review { background:#f2f4f6; padding:40px; height:100%; }
 
-.cta { background:#00288e; color: var(--on-primary); border-radius:24px; padding:40px; height:100%; }
+.cta { background:var(--primary-color); color: var(--on-primary); border-radius:24px; padding:40px; height:100%; }
 
 .material-symbols-outlined { vertical-align:middle; }
 
@@ -286,7 +291,7 @@ HERO SECTION STYLING
 }
 
 .hero-gradient {
-    background: linear-gradient(135deg, #00288e 0%, #1e40af 100%);
+    background: var(--primary-color);
     color: white;
     border: none;
 }
@@ -515,11 +520,16 @@ header .small-banner {
 
 /* Media Query */
 
+@media (max-width: 992px) {
+    .pop-up {
+        box-shadow: unset !important;
+    }
+}
+
 @media (min-width: 992px) {
     
     .pop-up {
         width: 380px !important;
-        height: 380px !important;
         background-color: var(--on-primary) !important;
         padding: 0px !important;
         display: flex !important;
@@ -858,11 +868,6 @@ HOW IT WORKS STYLING
 SITE BANNER STYLING
 ==================================*/
 
-
-/* ── Base ── */
-
-::selection { background: var(--primary-fixed); color: var(--on-primary-fixed); }
-
 /* ── Banner shared ── */
 
 #banners {
@@ -871,18 +876,10 @@ SITE BANNER STYLING
 
 #section-primary .banner-wrap {
     overflow: hidden;
-    background: linear-gradient(105deg, var(--surface) 0%, var(--surface-container-high) 90%);
-}
-
-.banner-wrap .lines {
-    position: absolute;
-    inset: 0;
-    opacity: 10;
-    background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;
+    background: var(--color-banner-bg2);
 }
 
 .banner-content {
-    padding: 3rem 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -919,14 +916,13 @@ SITE BANNER STYLING
 
 .carousel-track-internal .c-item img {
     width: 100%;
-    border-radius: 1rem;
     object-fit: cover;
     display: block;
 }
 
 /* aspect ratios per banner */
 
-.carousel-primary .c-item img   { aspect-ratio: 3.5/5; }
+.carousel-primary .c-item img   { aspect-ratio: 4.5/5; }
 
 .carousel-secondary .c-item img { aspect-ratio: 1; }
 
@@ -976,7 +972,7 @@ SECOND BANNER STYLING
 
 .visual-col {
   position: relative;
-  height: 450px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1016,13 +1012,13 @@ SECOND BANNER STYLING
   padding: 20px;
   box-shadow: 0 25px 50px -12px rgba(0 0 0 / 0.50);
   transition: transform .5s ease;
-  z-index: 30;
+  z-index: 3;
 }
 .float-card:hover { transform: translateY(-8px); }
 
 .card-top-right { top: 30px;    right: 30px; }
 .card-mid-left { top: 25%;  left: 0; }
-.card-bottom-right { bottom: 40px; right: 40px; z-index: 10; }
+.card-bottom-right { bottom: 40px; right: 40px; z-index: 1; }
 
 .icon-box {
   width: 40px;
@@ -1072,7 +1068,7 @@ SECOND BANNER STYLING
   display: flex;
   align-items: center;
   gap: 12px;
-  z-index: 40;
+  z-index: 4;
 }
 
 .ping-wrap {
@@ -1171,7 +1167,7 @@ SECOND BANNER STYLING
 
     .card-top-right { top: 30px; right: 20px; }
     .card-mid-left { top: 35%;  left: 0; }
-    .card-bottom-right { bottom: 20px; right: 40px; z-index: 10; }
+    .card-bottom-right { bottom: 20px; right: 40px; z-index: 1; }
 }
 
 
@@ -1226,3 +1222,8 @@ REFERRAL VIDEO STYLING
 /* Media Query */
 
 @media (max-width: 767px) { .video-wrap { aspect-ratio: 21/18; } .video-caption { left: 2rem; } }
+
+
+/* ── Base ── */
+
+::selection { background: var(--primary-fixed); color: var(--primary-color) !important; }
