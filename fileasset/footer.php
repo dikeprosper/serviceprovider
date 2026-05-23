@@ -53,6 +53,7 @@
 <script src="./js/live.js"></script>
 <script src="./js/popup.js"></script>
 <script src="./js/navbar.js"></script>
+<script src="./js/aos.js"></script>
 <script src="./js/scroll.js"></script>
 
 </body>

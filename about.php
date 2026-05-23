@@ -143,43 +143,46 @@ $steps = [
   ═══════════════════════════════════════════ -->
   <section class="<?= $section_padding ?> py-md-5">
     <div class="container-xl pb-md-2">
-      <div class="text-uppercase fs-7 text-primary mb-0">The problem we saw</div>
-      <h2 class="<?= $section_title ?> mb-2" style="color: var(--primary-color-dark);">
-        Two sides. <em class="text-primary">Same broken system.</em>
-      </h2>
-      <p class="<?= $body_text ?>" style="max-width: 480px;">
-        Every woman in Port Harcourt has a tailor story. Every tailor has a customer story. Both are tired of being let down.
-      </p>
+      
+        <div class="text-uppercase fs-7 text-primary mb-0">The problem we saw</div>
+        <h2 class="<?= $section_title ?> mb-2" style="color: var(--primary-color-dark);">
+            Two sides. <em class="text-primary">Same broken system.</em>
+        </h2>
+        <p class="<?= $body_text ?>" style="max-width: 480px;">
+            Every woman in Port Harcourt has a tailor story. Every tailor has a customer story. Both are tired of being let down.
+        </p>
 
-      <div class="row mt-2 g-4">
-        <div class="col-md-6">
-          <div class="problem-card customer h-100 p-4 p-md-5">
-            <div class="font-headline text-uppercase fs-6-plus mb-3">For customers</div>
-            <div class="prob-item fs-6"><div class="prob-dot c"></div>Paid upfront and tailor disappeared with the fabric</div>
-            <div class="prob-item fs-6"><div class="prob-dot c"></div>Dress was nothing like what was agreed</div>
-            <div class="prob-item fs-6"><div class="prob-dot c"></div>Had to beg and chase for weeks just to get a delivery</div>
-            <div class="prob-item fs-6"><div class="prob-dot c"></div>No way to know if a tailor is actually good before paying</div>
-            <div class="prob-item fs-6"><div class="prob-dot c"></div>Stressful price negotiation every single time</div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="problem-card tailor h-100 p-4 p-md-5 overflow-hidden position-relative">
-            <!-- Overlay layers -->
-            <div class="banner__grid" aria-hidden="true"></div>
-            <div class="banner__gradient" aria-hidden="true"></div>
-            
-            <div class="position-relative z-1">
+        <div class="row mt-2 g-4">
+            <div class="col-md-6">
+                <div class="problem-card customer h-100 p-4 p-md-5 banner-grid grid-dark">
 
-                <div class="font-headline text-uppercase fs-6-plus mb-3 text-white">For tailors</div>
-                <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>Finished a job and customer refused to pay</div>
-                <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>No digital presence beyond WhatsApp and Instagram</div>
-                <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>Customers haggle prices after already agreeing</div>
-                <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>No steady stream of new customers coming in</div>
-                <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>Hard work with no platform to showcase it professionally</div>
+                    <div>
+
+                        <div class="font-headline text-uppercase fs-6-plus mb-3">For customers</div>
+                        <div class="prob-item fs-6"><div class="prob-dot c"></div>Paid upfront and tailor disappeared with the fabric</div>
+                        <div class="prob-item fs-6"><div class="prob-dot c"></div>Dress was nothing like what was agreed</div>
+                        <div class="prob-item fs-6"><div class="prob-dot c"></div>Had to beg and chase for weeks just to get a delivery</div>
+                        <div class="prob-item fs-6"><div class="prob-dot c"></div>No way to know if a tailor is actually good before paying</div>
+                        <div class="prob-item fs-6"><div class="prob-dot c"></div>Stressful price negotiation every single time</div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div class="col-md-6">
+                <div class="problem-card tailor h-100 p-4 p-md-5 banner-grid">
+                    
+                    <div class="">
+
+                        <div class="font-headline text-uppercase fs-6-plus mb-3 text-white">For tailors</div>
+                        <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>Finished a job and customer refused to pay</div>
+                        <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>No digital presence beyond WhatsApp and Instagram</div>
+                        <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>Customers haggle prices after already agreeing</div>
+                        <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>No steady stream of new customers coming in</div>
+                        <div class="prob-item fs-6 text-white"><div class="prob-dot t"></div>Hard work with no platform to showcase it professionally</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
   </section>
 
@@ -259,13 +262,9 @@ $steps = [
   <section class="<?= $section_padding ?> py-5">
     <div class="container-xl pb-4">
         
-        <div class="site-radius p-4 p-md-5 overflow-hidden position-relative" style="background: var(--color-banner-bg);">
-            
-            <!-- Overlay layers -->
-            <div class="banner__grid" aria-hidden="true"></div>
-            <div class="banner__gradient" aria-hidden="true"></div>
+        <div class="site-radius p-4 p-md-5 banner-grid" style="background: var(--color-banner-bg);">
 
-            <div class="position-relative z-1">
+            <div class="">
 
                 <div class="fs-7 text-white text-uppercase-light">Our promise</div>
                 <h2 class="<?=$section_title_bold; ?> text-white mb-1">Our promise to you</h2>
@@ -300,24 +299,28 @@ $steps = [
   <section class="<?= $section_padding ?> pb-5">
     <div class="container-xl pb-md-2">
 
-        <div class="site-radius p-4 p-md-5 overflow-hidden position-relative" style="background: var(--primary-color);">
-            <div class="fs-7 text-white text-uppercase-light">The numbers</div>
-            <h2 class="<?= $section_title_bold ?> mb-1 text-white">Port Harcourt is trusting us</h2>
-            <p class="fs-6 mb-4 pb-2" style="color: rgba(255,255,255,0.4);">Updated as the platform grows</p>
-    
-            <div class="row g-3">
-                <?php foreach ($stats as $stat): ?>
-                <div class="col-6 col-md-3">
-                    <div class="number-card">
-                        <div class="font-headline fw-bold text-white mb-1" style="font-size: 34px; line-height: 1;">
-                            <?= $stat['value'] ?><span class="number-accent"><?= $stat['suffix'] ?></span>
-                        </div>
-                        <div style="font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.4;">
-                            <?= $stat['label'] ?>
+        <div class="site-radius p-4 p-md-5 overflow-hidden banner-grid grid-mid" style="background: var(--primary-color);">
+            
+            <div>
+
+                <div class="fs-7 text-white text-uppercase-light">The numbers</div>
+                <h2 class="<?= $section_title_bold ?> mb-1 text-white">Port Harcourt is trusting us</h2>
+                <p class="fs-6 mb-4 pb-2" style="color: rgba(255,255,255,0.4);">Updated as the platform grows</p>
+        
+                <div class="row g-3">
+                    <?php foreach ($stats as $stat): ?>
+                    <div class="col-6 col-md-3">
+                        <div class="number-card">
+                            <div class="font-headline fw-bold text-white mb-1" style="font-size: 34px; line-height: 1;">
+                                <?= $stat['value'] ?><span class="number-accent"><?= $stat['suffix'] ?></span>
+                            </div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.4;">
+                                <?= $stat['label'] ?>
+                            </div>
                         </div>
                     </div>
+                    <?php endforeach; ?>
                 </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -338,13 +341,17 @@ $steps = [
 
         <?php foreach ($team as $member): ?>
         <div class="col-md-4">
-            <div class="team-card h-100 site-radius" style="background: var(--surface-container-low);">
-                <div class="team-avatar" style="background: <?= $member['avatar_bg'] ?>; color: <?= $member['avatar_color'] ?>;">
-                    <?= $member['initials'] ?>
+            <div class="team-card h-100 site-radius banner-grid grid-dark" style="background: var(--surface-container-low);">
+
+                <div>
+
+                    <div class="team-avatar" style="background: <?= $member['avatar_bg'] ?>; color: <?= $member['avatar_color'] ?>;">
+                        <?= $member['initials'] ?>
+                    </div>
+                    <div class="fw-500 fs-7 mb-1"><?= $member['name'] ?></div>
+                    <div class="text-uppercase mb-2 fs-7 text-primary"><?= $member['role'] ?></div>
+                    <p class="<?= $body_text ?> mb-0"><?= $member['bio'] ?></p>
                 </div>
-                <div class="fw-500 fs-7 mb-1"><?= $member['name'] ?></div>
-                <div class="text-uppercase mb-2 fs-7 text-primary"><?= $member['role'] ?></div>
-                <p class="<?= $body_text ?> mb-0"><?= $member['bio'] ?></p>
             </div>
         </div>
         <?php endforeach; ?>
@@ -359,13 +366,9 @@ $steps = [
   ═══════════════════════════════════════════ -->
   <section class="<?= $section_padding ?> py-5">
     <div class="container-xl">
-        <div class="text-center site-radius p-4 p-md-5 overflow-hidden position-relative" style="background: var(--color-banner-bg);">
-            
-            <!-- Overlay layers -->
-            <div class="banner__grid" aria-hidden="true"></div>
-            <div class="banner__gradient" aria-hidden="true"></div>
+        <div class="text-center site-radius p-4 p-md-5 banner-grid" style="background: var(--color-banner-bg);">
 
-            <div class="position-relative z-1">
+            <div class="">
 
                 <div class="fs-7 text-white text-uppercase-light">Join us</div>
                 <h2 class="<?=$section_title_bold?> text-white mb-3">

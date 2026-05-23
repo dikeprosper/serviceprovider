@@ -39,7 +39,39 @@
         $page_title = "Sign in";
         $page_description = "";
     }
-    
+    $nav_links = [
+        [
+            'href'    => './style',
+            'icon'    => 'dresser',
+            'label'   => 'Style Inspiration',
+            'subtext' => '200+ New Styles',
+        ],
+        [
+            'href'    => './fabrics',
+            'icon'    => 'texture',
+            'label'   => 'Fabric House',
+            'subtext' => '400+ Fabrics',
+        ],
+        [
+            'href'    => './profile',
+            'icon'    => 'photo_album',
+            'label'   => "Tailor's Portfolio",
+            'subtext' => 'Rating/Reviews',
+        ],
+        [
+            'href'    => './about',
+            'icon'    => 'info',
+            'label'   => 'Learn More',
+            'subtext' => 'About StitchNG',
+        ],
+        [
+            'href'    => './contact',
+            'icon'    => 'perm_phone_msg',
+            'label'   => 'Contact Us',
+            'subtext' => 'Get in touch',
+        ],
+    ];
+
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +90,7 @@
     <link href="./css/bootstrap.css" rel="stylesheet">
     <link href="./css/font.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/aos.css">
     
 </head>
 <body onscroll="navbarAndBanner()">
@@ -79,7 +112,7 @@
                 </h1>
                 
                 <!-- Desktop Search -->
-                <div class="d-none mx-3 w-lg-45 w-xl-60 w-md-40" id="desktopSearch">
+                <div class="d-none mx-3 w-lg-50 w-md-40" id="desktopSearch">
                     <div class="nav-search rounded-5 bg-white">
                         <div class="d-flex align-items-center px-2">
                             <span class="material-symbols-outlined text-primary fs-5">search</span>
@@ -94,80 +127,96 @@
                     </div>
                 </div>
         
-                <div class="pe-2 pe-sm-4 pe-md-5 pe-xl-0 d-flex align-items-center justify-content-end gap-3 w-lg-75">
+                <div class="pe-2 pe-sm-4 pe-md-5 pe-xl-0 d-flex align-items-center justify-content-end gap-3 w-lg-50">
         
                     <div class="mobile-nav">
-                        <div class="position-relative ">
+                        <div class="position-relative">
         
-                            <div class="top d-flex d-lg-none justify-content-between align-items-center py-2 px-4 border-bottom">
+                            <div class="d-flex d-lg-none top pt-4 pb-3 border-bottom container-xl">
                                 
-                                <h1>
-                                    <a class="navbar-brand font-headline fs-1 fw-bold text-primary" href="<?=$site_url?>" style="letter-spacing: -1px; font-size: 1.5rem;"><?=$company_name; ?></a>
-                                </h1>
-                                
-                                <span class="navIcon material-symbols-outlined text-primary fs-2">close</span>
+                                <div class="<?=$section_padding?> d-flex w-100 justify-content-between align-items-center">
+
+                                    <h1>
+                                        <a class="navbar-brand font-headline fs-1 fw-bold text-primary" href="<?=$site_url?>" style="letter-spacing: -1px; font-size: 1.5rem;"><?=$company_name; ?></a>
+                                    </h1>
+                                    
+                                    <span class="navIcon material-symbols-outlined text-primary fs-2">close</span>
+                                </div>
                             </div>
                             
                             <div class="allNavLinks d-flex overflow-hidden">
         
                                 <div class="scrollNav main-nav-links">
-                                    <div class="border-bottom border-lg-0 p-4 p-lg-0 d-flex flex-column flex-lg-row gap-4">
+                                    <div class="border-bottom border-lg-0 d-flex flex-column flex-lg-row gap-2">
             
-                                        <div class="d-none d-lg-flex gap-4">
-                                            <button onclick="popup(this, 'category-toggle')" class="nav-link"> Categories  <span class="material-symbols-outlined text-primary">Keyboard_Arrow_Down</span> </button>
-                                            <button onclick="popup(this, 'explore-toggle')"  class="nav-link"> Explore <span class="material-symbols-outlined text-primary">Keyboard_Arrow_Down</span> </button>
+                                        <div class="d-none d-lg-flex">
+                                            <button onclick="popup(this, 'explore-toggle')"  class="nav-link d-flex"> Explore <span class="material-symbols-outlined text-primary">Keyboard_Arrow_Down</span> </button>
                                         </div>
-                                        <a id="explore-link" class="nav-link d-flex d-lg-none">Explore <span class="d-lg-none material-symbols-outlined text-primary">chevron_forward</span> </a>
-                                        <a id="categories-link" class="nav-link d-flex d-lg-none">Categories  <span class="d-lg-none material-symbols-outlined text-primary">chevron_forward</span> </a>
-                                        <a href="<?=$site_url?>register.php" id="provider-link" class="nav-link">Become a provider  <span class="d-lg-none material-symbols-outlined text-primary">chevron_forward</span> </a>
+
+                                        <div class="nav-link container-lg-max d-lg-none">
+                                            <a id="explore-link" class="w-100 nav-link d-flex <?=$section_margin?> mx-lg-0">Explore <span class="d-lg-none material-symbols-outlined text-primary">chevron_forward</span> </a>
+                                        </div>
+
+                                        <div class="nav-link container-lg-max">
+                                            <a href="<?=$site_url?>signup" id="provider-link" class="w-100 nav-link <?=$section_margin?> mx-lg-0">Become a Tailor <span class="d-lg-none material-symbols-outlined text-primary">chevron_forward</span> </a>
+                                        </div>
+
                                     </div>
-                                    <div class="d-flex d-lg-none px-4 py-1">
-            
-                                        <a class="nav-link disabled w-100 d-flex justify-content-between align-items-center">Open in app <span class="fs-8">coming soon</span>  <span class="disabled material-symbols-outlined text-primary">open_in_new</span> </a>
+                                    <div class="d-flex d-lg-none nav-link container-lg-max">
+                                        <a class="<?=$section_margin?> nav-link disabled w-100 d-flex justify-content-between align-items-center">Open in app <span class="fs-8">coming soon</span>  <span class="disabled material-symbols-outlined text-primary">open_in_new</span> </a>
                                     </div>
             
                                 </div>
-                                <div class="pop-up-container">
-        
-                                    <input type="text" name="" class="myToggler" id="category-toggle">
-                                    <div class="d-lg-none pop-up scrollNav secondary-nav-links1 shadow rounded-2 p-lg-4">
-                                        <div class="d-flex flex-column gap-3 px-4 py-2 border-top">
-                                            <a class="d-lg-none nav-link justify-content-start text-primary" id="categories-back-link"> <span class="me-3 material-symbols-outlined text-primary">arrow_back</span> Categories</a>
-                                            <a href="./categories.php" class="nav-link">Tailoring</a>
-                                            <a class="nav-link">Beauty and Cusmetics</a>
-                                        </div>
-        
-                                    </div>
-        
-                                </div>
+
                                 <div class="pop-up-container">
         
                                     <input type="text" name="" class="myToggler" id="explore-toggle">
-                                    <div class="d-lg-none scrollNav pop-up secondary-nav-links2">
-                                        <div class="d-flex flex-column gap-3 px-4 py-2 border-top">
-                                            <a class="d-lg-none nav-link justify-content-start text-primary" id="explore-back-link"> <span class="me-3 material-symbols-outlined text-primary">arrow_back</span> Explore</a>
-                                            <a href="./about.php" class="nav-link"> Style inspiration </a>
-                                            <a href="./about.php" class="nav-link"> Fashion Trends </a>
-                                            <a href="./about.php" class="nav-link"> Fabric House </a>
-                                            <a href="./about.php" class="nav-link"> Learn more </a>
-                                            <a href="./contact.php" class="nav-link"> Contact us </a>
+                                    <div class="d-lg-none scrollNav pop-up secondary-nav-links2 rounded-4 overflow-hidden">
+                                        
+                                        
+                                        <div class="d-flex flex-column gap-3 gap-lg-0">
+                                            <a class="d-lg-none nav-link justify-content-start text-primary border-bottom border-top" id="explore-back-link">
+                                                <div class="<?=$section_margin?> container-xl py-3">
+                                                    <span class="me-3 material-symbols-outlined text-primary">arrow_back</span> 
+                                                    Explore
+                                                </div>
+                                            </a>
+                                            <?php foreach ($nav_links as $index => $link): ?>
+                                                <a href="<?= htmlspecialchars($link['href']) ?>"
+                                                class="nav-link <?= $index < count($nav_links) - 1 ? 'border-bottom' : '' ?>">
+                                                    <div class="container-lg-max py-2 px-lg-3 py-lg-3">
+                                                        <div class="d-flex align-items-center px-2 px-sm-4 px-md-5 p-lg-0">
+                                                            <span class="material-symbols-outlined text-primary fs-3">
+                                                                <?= htmlspecialchars($link['icon']) ?>
+                                                            </span>
+                                                            <div class="ps-5 ps-lg-3">
+                                                                <div class="text-uppercase fs-6"><?= htmlspecialchars($link['label']) ?></div>
+                                                                <div class="fs-8 light-text"><?= htmlspecialchars($link['subtext']) ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            <?php endforeach; ?>
                                         </div>
-        
+                                                
                                     </div>
                                 </div>
                             </div>
                         </div>
         
-                        <div class="d-flex d-lg-none justify-content-between align-items-center gap-3 p-4 border-top">
-                            <a href="./register.php" class="btn btn-primary btn-lg rounded-2 w-50 px-3 py-2 fs-6">Join <?=$company_name; ?></a>
-                            <a href="./login.php" class="btn btn-outline-primary btn-lg rounded-2 w-50 px-3 py-2 fs-6">sign in</a>
+                        <div class="container-xl">
+
+                            <div class="d-flex d-lg-none justify-content-between align-items-center gap-3 p-4 border-top <?=$section_padding?>">
+                                <a href="<?=$site_url?>signup" class="btn btn-primary btn-lg rounded-2 w-50 px-3 py-2 fs-6">Join <?=$company_name; ?></a>
+                                <a href="<?=$site_url?>signin" class="btn btn-outline-primary btn-lg rounded-2 w-50 px-3 py-2 fs-6">sign in</a>
+                            </div>
                         </div>
                     </div>
         
                     <div class="d-flex align-items-center gap-3">
-                        <a href="./login.php" class="d-none d-sm-flex nav-link
+                        <a href="<?=$site_url?>signin" class="d-none d-sm-flex nav-link
                         ">Sign in</a>
-                        <a href="./register.php" class="nav-link btn btn-outline-primary
+                        <a href="<?=$site_url?>signup" class="nav-link btn btn-outline-primary
                         btn-lg rounded-2 px-3 py-2">Join</a>
                     </div>
                 </div>
@@ -180,12 +229,15 @@
 
         <div class="container-xl small-banner mb-0 mb-md-5 ">
     
-            <div class="banner-bg px-2 px-sm-4 px-md-5 py-4">
+            <div class="site-radius banner-bg px-2 px-sm-4 px-md-5 py-4">
                 
-                <h2 class="h5 d-xl-flex align-items-center justify-content-between">
-                    Hand selected Tailors in Port Harcourt - Risk Free
-                    <a href="" class="text-dark ps-2">Get started <span class="material-symbols-outlined text-dark">chevron_forward</span> </a>
-                </h2>
+                <div>
+
+                    <h2 class="h5 d-xl-flex align-items-center justify-content-between" data-aos="fade-in" data-aos-delay="300">
+                        Hand selected Tailors in Port Harcourt - Risk Free
+                        <a href="" class="text-dark ps-2">Get started <span class="material-symbols-outlined text-dark">chevron_forward</span> </a>
+                    </h2>
+                </div>
             </div>
         </div>
     </div>

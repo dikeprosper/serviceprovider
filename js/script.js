@@ -167,30 +167,54 @@ function scrollSlider(num){
 
             items.forEach((item, i) => {
                 const img = item.querySelector('img');
-                if (i === currentIdx + 1) {
+                img.style.border     = '1px solid #001A41';
+
+                if (i === currentIdx - 1) {
+                    // Last image to the left
+                    item.style.transform = 'scale(.8) translateX(20%)';
+                    item.style.zIndex    = '5';
+                    item.style.filter    = 'blur(2px)';
+                    item.style.opacity   = '0.5';
+                    img.style.boxShadow  = '';
+                } else if (i === currentIdx + 1) {
                     // centre — hero
-                    item.style.transform = 'scale(1.15) translateX(0)';
+
+                    if(window.innerWidth < 768) {
+
+                        item.style.transform = 'scale(1.7) translateX(0)';
+                    } else {
+                        
+                        item.style.transform = 'scale(1.5) translateX(0)';
+                    }
                     item.style.zIndex    = '30';
                     item.style.filter    = 'blur(0)';
                     item.style.opacity   = '1';
-                    img.style.boxShadow  = '2px 2px 30px rgba(0,0,0,0.2)';
                 } else if (i === currentIdx) {
                     // left side
-                    item.style.transform = 'scale(0.85) translateX(15%)';
+                    item.style.transform = 'scale(1.1) translateX(5%)';
                     item.style.zIndex    = '10';
                     item.style.filter    = 'blur(2px)';
-                    item.style.opacity   = '0.4';
+                    item.style.opacity   = '0.7';
                     img.style.boxShadow  = '';
                 } else if (i === currentIdx + 2) {
                     // right side
-                    item.style.transform = 'scale(0.85) translateX(-15%)';
+                    item.style.transform = 'scale(1.1) translateX(-5%)';
                     item.style.zIndex    = '10';
                     item.style.filter    = 'blur(2px)';
-                    item.style.opacity   = '0.4';
+                    item.style.opacity   = '0.7';
+                    img.style.boxShadow  = '';
+                
+                } else if (i === currentIdx + 3) {
+                    // Last image to the right
+                    item.style.transform = 'scale(.8) translateX(-20%)';
+                    item.style.zIndex    = '5';
+                    item.style.filter    = 'blur(2px)';
+                    item.style.opacity   = '0.5';
                     img.style.boxShadow  = '';
                 } else {
-                    item.style.transform = 'scale(0.85)';
-                    item.style.opacity   = '0';
+                    item.style.transform = 'scale(.6) translateX(0)';
+                    item.style.filter    = 'blur(2px)';
+                    item.style.opacity   = '0.5';
                     img.style.boxShadow  = '';
                 }
             });

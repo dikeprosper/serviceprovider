@@ -54,19 +54,9 @@ explore.addEventListener("click", e => {
     scrollSlider(2);
 });
 
-categories.addEventListener("click", e => {
-    e.preventDefault();
-    scrollSlider(1);
-});
-
 exploreBack.addEventListener("click", e => {
     e.preventDefault();
     scrollBack(2);
-});
-
-categoriesBack.addEventListener("click", e => {
-    e.preventDefault();
-    scrollBack(1);
 });
 
 

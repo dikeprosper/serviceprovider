@@ -16,3 +16,4 @@ if(liveServer) {
 }
 
 const isHomePage = path == urlpath || path == urlpath+"index.php" || path == urlpath+"home";
+const isAboutPage = path == urlpath+"about" || path == urlpath+"about.php";

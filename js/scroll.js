@@ -1,3 +1,5 @@
+AOS.init();
+
 function watchSection(sectionId, sectionVisible, toggleClass) {
 
     // Get the target section and the element to toggle
@@ -62,6 +64,11 @@ function navbarAndBanner() {
     } else {
         
         banner.classList.remove("active");
+    }
+
+    if(!isAboutPage && !isHomePage) {
+        
+        banner.classList.add("d-none");
     }
 
 }
@@ -151,3 +158,17 @@ if(isHomePage) {
 
 
 
+/* ── Scroll Reveal via IntersectionObserver ── */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  els.forEach(el => io.observe(el));
+})();
