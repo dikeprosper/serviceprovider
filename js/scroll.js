@@ -52,11 +52,15 @@ watchSection(
 );
 
 
-// Display Header banner on scroll
-
+// Header Banner
 const banner = document.querySelector("header .small-banner");
 
+// Profile Page Sidebar Navigation
+const sideBar = document.querySelector(".sidebar");
+
 function navbarAndBanner() {
+
+    // Display Header banner on scroll
 
     if(window.scrollY > 50) {
 
@@ -66,11 +70,12 @@ function navbarAndBanner() {
         banner.classList.remove("active");
     }
 
-    if(!isAboutPage && !isHomePage) {
-        
-        banner.classList.add("d-none");
-    }
 
+}
+
+if(!isAboutPage && !isHomePage) {
+    
+    banner.classList.add("d-none");
 }
 
 

@@ -5,8 +5,7 @@ const hire = document.querySelector("#hire");
 const getHired = document.querySelector("#getHired");
 const btn = document.querySelectorAll(".switchRole button");
 
-btn.forEach(button => {
-    
+btn.forEach(button => { 
     button.addEventListener("click", () => {
 
         if(button.innerHTML === "Hire") {
@@ -36,7 +35,6 @@ btn.forEach(button => {
 });
 
 // How it works
-
 function scrollSlider(num){
 
     slider.scrollBy({
@@ -119,7 +117,6 @@ function scrollSlider(num){
 })();
 
 // Job sample banner
-
 (function () {
     "use strict";
 
@@ -249,3 +246,12 @@ function scrollSlider(num){
         initCarousel(document.getElementById('carousel-secondary'),  false);
     });
 })();
+
+
+//=========== PROFILES
+
+// Remove Popup
+function removePopup(e = '') {
+    document.getElementById('ls-popup').remove();
+    window.location.href = `${siteUrl}${e}`;
+}

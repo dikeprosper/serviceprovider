@@ -3,6 +3,8 @@ const liveServer = false; // Set to true if using Live Server
 const path = window.location.pathname.toLowerCase(); // Base URL path for local development
 
 const urlpath = "/work/localproviders/";
+const siteUrl = document.getElementById("siteUrl").value;
+
 
 if(liveServer) {
     
@@ -17,3 +19,4 @@ if(liveServer) {
 
 const isHomePage = path == urlpath || path == urlpath+"index.php" || path == urlpath+"home";
 const isAboutPage = path == urlpath+"about" || path == urlpath+"about.php";
+const isProfilePage = path == urlpath+"profiles" || path == urlpath+"profiles.php";

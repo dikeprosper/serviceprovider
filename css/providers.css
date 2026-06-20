@@ -1,12 +1,18 @@
+body .pop-up2 {
+  height: 380px;
+}
+
+body .pop-up-container {
+  z-index: 12000000 !important;
+}
+
 .filter-title {
     font-size: 18px;
     font-weight: 800;
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 28px;
 }
-
 
 .card-expert img {
     height: 210px;
@@ -15,33 +21,16 @@
     border-radius: 16px;
 }
 
-.verify {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(255,255,255,.9);
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
 
 .name {
-    font-size: 20px;
-    font-weight: 800;
+    font-family: monrope-light;
+    letter-spacing: .09em;
     margin-top: 18px;
+    font-size: .9rem;
 }
 
 .role {
-    font-size: 11px;
-    font-weight: 800;
-    color: #00288e;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 16px;
+    background-color: #ffffff3a;
 }
 
 .meta {
@@ -51,6 +40,52 @@
     margin-bottom: 18px;
 }
 
+.filter {
+    transition: .5s;
+    position: sticky;
+    top: 65px;
+    z-index: 999999999 !important;
+}
 
 
-        
+/* ============================================= */
+
+.ls-overlay {
+    position: fixed;
+    inset: 0;
+    background:rgba(13,28,47,.35);
+    backdrop-filter:blur(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  .ls-box {
+    background: #fff;
+    padding: 32px 28px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ls-sub {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0;
+  }
+  .ls-tag {
+    font-size: 0.95rem;
+    margin: 0;
+    color: #333;
+  }
+ 
+  .ls-secondary {
+    background: #eee !important;
+    color: #333 !important;
+  }
+  .ls-secondary:hover {
+    background: #ddd !important;
+  }

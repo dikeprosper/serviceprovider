@@ -1,0 +1,26 @@
+RewriteEngine On
+
+# -----------------------------------------------
+# 1. BLOCK DIRECT ACCESS TO FOLDERS (send to index)
+# -----------------------------------------------
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# -----------------------------------------------
+# 2. ALLOW REAL FILES (PHP, images, CSS, JS, etc.)
+#    — This lets your POST/GET requests work normally
+# -----------------------------------------------
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# -----------------------------------------------
+# 3. ALLOW API / FORM ENDPOINTS EXPLICITLY
+#    (extra safety for your POST & GET handler files)
+# -----------------------------------------------
+RewriteRule ^api/(.*)$ api/$1 [L]
+
+# -----------------------------------------------
+# 4. EVERYTHING ELSE (fake URLs, missing files)
+#    — Goes to index.php (your router handles it)
+# -----------------------------------------------
+RewriteRule ^ index.php [QSA,L]

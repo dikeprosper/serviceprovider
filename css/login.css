@@ -14,27 +14,10 @@
 }
 
 body{
-    font-family:'Manrope',sans-serif;
     background:#f8faff;
     color:var(--text);
 }
 
-h1,
-h2,
-h3,
-h4{
-    font-family:'Plus Jakarta Sans',sans-serif;
-    letter-spacing:-0.03em;
-}
-
-.fs-6{
-    line-height:1.7;
-}
-
-.material-symbols-outlined{
-    font-size:20px;
-    vertical-align:middle;
-}
 
 .auth-shell{
     min-height:100vh;
