@@ -1,5 +1,5 @@
 <?php
-include 'includes/liveServer.php';
+include 'includes/db.php';
 include 'includes/traits.php';
 
 
@@ -39,7 +39,6 @@ class app{
 
 
         //including my global classes
-        // $this->query = new Myquery($this->db);
         include 'includes/global_classes.php';
 
         // Make this app instance available to the Router
@@ -47,9 +46,21 @@ class app{
 
     }
 
-    public function myQuery($stmt) {
+    public function myQuery(string $sql, string $types = '', array $params = []) {
 
-       return $this->db->query($stmt);
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt === false) {
+            die("Query prepare failed: " . $this->db->error);
+        }
+
+        if ($types !== '') {
+            $stmt->bind_param($types, ...$params);
+        }
+
+        $stmt->execute();
+
+        return $stmt->get_result();
     }
 
     // Sanitize POST input
@@ -63,6 +74,85 @@ class app{
         $value = strip_tags($value);
 
         return $value;
+    }
+
+    // -----------------------------------------------
+    // CSRF protection
+    // -----------------------------------------------
+
+    // Get (or create) the token for this session
+    public function csrfToken(): string {
+
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
+        return $_SESSION['csrf_token'];
+    }
+
+    // Render a hidden input ready to drop into any <form>
+    public function csrfField(): string {
+
+        $token = htmlspecialchars($this->csrfToken(), ENT_QUOTES, 'UTF-8');
+        return '<input type="hidden" name="csrf_token" value="' . $token . '">';
+    }
+
+    // Verify the token submitted with a POST request.
+    // Call this at the top of any script that handles a POST form.
+    public function csrfVerify(): bool {
+
+        $submitted = $_POST['csrf_token'] ?? '';
+        $expected  = $_SESSION['csrf_token'] ?? '';
+
+        if ($expected === '' || !hash_equals($expected, $submitted)) {
+
+            http_response_code(403);
+            $this->setAlert('Your session expired, please try again.', 'danger');
+            die('Invalid or expired form submission.');
+        }
+
+        return true;
+    }
+
+    // -----------------------------------------------
+    // Basic rate limiting (per session, per action)
+    // -----------------------------------------------
+
+    // Returns true if the action is currently blocked
+    public function isRateLimited(string $action, int $maxAttempts = 5, int $lockoutSeconds = 300): bool {
+
+        $bucket = $_SESSION['rate_limit'][$action] ?? null;
+
+        if (!$bucket) {
+            return false;
+        }
+
+        // Lockout window has passed — reset
+        if (time() - $bucket['first_attempt'] > $lockoutSeconds) {
+            unset($_SESSION['rate_limit'][$action]);
+            return false;
+        }
+
+        return $bucket['count'] >= $maxAttempts;
+    }
+
+    // Call this every time the action is attempted (success or fail)
+    public function recordAttempt(string $action): void {
+
+        if (!isset($_SESSION['rate_limit'][$action])) {
+            $_SESSION['rate_limit'][$action] = [
+                'count' => 0,
+                'first_attempt' => time(),
+            ];
+        }
+
+        $_SESSION['rate_limit'][$action]['count']++;
+    }
+
+    // Call this on a successful login/register to clear the counter
+    public function clearAttempts(string $action): void {
+
+        unset($_SESSION['rate_limit'][$action]);
     }
 }
 

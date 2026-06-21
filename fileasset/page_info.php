@@ -22,8 +22,8 @@
     $section_margin = "mx-2 mx-sm-4 mx-md-5 mx-xl-0";
 
     // Configuration
-    $company_name = $app->settings->site_name;
-    $tagline = "Evolution of Excellence";
+    $company_name = $app->site_name;
+    $tagline = $app->tagline;
     
     $page_title = $company_name;
     $page_description = $tagline;

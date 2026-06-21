@@ -5,6 +5,8 @@ $uid = "2";
 
 //Save Pin in DataBase
 if (isset($_POST['moodboard'])) {
+
+    $app->csrfVerify();
     
     $pid = htmlspecialchars($_POST['pid']) ?? '';
     $username = htmlspecialchars($_POST['username']) ?? '';
@@ -16,7 +18,11 @@ if (isset($_POST['moodboard'])) {
         echo json_encode(['status' => 'error', 'message' => 'Something went wrong please try again later.']);
         exit;
     }
-    $query = $app->myQuery("INSERT INTO pins (pid, uid, username, board) VALUES ('$pid', '$uid', '$username', '$moodboard')");
+    $query = $app->myQuery(
+        "INSERT INTO pins (pid, uid, username, board) VALUES (?, ?, ?, ?)",
+        "ssss",
+        [$pid, $uid, $username, $moodboard]
+    );
 
 
     if ($app->db->affected_rows > 0) {
@@ -46,6 +52,8 @@ if (isset($_POST['showboard'])) {
 
 
 if (isset($_POST['delete'])) {
+
+    $app->csrfVerify();
     
     $delete = htmlspecialchars($_POST['delete']) ?? '';
     $moodboard = htmlspecialchars($_POST['board']) ?? '';
@@ -57,7 +65,11 @@ if (isset($_POST['delete'])) {
         exit;
     }
 
-    $query = $app->myQuery("DELETE FROM pins WHERE pid = '$delete' AND board = '$moodboard' AND uid = '$uid'");
+    $query = $app->myQuery(
+        "DELETE FROM pins WHERE pid = ? AND board = ? AND uid = ?",
+        "sss",
+        [$delete, $moodboard, $uid]
+    );
 
 
     if ($app->db->affected_rows > 0) {

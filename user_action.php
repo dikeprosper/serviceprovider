@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = htmlspecialchars($_POST['email']) ?? '';
     
         // Fetch users from the database
-        $query = "SELECT * FROM user WHERE email = '$email'";
-        $result = $app->myQuery($query);
+        $query = "SELECT * FROM user WHERE email = ?";
+        $result = $app->myQuery($query, "s", [$email]);
     
         if ($result && $result->num_rows > 0) {
             
@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = htmlspecialchars($_POST['username']) ?? '';
     
         // Fetch users from the database
-        $query = "SELECT * FROM user WHERE username = '$username'";
-        $result = $app->myQuery($query);
+        $query = "SELECT * FROM user WHERE username = ?";
+        $result = $app->myQuery($query, "s", [$username]);
     
         if ($result && $result->num_rows > 0) {
             
@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if(isset($_POST['reg_username'])) {
 
+        $app->csrfVerify();
+
         $register = $app->user->register();
         
         if($_SESSION['user']) {
@@ -71,6 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if(isset($_POST['login'])) {
+
+        $app->csrfVerify();
 
         $login = $app->user->login();
 

@@ -29,10 +29,18 @@
         $selectedCat = $pin['category'];
     
         // Likes
-        $likes = $app->myQuery("SELECT * FROM likes WHERE pid = '$pid'");
+        $likes = $app->myQuery(
+            "SELECT * FROM likes WHERE pid = ?",
+            "s",
+            [$pid]
+        );
         
         // Tailor selection
-        $user = $app->myQuery("SELECT * FROM user WHERE username = '$username'");
+        $user = $app->myQuery(
+            "SELECT * FROM user WHERE username = ?",
+            "s",
+            [$username]
+        );
         $t_user = $user->fetch_assoc();
 
         $product_type = $pin['p_type'];
@@ -55,11 +63,19 @@
         $cat = $mycat['name'];
         $product_type = $mycat['type'];
 
-        $styles = $app->myQuery("SELECT * FROM products WHERE category = '$cat' AND active_inspr = '1' AND p_type = '$product_type'");
+        $styles = $app->myQuery(
+            "SELECT * FROM products WHERE category = ? AND active_inspr = '1' AND p_type = ?",
+            "ss",
+            [$cat, $product_type]
+        );
     
     }  elseif (isset($selectedCat)) {
         
-        $styles = $app->myQuery("SELECT * FROM products WHERE category = '$selectedCat' AND active_inspr = '1' AND p_type = '$product_type' AND pid != '$pid'");
+        $styles = $app->myQuery(
+            "SELECT * FROM products WHERE category = ? AND active_inspr = '1' AND p_type = ? AND pid != ?",
+            "sss",
+            [$selectedCat, $product_type, $pid]
+        );
 
     } elseif (isset($fabrics)) {
 
@@ -139,7 +155,11 @@
         $allCat = 'inspiration';
     }
 
-    $stmt = $app->myQuery("SELECT * FROM categories WHERE type = '$product_type'");
+    $stmt = $app->myQuery(
+        "SELECT * FROM categories WHERE type = ?",
+        "s",
+        [$product_type]
+    );
     $categories = $stmt->fetch_all(MYSQLI_ASSOC);
 
 ?>

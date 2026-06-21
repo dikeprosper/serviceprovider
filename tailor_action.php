@@ -34,8 +34,8 @@ foreach ($providers as &$p) {
     $username = $p['username'] ?? '';
     if (!empty($username)) {
 
-        $ratingQuery = "SELECT * FROM ratings WHERE username = '$username'";
-        $ratingResult = $app->myQuery($ratingQuery);
+        $ratingQuery = "SELECT * FROM ratings WHERE username = ?";
+        $ratingResult = $app->myQuery($ratingQuery, "s", [$username]);
 
         if ($ratingResult && $ratingResult->num_rows > 0) {
 

@@ -34,6 +34,8 @@ if(isset($_SESSION['user'])) {
 
                     <form action="<?=SITE_URL ?>user_action.php" method="POST">
 
+                        <?= $app->csrfField(); ?>
+
                         <div class="mb-4">
                             <label class="form-label">Email Address</label>
                             <input

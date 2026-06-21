@@ -9,14 +9,14 @@ $validStyle  = false;
 $validFabric = false;
 
 if ($s) {
-    $query  = "SELECT pid FROM products WHERE pid = '$s' AND p_type = '0' AND active_inspr = '1'";
-    $result = $app->myQuery($query);
+    $query  = "SELECT pid FROM products WHERE pid = ? AND p_type = '0' AND active_inspr = '1'";
+    $result = $app->myQuery($query, "s", [$s]);
     $validStyle = $result && $result->num_rows > 0;
 }
 
 if ($f) {
-    $query  = "SELECT pid FROM products WHERE pid = '$f' AND p_type = '1'";
-    $result = $app->myQuery($query);
+    $query  = "SELECT pid FROM products WHERE pid = ? AND p_type = '1'";
+    $result = $app->myQuery($query, "s", [$f]);
     $validFabric = $result && $result->num_rows > 0;
 }
 

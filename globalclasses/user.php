@@ -11,6 +11,12 @@ class User {
 
     public function login() {
 
+        if ($this->app->isRateLimited('login')) {
+
+            $this->setAlert('Too many login attempts. Please try again in a few minutes.', 'danger');
+            return;
+        }
+
         $login = $this->app->post("login");
         $password = $this->app->post("password");
 
@@ -21,10 +27,15 @@ class User {
         }
 
        
-        $stmt = $this->app->myQuery("SELECT * FROM user WHERE email = '$login' OR username = '$login'");
+        $stmt = $this->app->myQuery(
+            "SELECT * FROM user WHERE email = ? OR username = ?",
+            "ss",
+            [$login, $login]
+        );
 
         if($stmt->num_rows < 1) {
 
+            $this->app->recordAttempt('login');
             $this->setAlert('Invalid credentials', 'danger');
             return;
         }
@@ -37,6 +48,8 @@ class User {
         if (password_verify($password, $password_hash)) {
 
             // Password is correct! Log the user in
+            $this->app->clearAttempts('login');
+
             $_SESSION['user'] = [
                         'email' => $row['email'],
                         'username'  => $row['username'],
@@ -51,6 +64,7 @@ class User {
         } else {
 
             // Invalid password
+            $this->app->recordAttempt('login');
             $this->setAlert('Invalid credentials', 'danger');
             return;
             
@@ -59,7 +73,14 @@ class User {
 
     public function register() {
 
-        echo "inside here mother fucker";
+        if ($this->app->isRateLimited('register', 5, 600)) {
+
+            $this->setAlert('Too many registration attempts. Please try again later.', 'danger');
+            return;
+        }
+
+        $this->app->recordAttempt('register');
+
         $email = $this->app->post("email");
         $password = $this->app->post("password");
         $username = $this->app->post("reg_username");
@@ -71,7 +92,11 @@ class User {
         }
 
         // Check if email already exist
-        $stmt = $this->app->myQuery("SELECT uid FROM user WHERE email = '$email'");
+        $stmt = $this->app->myQuery(
+            "SELECT uid FROM user WHERE email = ?",
+            "s",
+            [$email]
+        );
 
         if($stmt->num_rows > 0) {
 
@@ -83,10 +108,15 @@ class User {
         $hash = password_hash($password,PASSWORD_DEFAULT);
 
         // Insert user
-        $stmt = $this->app->myQuery("INSERT INTO user (username,email,password,name,provider,address,bio,specialty) VALUES ('$username','$email','$hash','','','','','')");
+        $insertOk = $this->app->myQuery(
+            "INSERT INTO user (username,email,password,name,provider,address,bio,specialty) VALUES (?,?,?,'','','','','')",
+            "sss",
+            [$username, $email, $hash]
+        );
 
-        if ($this->app->db->affected_rows > 0) {
+        if ($insertOk !== false && $this->app->db->affected_rows > 0) {
 
+            $this->app->clearAttempts('register');
             $this->setAlert('Registration Successful', 'success');
 
             // Regenerate session ID for security
@@ -128,7 +158,11 @@ class User {
         $profile = strip_tags($profile);
         $profile = htmlspecialchars($profile, ENT_QUOTES, 'UTF-8');
 
-        $stmt = $this->app->myQuery("SELECT * FROM user WHERE email = '$email' AND username = '$username'");
+        $stmt = $this->app->myQuery(
+            "SELECT * FROM user WHERE email = ? AND username = ?",
+            "ss",
+            [$email, $username]
+        );
 
         if($stmt->num_rows < 1) {
 

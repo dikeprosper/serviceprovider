@@ -49,6 +49,8 @@ if(isset($_SESSION['user'])) {
                     <!-- FORM -->
                     <form method="POST" id="registration" action="<?=SITE_URL?>user_action.php">
 
+                        <?= $app->csrfField(); ?>
+
                         <div id="firstStep">
 
                             <!-- SOCIAL -->
