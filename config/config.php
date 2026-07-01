@@ -59,6 +59,32 @@ class app{
         }
 
         $stmt->execute();
+        $this->affected_rows = $stmt->affected_rows;
+
+        return $stmt->get_result();
+    }
+    
+    public function myQuery3(string $sql, string $types = '', array $params = []) {
+
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt === false) {
+            die("Query prepare failed: " . $this->db->error);
+        }
+
+        if ($types !== '') {
+            $stmt->bind_param($types, ...$params);
+        }
+
+        // $stmt->execute();
+        $this->affected_rows = $stmt->affected_rows;
+
+        return $stmt->get_result();
+    }
+
+    public function myQuery2($sql) {
+
+        $stmt = $this->db->query($sql);
 
         return $stmt->get_result();
     }

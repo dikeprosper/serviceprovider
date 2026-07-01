@@ -83,7 +83,8 @@ async function savePin (moodboard) {
 }
 
 async function deletePin(pid,moodboard) {
-    
+
+    // document.getElementById('message').innerHTML = "";
     const formData = new FormData();
     
     formData.append('delete', pid);
@@ -111,3 +112,50 @@ async function deletePin(pid,moodboard) {
 if(document.getElementById('message').innerHTML != ''){
     alertMsg();
 }
+
+function addBoard(id) {
+
+    var addBoard = document.getElementById(id);
+    addBoard.style.height = "190px";
+}
+
+async function addNewBoard () {
+
+    const newBoardInput = document.getElementById('newBoardInput');
+    const formData = new FormData();
+    
+    formData.append('newBoard', newBoardInput.value);
+
+    const moodData = new FormData();
+    moodData.append('showboard', 'insert');
+
+    try {
+
+        const response = await fetch(siteUrl+'pin_action.php', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.text(); // Expect JSON back from PHP
+        document.getElementById('message').innerHTML = result;
+
+        alertMsg();
+
+        const moodBoard = await fetch(siteUrl+'pin_action.php', {
+            method: 'POST',
+            body: moodData,
+        });
+
+        document.getElementById('addBoard').style.height = "0px";
+
+        const result2 = await moodBoard.text(); // Expect JSON back from PHP
+        modal.querySelector(".row").innerHTML = result2;
+
+
+    } catch (err) {
+
+        // This fires if the network failed or PHP returned non-JSON
+        alert('Something went wrong. Please try again');
+    }
+}
+

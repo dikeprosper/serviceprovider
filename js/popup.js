@@ -80,6 +80,7 @@ popCcontainer.forEach(container => {
 function alertMsg() {
     
     setTimeout(function() {
+        
 
         var el = document.getElementById('appalert');
         

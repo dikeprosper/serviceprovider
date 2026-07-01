@@ -181,7 +181,6 @@
                 <div class="btn-fade fs-7 rounded-5 <?php if (isset($cat) AND $cat == $item['name']){ echo "active"; } ?>"> <a href="<?=SITE_URL ?>category/<?=$item['name'] ?>"><?=$item['name'] ?></a> </div>
             <?php endforeach; endif; ?>
             
-
         </div>
 
         <div class="">
@@ -312,8 +311,21 @@
         <div class="modal-box rounded-5">
 
             <div class="step active" id="step1">
-                
-                <div class="fs-3 fw-bold text-center mb-3">Select A Board</div>
+
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="fs-3 fw-bold text-center mb-3">Select A Board</div>
+                    <a onclick="addBoard('addBoard')" class="btn btn-fade fade-r">Add new</a>
+                </div>
+
+                <div id="addBoard" class="rounded-2 overflow-hidden" style="height: 0px; transition: .4s;">
+
+                    <div class="p-2 mt-4 mb-5 bg-dark">
+
+                        <input type="text" id="newBoardInput" class="form-control mb-3">
+                        <div class="btn btn-fade w-100" onclick="addNewBoard()">Add Board</div>
+                    </div>
+                </div>
+
                 <input type="hidden" id="username" value="">
                 <input type="hidden" id="pid" value="">
                 <div class="row g-3">

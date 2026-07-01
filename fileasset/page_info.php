@@ -10,7 +10,7 @@
         $currentUser = null;
     }
 
-    $profile_img = $currentUser['profile'] ?? "placeholder.webp";
+    $profile_img = $currentUser['photo_url'] ?? "placeholder.webp";
 
     // App variables
     $section_title = "headline display-7";
@@ -22,8 +22,8 @@
     $section_margin = "mx-2 mx-sm-4 mx-md-5 mx-xl-0";
 
     // Configuration
-    $company_name = $app->site_name;
-    $tagline = $app->tagline;
+    $company_name = $app->settings->site_name;
+    $tagline = $app->settings->tagline;
     
     $page_title = $company_name;
     $page_description = $tagline;
@@ -32,79 +32,102 @@
     // Navigation Links
     $nav_links = [
         [
-            'href'    => './inspiration',
+            'href'    => SITE_URL . 'inspiration',
             'icon'    => 'dresser',
             'label'   => 'Style Inspiration',
             'subtext' => '200+ New Styles',
         ],
         [
-            'href'    => './fabrics',
+            'href'    => SITE_URL . 'fabrics',
             'icon'    => 'texture',
             'label'   => 'Fabric House',
             'subtext' => '400+ Fabrics',
         ],
         [
-            'href'    => './tailors',
+            'href'    => SITE_URL . 'tailors',
             'icon'    => 'photo_album',
             'label'   => "Find Tailor's",
             'subtext' => 'Rating/Reviews',
         ],
         [
-            'href'    => './about',
+            'href'    => SITE_URL . 'about',
             'icon'    => 'info',
             'label'   => 'Learn More',
             'subtext' => 'About StitchNG',
         ],
         [
-            'href'    => './contact',
+            'href'    => SITE_URL . 'contact',
             'icon'    => 'perm_phone_msg',
             'label'   => 'Contact Us',
             'subtext' => 'Get in touch',
         ]
     ];
 
+    // Navigation Links
+    $browse_links = [
+        [
+            'href'    => SITE_URL . 'offers',
+            'icon'    => 'percent_discount',
+            'label'   => 'Offers/Ready to wear',
+            'subtext' => 'Best deals from tailors',
+        ],
+        [
+            'href'    => SITE_URL . 'inspiration',
+            'icon'    => 'dresser',
+            'label'   => 'Style Inspiration',
+            'subtext' => '200+ New Styles',
+        ],
+        [
+            'href'    => SITE_URL . 'fabrics',
+            'icon'    => 'texture',
+            'label'   => 'Fabric House',
+            'subtext' => '400+ Fabrics',
+        ],
+        [
+            'href'    => SITE_URL . 'tailors',
+            'icon'    => 'photo_album',
+            'label'   => "Find Tailor's",
+            'subtext' => 'Rating/Reviews',
+        ],
+        
+    ];
+
     $dash_nav_items = [
         [
-            'href' => './',
+            'href' => SITE_URL . 'dashboard/',
             'icon' => 'grid_view',
             'label' => 'Overview',
             'subtext' => ''
         ],
         [
-            'href' => './pin',
+            'href' => SITE_URL . 'dashboard/pin',
             'icon' => 'keep',
-            'label' => 'pin',
+            'label' => 'Pins',
             'subtext' => ''
         ],
         [
-            'href' => './projects',
+            'href' => SITE_URL . 'dashboard/projects',
             'icon' => 'analytics',
             'label' => 'Projects',
             'subtext' => ''
         ],
         [
-            'href' => './history',
-            'icon' => 'history',
-            'label' => 'History',
+            'href' => SITE_URL . 'dashboard/chat',
+            'icon' => 'chat_bubble',
+            'label' => 'Chat',
             'subtext' => ''
         ],
         [
-            'href' => './mail',
-            'icon' => 'mail',
-            'label' => 'Messages',
-            'subtext' => ''
-        ],
-        [
-            'href' => './wallet',
+            'href' => SITE_URL . 'dashboard/wallet',
             'icon' => 'account_balance_wallet',
             'label' => 'Wallet',        
             'subtext' => ''
         ],
         [
-            'href' => './settings',
-            'icon' => 'settings',               
-            'label' => 'Settings',
-            'subtext' => ''      
+            'href' => SITE_URL . 'dashboard/referrals',
+            'icon' => 'monetization_on',
+            'label' => 'Referrals',        
+            'subtext' => ''
         ],
     ];
 
@@ -118,6 +141,7 @@
     // Setting page data
     $page_label = $company_name;
     if($folder == "dashboard") { $page_label = $folder; }
+    if($folder == "dashboard" AND $page == "home") { $page = ""; }
     if($currentUser) { $nav_links = $dash_nav_items; }
 
     if ($page == "") {}
@@ -129,6 +153,38 @@
     if ($page == "") {}
 
     
+    
+    $browse_popUps =  '<div class="pop-up-container">
+                    <input type="text" name="" class="myToggler" id="browse-toggle">
+                    <div class="d-lg-none pop-up2 rounded-4 overflow-hidden px-2 py-3 p-md-0">
+                    
+                        <button id="closePop" class="d-md-none nav-link d-flex py-3 bg-light justify-content-center"> Close </button>
+                                                                
+                        <div class="d-flex flex-column gap-3 gap-lg-0 mt-4 mt-md-0">';
+
+                            foreach ($browse_links as $index => $link):
+
+                                 $browse_popUps .=  '<a href="'.$link['href'] .'"
+
+                                class="nav-link border-bottom">
+                                    <div class="container-lg-max py-2 px-lg-3 py-lg-3">
+                                        <div class="d-flex align-items-center px-2 px-sm-4 px-md-5 p-lg-0">
+                                            <span class="material-symbols-outlined text-primary fs-3">
+                                                '.htmlspecialchars($link['icon']) .'
+                                            </span>
+                                            <div class="ps-5 ps-lg-3">
+                                                <div class="text-uppercase fs-6">'. htmlspecialchars($link['label']) .'</div>
+                                                <div class="fs-8 light-text">'. htmlspecialchars($link['subtext']) .'</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>';
+                            endforeach;
+                        $browse_popUps .=  '</div>
+                                
+                    </div>
+                </div>';
+
     $popUps =  '<div class="pop-up-container">
                     <input type="text" name="" class="myToggler" id="explore-toggle">
                     <div class="d-lg-none pop-up2 rounded-4 overflow-hidden px-2 py-3 p-md-0">
@@ -139,7 +195,7 @@
 
                             foreach ($nav_links as $index => $link):
 
-                                 $popUps .=  '<a href="'.SITE_URL . htmlspecialchars($link['href']) .'"
+                                 $popUps .=  '<a href="'.$link['href'] .'"
 
                                 class="nav-link border-bottom">
                                     <div class="container-lg-max py-2 px-lg-3 py-lg-3">
@@ -195,5 +251,4 @@
                         </form>
                     </div>
                 </div>';
-
                 ?>

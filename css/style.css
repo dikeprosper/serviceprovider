@@ -15,17 +15,23 @@ GENERAL STYLING FOR ALL PAGES
       --surface-container-low: #eff4ff;
       --surface-container-lowest: #ffffff;
       --surface-container-high: #dde9ff;
-      --outline-variant: rgba(196, 197, 213, 0.3);
+      --outline-variant: #c4c5d54d;
+      --outline:         #c4c5d5;
       --primary-fixed: #dde1ff;
       --border: #dde1ff7c;
+      --border-v1: #a2abe9;
       --primary-fixed-dim: #b8c4ff;
-      --border-radius: 1.5rem;
       --color-banner-deep: #040d21;
       --color-banner-bg:#001A41;
       --color-banner-bg2: linear-gradient(105deg, var(--surface) 0%, var(--surface-container-high) 90%);
       --banner-lines: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;
       --card-bg: rgba(255 255 255 / 0.05);
       --card-border: rgba(255 255 255 / 0.10);
+      --border-radius: 1.5rem;
+      --border: #dde1ff7c;
+      --error: #ba1a1a;
+      --on-secondary-container: #54647a;
+      --secondary: #505f76;
 }
 
 /* My fonts */
@@ -204,7 +210,7 @@ GENERAL STYLING FOR ALL PAGES
 
 .soft { background:#f2f4f6; }
 
-.muted { color:#57657b; background: yellow; }
+.muted { color:#57657b; }
 
 .cta { background:var(--primary-color); color: var(--on-primary);}
 
@@ -397,6 +403,7 @@ PAGE HEADER STYLING
 
 header {
     background-color: var(--on-primary);
+    /* box-shadow: 2px 0px 20px rgba(0, 0, 0, 0.4); */
 }
 
 .brand, .brand a {
@@ -840,7 +847,6 @@ HOW IT WORKS STYLING
     display: inline-flex;
     padding: 0.25rem;
     background: var(--surface-container-low);
-    border: 1px solid rgba(196,197,213,0.3);
     border-radius: 9999px;
     gap: 0;
 }

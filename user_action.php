@@ -35,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $username = htmlspecialchars($_POST['username']) ?? '';
     
+        // Replace empty space with underscore
+        $username = str_replace(' ', '_', $username);
+        
         // Fetch users from the database
         $query = "SELECT * FROM user WHERE username = ?";
         $result = $app->myQuery($query, "s", [$username]);

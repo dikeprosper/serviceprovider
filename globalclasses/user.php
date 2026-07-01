@@ -53,7 +53,7 @@ class User {
             $_SESSION['user'] = [
                         'email' => $row['email'],
                         'username'  => $row['username'],
-                        'profile'  => $row['profile'],
+                        'photo_url'  => $row['photo_url'],
                         'tailor'  => $row['provider']
                         ];
 
@@ -91,6 +91,9 @@ class User {
             return;
         }
 
+        // Replace empty space with underscore
+        $username = str_replace(' ', '_', $username);
+
         // Check if email already exist
         $stmt = $this->app->myQuery(
             "SELECT uid FROM user WHERE email = ?",
@@ -109,12 +112,12 @@ class User {
 
         // Insert user
         $insertOk = $this->app->myQuery(
-            "INSERT INTO user (username,email,password,name,provider,address,bio,specialty) VALUES (?,?,?,'','','','','')",
+            "INSERT INTO user (username,email,password) VALUES (?,?,?)",
             "sss",
             [$username, $email, $hash]
         );
 
-        if ($insertOk !== false && $this->app->db->affected_rows > 0) {
+        if ($this->app->affected_rows > 0) {
 
             $this->app->clearAttempts('register');
             $this->setAlert('Registration Successful', 'success');
@@ -125,7 +128,7 @@ class User {
             $_SESSION['user'] = [
                 'email' => $email,
                 'username'  => $username,
-                'profile'  => "placeholder.webp",
+                'photo_url'  => "placeholder.webp",
                 'tailor'  => 0
             ];
             return;
@@ -154,10 +157,6 @@ class User {
         $username = strip_tags($username);
         $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
 
-        $profile = trim($_SESSION['user']['profile']);
-        $profile = strip_tags($profile);
-        $profile = htmlspecialchars($profile, ENT_QUOTES, 'UTF-8');
-
         $stmt = $this->app->myQuery(
             "SELECT * FROM user WHERE email = ? AND username = ?",
             "ss",
@@ -174,4 +173,5 @@ class User {
 
         return $stmt->fetch_assoc();
     }
+    
 }

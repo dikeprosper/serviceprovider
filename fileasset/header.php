@@ -21,6 +21,8 @@
 </head>
 <body onscroll="navbarAndBanner()">
 
+<?php if($page !== "chat"): ?>
+
 <header class="">
 
     <div class="navbar-wrapper fixed-top <?=$section_padding ?>">
@@ -67,10 +69,12 @@
 
                                 <?php if ($currentUser): ?>
         
-                                    <div class="d-flex gap-2">
+                                    <div class="d-flex gap-1">
+                                        <a onclick="popup(this, 'browse-toggle')" class="icon-btn"> <span class="material-symbols-outlined">browse <span></span> </a>
                                         <a href="<?=SITE_URL?>dashboard/notify" class="icon-btn"> <span class="material-symbols-outlined">notifications <span></span> </a>
-                                        <a href="<?=SITE_URL?>dashboard/mail" class="icon-btn"> <span class="material-symbols-outlined">chat_bubble <span></span> </a>
                                         <a href="<?=SITE_URL?>dashboard/settings" class="icon-btn"> <span class="material-symbols-outlined">settings <span></span> </a>
+
+                                        <?= $browse_popUps; ?>
                                     </div>
                                     
                                 <?php endif; ?>
@@ -93,7 +97,7 @@
         
                                 <?php else: ?>
         
-                                    <a href="<?=SITE_URL . "dashboard"?>" class="profile_img d-flex ms-3"> <img src="<?=SITE_URL ?>img/profile/<?=htmlspecialchars($profile_img, ENT_QUOTES, 'UTF-8')?>" alt=""> </a>
+                                    <a href="<?=SITE_URL . "dashboard"?>" class="profile_img d-flex ms-2"> <img src="<?=SITE_URL ?>img/profile/<?=htmlspecialchars($profile_img, ENT_QUOTES, 'UTF-8')?>" alt=""> </a>
         
                                 <?php endif; ?>
                                 
@@ -134,7 +138,7 @@
         </div>
     </div>
 </header>
-
+<?php endif; ?>
 <input type="hidden" id="siteUrl" value="<?=SITE_URL?>">
 
 <div id="message">

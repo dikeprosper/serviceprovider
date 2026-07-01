@@ -7,6 +7,12 @@ const registration = document.querySelector('#registration');
 const emailValidate = document.querySelector('.emailValidate');
 const passwordValidate = document.querySelector('.passwordValidate');
 const usernameValidate = document.querySelector('.usernameValidate');
+const username = document.querySelector('#username');
+
+// username.addEventListener("input", function () {
+
+//     username.value = username.value.replaceAll(" ", "_");
+// })
 
 
 async function submitForm() {
@@ -16,7 +22,6 @@ async function submitForm() {
     // Validate email
     const email = document.querySelector('#email');
     const password = document.querySelector('#password');
-    const username = document.querySelector('#username');
 
     emailValidate.classList.remove(`error-0`, `error-1`);
     passwordValidate.classList.remove(`error-0`, `error-1`);

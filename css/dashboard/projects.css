@@ -1,0 +1,56 @@
+/* ── Header ── */
+.page-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--primary-color);
+}
+.page-title { font-size: 2rem; font-weight: 700; color: var(--on-surface); }
+.page-sub   { font-size: 1rem; color: var(--on-surface-variant); }
+
+.active-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface-container-high); color: var(--primary-color);
+    font-size: 12px; font-weight: 700;
+    border-radius: 99px; padding: 6px 16px;
+}
+.active-pill .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--primary-color); animation: pulse 1.5s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── Booking cards ── */
+.booking-card {
+    background: var(--on-primary);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    transition: background .2s;
+}
+.booking-card:hover { background: var(--surface-container-high); }
+
+/* Status badges */
+.badge-status {
+    display: inline-flex; align-items: center;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .07em; border-radius: 99px; padding: 5px 14px;
+}
+.badge-onway    { background: #e7f5ed; color: #166534; }
+.badge-inprog   { background: #dde1ff; color: var(--primary-color); }
+.badge-confirmed{ background: #d3e4fe; color: #505f76; }
+
+/* Avatar */
+.style-wrap { position: relative; width: 80px; flex-shrink: 0; }
+.style-wrap img {
+    width: 80px; height: 80px;
+    border-radius: 1rem; object-fit: cover;
+}
+.avatar-verified {
+    position: absolute; bottom: -6px; right: -6px;
+    background: var(--primary-color-dark); color: #fff;
+    border-radius: 7px; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+}
+
+/* Meta row */
+.meta-item { font-size: 12px; color: var(--on-surface-variant); }
+.meta-item i { color: var(--primary-color); font-size: 15px; vertical-align: -2px; }

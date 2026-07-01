@@ -8,7 +8,7 @@ $itemsPerPage = 8;
 // ========================
 
 // Fetch providers from database
-$query = "SELECT * FROM user WHERE provider = '1'";
+$query = "SELECT * FROM user WHERE role = 'customer'";
 $result = $app->myQuery($query);
 
 $providers = [];
@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $newBadge = ($p['is_new'] ?? 0) == 1 ? '<span class="badge bg-success ms-2" style="font-size: 0.6rem;">New</span>' : '';
         
-        $profile = $p['profile'] ?? '/profile/ten.webp';
+        $photo_url = $p['photo_url'] ?? '/profile/ten.webp';
         $specialty = htmlspecialchars($p['specialty'] ?? 'Provider');
         
         $html .= '<div class="col-6 col-xl-3 col-md-4 mb-1">
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a href="./provider.php?id=">
                             <img
                                 class="profile"
-                                src="'.SITE_URL.'/'. htmlspecialchars($profile) . '"
+                                src="'.SITE_URL.'/'. htmlspecialchars($photo_url) . '"
                                 alt="' . htmlspecialchars($p['name']) . '"
                                 loading="lazy"
                             />
