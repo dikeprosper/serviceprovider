@@ -1,3 +1,5 @@
+aler("in")
+
 // Hire and get Hired
 
 const heroContent = document.querySelector(".hero-content");

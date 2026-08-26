@@ -8,7 +8,7 @@ $itemsPerPage = 8;
 // ========================
 
 // Fetch providers from database
-$query = "SELECT * FROM user WHERE role = 'customer'";
+$query = "SELECT * FROM user WHERE role != 'customer'";
 $result = $app->myQuery($query);
 
 $providers = [];
@@ -20,11 +20,11 @@ if ($result && $result->num_rows > 0) {
 
 // Add dynamic fields to each provider
 foreach ($providers as &$p) {
+
     $p['active'] = rand(0, 1); // 1 = active, 0 = inactive
-    $p['time'] = rand(1, 50);  // Response time in minutes
-    $p['deals'] = rand(0, 1);  // 1 = has deals, 0 = no deals
-    $p['verified'] = rand(0, 1);  // 1 = verified, 0 = not verified
-    $p['price'] = rand(10000, 40000);  // Price range
+    $p['time'] = rand(1, 30);  // Delivery time in days
+    $p['express'] = rand(0, 1);  // 1 = offers express delivery, 0 = standard delivery only
+    $p['verified'] = 0;  // 1 = verified, 0 = not verified
     $p['rateCount'] = 0;
     $totalRatings = 0; // Default to 0 if username not available
     $rateCount = 0; // Default to 0 if username not available
@@ -101,59 +101,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return floatval($b['rating']) <=> floatval($a['rating']);
         });
     }
-    
-    // Apply status filter - Sort active providers to the front
-    if (!empty($filters['status'])) {
 
-        if (in_array('active', $filters['status'])) {
+    // Apply delivery filter - Sort by delivery time or express availability
+    if (!empty($filters['delivery'])) {
 
+        if (in_array('fastest', $filters['delivery'])) {
+
+            // Sort by delivery time ascending (quickest turnaround first)
             usort($filtered_providers, function($a, $b) {
-                return $b['active'] <=> $a['active'];
+                return intval($a['time'] ?? 0) <=> intval($b['time'] ?? 0);
             });
-        } elseif (in_array('inactive', $filters['status'])) {
 
+        } elseif (in_array('express', $filters['delivery'])) {
+
+            // Sort providers who offer express delivery to the front
             usort($filtered_providers, function($a, $b) {
-                return $a['active'] <=> $b['active'];
-            });
-        }
-    }
-    
-    // Apply deals filter - Sort providers with deals to the front
-    if (!empty($filters['deals'])) {
-        if (in_array('discount', $filters['deals']) || in_array('loyalty', $filters['deals'])) {
-            usort($filtered_providers, function($a, $b) {
-                return $b['deals'] <=> $a['deals'];
+                return ($b['express'] ?? 0) <=> ($a['express'] ?? 0);
             });
         }
     }
-    
-    // Apply price range filter
-    if (!empty($filters['priceMin']) || !empty($filters['priceMax'])) {
-        $priceMin = isset($filters['priceMin']) ? intval($filters['priceMin']) : 0;
-        $priceMax = isset($filters['priceMax']) ? intval($filters['priceMax']) : PHP_INT_MAX;
-
-        $filtered_providers = array_filter($filtered_providers, function($provider) use ($priceMin, $priceMax) {
-            $price = intval($provider['price'] ?? 0);
-            return $price >= $priceMin && $price <= $priceMax;
-        });
-
-        // Re-index after filter
-        $filtered_providers = array_values($filtered_providers);
-    }
-
-    // Apply sort order (low to high / high to low)
-    if (!empty($filters['sortOrder'])) {
-        if ($filters['sortOrder'] === 'low') {
-            usort($filtered_providers, function($a, $b) {
-                return intval($a['price'] ?? 0) <=> intval($b['price'] ?? 0);
-            });
-        } elseif ($filters['sortOrder'] === 'high') {
-            usort($filtered_providers, function($a, $b) {
-                return intval($b['price'] ?? 0) <=> intval($a['price'] ?? 0);
-            });
-        }
-    }
-
 
     // Pagination
     $currentPage = $filters['page'] ?? 1;
@@ -169,24 +135,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach ($paginatedProviders as $p) {
 
-        $deals = "";
-        if($p['deals'] == 1) {
-
-            $deals = "<div class='d-flex'> <div class='fs-7 text-primary'>" . rand(1, 50) . "% OFF</div> </div>";
-        }
-
         $rating = $p['rating'] ?? 0;
 
         $verified = ($p['verified'] ?? 1) ? '<span class="material-symbols-outlined text-white fs-6-plus">verified</span>' : '';
         
         $newBadge = ($p['is_new'] ?? 0) == 1 ? '<span class="badge bg-success ms-2" style="font-size: 0.6rem;">New</span>' : '';
+
+        $expressBadge = ($p['express'] ?? 0) == 1 ? '<span class="badge bg-info text-dark ms-md-2" style="font-size: 0.5rem;">Accepts Express</span>' : '';
         
         $photo_url = $p['photo_url'] ?? '/profile/ten.webp';
         $specialty = htmlspecialchars($p['specialty'] ?? 'Provider');
         
         $html .= '<div class="col-6 col-xl-3 col-md-4 mb-1">
                     <div class="card-img-inner position-relative">
-                        <a href="./provider.php?id=">
+                        <div onclick="addTailor(' . $p['uid'] . ')">
                             <img
                                 class="profile"
                                 src="'.SITE_URL.'/'. htmlspecialchars($photo_url) . '"
@@ -199,12 +161,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="name mt-0 mb-1 text-white fw-bold lh-1">
                                         ' . htmlspecialchars(mb_strimwidth($p['username'], 0, 12, '...')) . '
                                         ' . $newBadge . '
+                                        ' . $expressBadge . '
                                     </div>
                                     ' . $verified . '
                                 </div>
 
                                 <div class="px-1 title d-flex align-items-center justify-content-between">
-                                    <div class="px-2 role site-radius fs-8 text-white">' . $specialty . '</div>
+                                    <div class="role site-radius fs-8 text-white">' . $specialty . '</div>
                                     <span class="fs-7 text-white d-flex align-items-center gap-1"> <span class="material-symbols-outlined text-white fs-6">star</span> '.mb_strimwidth($p['rating'], 0, 3, '').' <span class="noto" style="color: #a1a1a1;"> ('. $p['rateCount'] .') </span> </span>
                                 </div>
 
@@ -212,14 +175,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             
                             <input type="hidden" name="active" value="' . $p['active'] . '">
                             <input type="hidden" name="time" value="' . $p['time'] . '">
-                            <input type="hidden" name="deals" value="' . $p['deals'] . '">
+                            <input type="hidden" name="express" value="' . $p['express'] . '">
                             <input type="hidden" name="is_new" value="' . ($p['is_new'] ?? 0) . '">
-                        </a>
+                        </div>
                     </div>
-                    <div class="pt-2">
-                        <div class="fs-8">' . $specialty . '</div>
-                        <div class="fs-7 fw-bold">From ₦' . number_format($p['price']) . '</div>
-                    </div>
+
                 </div>';
     }
     

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henrietta — A space for words that breathe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #f4eee3;
+    --cream-deep: #efe6d6;
+    --ink: #211d18;
+    --ink-soft: #4a4540;
+    --rust: #c17a4e;
+    --rust-soft: #d99a72;
+    --card-tape: #d9c6a8;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    padding: 34px 0 0;
+  }
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .logo{
+    font-family:'Playfair Display', serif;
+    font-size: 26px;
+    letter-spacing: 0.5px;
+  }
+  .logo span{ color: var(--rust); }
+
+  .nav-links{
+    display:flex;
+    gap: 40px;
+    list-style:none;
+  }
+
+  .nav-links a{
+    text-decoration:none;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .nav-links a.active::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:100%;
+    height:2px;
+    background: var(--ink);
+  }
+
+  .subscribe-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background: var(--rust-soft);
+    color: var(--ink);
+    border:none;
+    padding: 14px 24px;
+    font-family:'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor:pointer;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items:center;
+    gap: 40px;
+    padding: 70px 0 120px;
+  }
+
+  .eyebrow{
+    color: var(--rust);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .hero h1{
+    font-family:'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 53px;
+    line-height: 1.15;
+    max-width: 560px;
+  }
+
+  .divider{
+    width: 60px;
+    height: 2px;
+    background: var(--rust);
+    margin: 28px 0;
+  }
+
+  .hero p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 380px;
+    margin-bottom: 40px;
+  }
+
+  .explore-btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 12px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 18px 30px;
+    font-family:'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .explore-btn:hover{ background:#3a352e; transform: translateX(3px); }
+  .explore-btn svg{ width:16px; height:16px; }
+
+  /* ---------- HERO IMAGE ---------- */
+  .hero-visual{
+    position: relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height: 460px;
+  }
+
+  .paper-back{
+    position:absolute;
+    width: 380px;
+    height: 430px;
+    background: var(--cream-deep);
+    right: 38px;
+    top: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+    clip-path: polygon(0 4%, 96% 0, 100% 96%, 4% 100%);
+  }
+
+  .polaroid{
+    position: relative;
+    background: #fff;
+    padding: 18px 18px 60px 18px;
+    width: 380px;
+    transform: rotate(4deg);
+    box-shadow: 0 30px 60px rgba(30,20,10,0.18);
+    z-index: 2;
+  }
+
+  .polaroid img{
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    display:block;
+    filter: grayscale(100%) contrast(1.05) brightness(0.98);
+  }
+
+  .tape{
+    position:absolute;
+    width: 90px;
+    height: 34px;
+    background: rgba(193,122,78,0.55);
+    right: 30px;
+    top: -14px;
+    transform: rotate(-8deg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  }
+
+  .sprig{
+    position:absolute;
+    right: -30px;
+    top: -40px;
+    width: 130px;
+    z-index: 3;
+    transform: rotate(8deg);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .wrap{ padding: 0 28px; }
+    .nav-links{ display:none; }
+    .hero{ grid-template-columns: 1fr; padding-top: 40px; }
+    .hero h1{ font-size: 40px; max-width: 100%; }
+    .hero p{ max-width: 100%; }
+    .hero-visual{ margin-top: 50px; min-height: 380px; }
+    .polaroid{ width: 300px; }
+    .polaroid img{ height: 340px; }
+    .paper-back{ width: 300px; height: 340px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <nav class="nav">
+      <div class="logo">Henrietta<span>.</span></div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Poems</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Writings</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <button class="subscribe-btn">
+        Subscribe
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">A space for words that breathe</div>
+      <h1>Welcome to my corner of the internet.</h1>
+      <div class="divider"></div>
+      <p>I write what lingers.<br>Thoughts, fragments, and quiet stories.</p>
+      <button class="explore-btn">
+        Explore my work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+
+    <div class="hero-visual">
+      <div class="paper-back"></div>
+
+      <svg class="sprig" viewBox="0 0 100 220" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 210 C 48 150, 55 90, 52 10" stroke="#b89a6b" stroke-width="2" fill="none"/>
+        <g fill="#e7ddc8" stroke="#c9b78f" stroke-width="1">
+          <circle cx="52" cy="20" r="5"/>
+          <circle cx="62" cy="35" r="4"/>
+          <circle cx="42" cy="45" r="4"/>
+          <circle cx="58" cy="60" r="4.5"/>
+          <circle cx="45" cy="75" r="4"/>
+          <circle cx="60" cy="90" r="4"/>
+          <circle cx="48" cy="105" r="3.5"/>
+          <circle cx="56" cy="120" r="4"/>
+        </g>
+      </svg>
+
+      <div class="polaroid">
+        <div class="tape"></div>
+        <img src="https://picsum.photos/id/1027/700/860" alt="Woman writing in a journal">
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

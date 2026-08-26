@@ -1,13 +1,6 @@
-<?php
-// ── Measurement data (replace values with real DB queries) ──────────────────
-// Each set is a full body measurement profile, not tied to any garment type.
+<?php include_once("./fileasset/header.php");?>
 
 
-?>
+<button class="btn btn-primary my-5 py-5" id="myBtn">Click me</button>
 
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php include_once("./fileasset/footer.php");

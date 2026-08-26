@@ -8,12 +8,12 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card border-0 shadow-sm">
                     <div class="position-relative">
-                        <img src="<?=SITE_URL?>img/profile/<?= htmlspecialchars($currentUser['photo_url']) ?>" class="card-img-top rounded-5" alt="Project 1">
+                        <img src="<?=SITE_URL?>img/profile/<?= $user['photo_url']; ?>" class="card-img-top rounded-5" alt="Project 1">
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title"><?= htmlspecialchars($currentUser['name']) ?></h1>
-                        <p class="card-text"><?= htmlspecialchars($currentUser['specialty']) ?></p>
-                        <p class="card-text"><?= htmlspecialchars($currentUser['location_area']) ?></p>
+                        <h1 class="card-title"><?= $user['name'] ?></h1>
+                        <p class="card-text"><?= $user['specialty'] ?></p>
+                        <p class="card-text"><?= $user['location_area'] ?></p>
                     </div>
                 </div>
             </div>

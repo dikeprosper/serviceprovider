@@ -1,168 +1,5 @@
-<?php include './fileasset/header.php'; 
-
-    $category = [
-        'ankara',
-        'casual',
-        'office',
-        'hijab',
-        'gowns',
-        'native',
-        'bridal',
-        'shirts'
-    ];
-
-    $fabric_category = [
-        'linen',
-        'vintage',
-        'ankara',
-        'lace'
-    ];
-
-    $active_all = "active";
-
-    // Single pin view
-    // Likes and Profile selection
-    if(isset($pin['pid'])) {
-
-        $pid = $pin['pid'];
-        $username = $pin['username'];
-        $selectedCat = $pin['category'];
-    
-        // Likes
-        $likes = $app->myQuery(
-            "SELECT * FROM likes WHERE pid = ?",
-            "s",
-            [$pid]
-        );
-        
-        // Tailor selection
-        $user = $app->myQuery(
-            "SELECT * FROM user WHERE username = ?",
-            "s",
-            [$username]
-        );
-        $t_user = $user->fetch_assoc();
-
-        $product_type = $pin['p_type'];
-
-        if($product_type == 1) {
-
-            $link = "f=" . $pin['pid'];
-            
-        } else {
-
-            $link = "s=" . $pin['pid'];
-        }
-
-    }
-
-    // Product listing based on category filter
-    if(isset($mycat)) {
-
-        $active_all = "";
-        $cat = $mycat['name'];
-        $product_type = $mycat['type'];
-
-        $styles = $app->myQuery(
-            "SELECT * FROM products WHERE category = ? AND active_inspr = '1' AND p_type = ?",
-            "ss",
-            [$cat, $product_type]
-        );
-    
-    }  elseif (isset($selectedCat)) {
-        
-        $styles = $app->myQuery(
-            "SELECT * FROM products WHERE category = ? AND active_inspr = '1' AND p_type = ? AND pid != ?",
-            "sss",
-            [$selectedCat, $product_type, $pid]
-        );
-
-    } elseif (isset($fabrics)) {
-
-        $styles = $app->myQuery("SELECT * FROM products WHERE p_type = '1'");
-        $product_type = 1;
-
-    } else {
-
-        $styles = $app->myQuery("SELECT * FROM products WHERE active_inspr = '1' AND p_type = '0'");
-        $product_type = 0;
-    }
-
-    // Convert to array for easier handling in views
-    if (isset($selectedCat)) {
-        
-        $myStyles = [];
-        while ($row = $styles->fetch_assoc()) {
-
-            $myStyles[] = $row;
-        }
-
-        $current_name = $pin['name'];
-        $tags = explode(',', $pin['tags']);
-        
-        $current_tags = array_map('trim', explode(',', $pin['tags']));
-        
-        // Scoring function to determine relevance based on name and tags
-        // Higher score means more relevant
-        // Word matches are weighted more heavily than tag matches, and having both boosts the score further
-        $scoreItem = function($item) use ($current_name, $current_tags) {
-            $score = 0;
-
-            //Word matching
-            $current_words  = array_filter(explode(' ', strtolower($current_name)));
-            $item_words     = array_filter(explode(' ', strtolower($item['name'])));
-            $matching_words = array_intersect($current_words, $item_words);
-            $score += count($matching_words) * 20;
-
-            // Tag matching — explode here since they're comma-separated strings
-            $item_tags = array_filter(array_map('trim', explode(',', $item['tags'])));
-            $matching_tags = array_intersect(
-                array_map('strtolower', $item_tags),
-                array_map('strtolower', $current_tags)
-            );
-
-            $score += count($matching_tags) * 20;
-
-            // Priority boost — at least 1 matching WORD AND at least 1 matching tag
-            if (count($matching_words) >= 1 && count($matching_tags) >= 1) {
-                $score += 40;
-            }
-            
-            return $score;
-        };
-
-        
-        usort($myStyles, function($a, $b) use ($scoreItem) {
-            return $scoreItem($b) - $scoreItem($a);
-        });
-
-        
-    } elseif ($styles->num_rows < 1) {
-
-        $myStyles = [];
-
-    } else {
-
-        $myStyles = $styles->fetch_all(MYSQLI_ASSOC);
-    }
-
-    if($product_type == 1) {
-
-        $allCat = 'fabrics';
-        
-    } else {
-
-        $allCat = 'inspiration';
-    }
-
-    $stmt = $app->myQuery(
-        "SELECT * FROM categories WHERE type = ?",
-        "s",
-        [$product_type]
-    );
-    $categories = $stmt->fetch_all(MYSQLI_ASSOC);
-
-?>
+<?php include './fileasset/header.php'; ?>
+<?php include './includes/insp_info.php'; ?>
 
 <link rel="stylesheet" href="<?=SITE_URL?>css/inspiration.css">
 
@@ -171,74 +8,198 @@
 <main class="py-5 my-1 my-md-5 <?=$section_padding?>">
     <div class="container-xl">
 
-        <div class="categories pt-3">
+        <?php if(!isset($selectedCat)): ?>
 
-            <?php if(!isset($selectedCat)): ?>
+            <div class="categories pt-3">
                 
-                <div class="btn-fade fs-7 rounded-5 <?= $active_all?>"> <a href="<?= SITE_URL . $allCat ?>">All</a> </div>
-           
-            <?php foreach ($categories as $item):  ?>
-                <div class="btn-fade fs-7 rounded-5 <?php if (isset($cat) AND $cat == $item['name']){ echo "active"; } ?>"> <a href="<?=SITE_URL ?>category/<?=$item['name'] ?>"><?=$item['name'] ?></a> </div>
-            <?php endforeach; endif; ?>
-            
-        </div>
+                <a class="btn btn-fade fs-7 rounded-5 <?= $active_all?>" href="<?= SITE_URL . $allCat ?>">All</a>
+                <?php foreach ($categories as $cat_list):  ?>
+                    <a class="btn btn-fade fs-7 rounded-5 text-capitalize <?php if (isset($cat) AND $cat == $cat_list['name']){ echo "active"; } ?>" href="<?=SITE_URL ?>inspiration/<?=$cat_list['name'] ?>"><?=$cat_list['name'] ?></a>
+                <?php endforeach;?>
+                    
+            </div>
+
+            <div class="small-banner mb-3 gap-2">
+                
+                <div>
+                    <p class="fs-6 mb-0 fw-bold text-capitalize"> <?=$cat ?? ""; ?> </p>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined fs-9">info</span>
+                        <p class="mb-0 fs-8">Have a specific <?=$item ?> in mind ?</p>
+                    </div>
+                </div>
+                <a href="<?= SITE_URL ?>inspiration/?f=<?=$item ?> " class="btn btn-fade fade-r fs-8">Find style</a>
+            </div>
+
+        <?php endif; ?>
 
         <div class="">
 
-            <?php if(isset($pin['pid'])) : ?>
-                <div class="pin-detail-card site-radius p-4 p-md-5 mb-5">
+            <?php if(isset($selectedItem['pid'])) : ?>
+                <div class="pin-detail-card site-radius p-0 py-4 p-md-4 p-md-5 mb-5">
+
                     <div class="row gap-4">
+
                         <!-- LEFT: Image -->
+                        <div class="d-block d-lg-none">
+                            <span class="category-pill mb-1"><?= $selectedItem['category'] ?></span>
+                            <h1 class="pin-title"><?= $selectedItem['name'] ?? "" ?></h1>
+                        </div>
+
                         <div class="pin-image-box col-lg-6">
                             <img
-                            src="<?= SITE_URL ?>img/<?= $allCat ?>/<?= htmlspecialchars($pin['img']) ?>"
-                            alt="<?= htmlspecialchars($pin['name']) ?>"
+                            src="<?= SITE_URL ?>img/<?= $allCat ?>/<?= $selectedItem['img'] ?>"
+                            alt="<?= $selectedItem['name'] ?? '' ?>"
                             >
                         </div>
+
                         <!-- RIGHT: Details -->
                         <div class="pin-details col-lg-6">
 
-                            <!-- Tailor profile -->
-                            <a href="<?= SITE_URL . urlencode($t_user['username']) ?>" class="tailor-profile">
-                                <div class="tailor-avatar"> <img src="<?= SITE_URL . htmlspecialchars($t_user['profile']) ?>" alt=""></div>
-                                <div>
-                                    <p class="tailor-name"><?= htmlspecialchars($t_user['username']) ?></p>
-                                    <p class="tailor-sub"><?= htmlspecialchars($t_user['specialty']) ?></p>
+                            <div class="">
+                                <div class="d-none d-lg-block">
+                                    <span class="category-pill mb-1"><?= $selectedItem['category'] ?></span>
+                                    <h1 class="pin-title"><?= $selectedItem['name'] ?? "" ?></h1>
                                 </div>
-                                <button class="btn-follow" onclick="event.preventDefault()">Follow</button>
-                            </a>
+                                <p class="pin-desc"><?= $selectedItem['description'] ?></p>
 
-                            <hr class="pin-divider">
+                                <!-- Stats -->
+                                <div class="stats-box rounded-4 px-1">
+                                    <div class="row g-3">
+                                        <div class="col-4 stat-col">
+                                        <div class="stat-icon" style="background:var(--icon-green-bg);">
+                                            <span class="material-symbols-outlined" style="color:var(--icon-green);">payments</span>
+                                        </div>
+                                        <div class="stat-label">Sewing Cost</div>
+                                        <div class="stat-value"><?= $app->naira($selectedItem['price']) ?></div>
+                                        <div class="stat-sub">(Fabric cost Not included)</div>
+                                        </div>
+                                        <div class="col-4 stat-col">
+                                        <div class="stat-icon" style="background:var(--icon-blue-bg);">
+                                            <span class="material-symbols-outlined" style="color:var(--icon-blue);">design_services</span>
+                                        </div>
+                                        <div class="stat-label">Fabric Cost</div>
+                                        <div class="stat-value">Varies</div>
+                                        <div class="stat-sub">(Not included)</div>
+                                        </div>
+                                        <div class="col-4 stat-col">
+                                        <div class="stat-icon" style="background:var(--icon-purple-bg);">
+                                            <span class="material-symbols-outlined" style="color:var(--icon-purple);">texture</span>
+                                        </div>
+                                        <div class="stat-label">Fabric Required</div>
+                                        <div class="stat-value"><?= $firstValue ?> - <?= $lastValue ?> Yard's</div>
+                                        <div class="stat-sub">(Varies based on size)</div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <!-- Title + category -->
-                            <div>
-                            <h1 class="pin-title"><?= htmlspecialchars($pin['name']) ?></h1>
-                            <span class="category-pill"><?= htmlspecialchars($pin['category']) ?></span>
-                            </div>
-
-                            <!-- Description -->
-                            <p class="pin-desc"><?= htmlspecialchars($pin['description']) ?></p>
-
-                            <!-- Tags -->
-                            <div class="pin-tags">
-                                <?php foreach ($tags as $tag): ?>
-                                    <span class="pin-tag"><?= htmlspecialchars($tag) ?></span>
+                                <!-- Compatible fabrics -->
+                                <div class="section-heading">Compatible Fabrics</div>
+                                <div>
+                                <?php $compatible = explode(",",$selectedItem['compatible_fabrics']); ?>
+                                <?php foreach ($compatible as $fabric): ?>
+                                    <span class="fabric-pill"><?= $fabric ?></span>
                                 <?php endforeach; ?>
+                                </div>
                             </div>
 
                             <!-- CTA button -->
-                            <div class="">
+                            <div class="my-3">
 
-                                <div class="btn btn-fade rounded-5 px-0">
-                                    <a href="<?= SITE_URL . '?' . $link; ?>" class="p-5 fs-6">
-                                        Pick a Style
-                                    </a>
+                                <div class="position-relative pop-up-container">
+
+                                    <div onclick="popup(this,'size-toggle')" class="btn btn-primary rounded-2 monrope px-5 py-2">
+                                        <span class="material-symbols-outlined fs-6-plus me-2">content_cut</span>
+                                        Use this <?= $item; ?>
+                                    </div>
+
+                                    <input type="text" name="" class="myToggler" id="size-toggle">
+
+                                    <div class="pop-up2 rounded-4 p-4 overflow-auto">
+                                        <button id="closePop" class="btn btn-light mb-4 title rounded-2 d-lg-none">Close</button>
+                                        <?php if(isset($user)): ?>
+
+                                            <div class="pb-3">
+                                                
+                                                
+                                                <div class="w-100">
+                                                    
+                                                    <?php if($selectedItem['standard_sizing'] > 0){ ?>
+                                                    
+                                                        <div id="standard-measurement" class="measurements mb-3">
+                                                            <div class="w-100 fs-6 fw-bold mb-2">Standard Measurments</div>
+                                                            <select class="selectSize form-control mb-3" data-id="focusme">
+                                                                <option value="">Select</option>
+                                                                <?php foreach (json_decode($selectedItem['sizes_available'], true) as $key => $value): ?>
+                                                                    <option> <?= $key ?> </option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </div>
+                                                    <?php }?>
+
+                                                    <div id="measurement-box" class="measurements mb-3 <?php if($selectedItem['standard_sizing'] > 0){ echo 'd-none'; } ?>">
+                                                        <div class="w-100 fs-6 fw-bold mb-2">Select Measurments</div>
+
+                                                        <select class="selectSize form-control mb-2" data-id="focusme">
+                                                            <option value="">Select</option>
+                                                            <?php while($m = $measurementQuery->fetch_assoc()): ?>
+                                                                <option> <?= $m['label']; ?> </option>
+                                                            <?php endwhile; ?>
+                                                        </select>
+                                                        <a href="" class="btn btn-outline-primary fs-7">add new</a>
+                                                    </div>
+
+                                                    <?php if($selectedItem['standard_sizing'] > 0){ ?>
+                                                        <div class="toggle-row d-flex align-items-center pb-4">
+                                                            <label class="label-bold mb-0" for="measurement-toggle" style="cursor:pointer;"> Use your measurements </label>
+                                                            <span class="pill-toggle ms-3">
+                                                                <input type="checkbox" id="measurement-toggle" name="has_fabric" data-id="focusme">
+                                                                <label class="toggle-bg" for="measurement-toggle"></label>
+                                                                <span class="toggle-dot"></span>
+                                                            </span>
+                                                        </div>
+                                                    <?php } ?>
+
+                                                </div>
+                                                
+                                                <p class="errorMsg text-danger fs-7"></p>
+                                            </div>
+                                            
+                                            <button class="btn btn-primary mt-4 mb-4 sort-btn" onclick="addItem('<?= $selectedItem['pid']; ?>')">Change Fabric</button>
+                                            <button class="btn btn-primary mt-3 sort-btn" onclick="addItem('<?= $selectedItem['pid']; ?>')">Continue With Curent Fabric</button>
+
+                                        <?php else: ?>
+                                        
+                                            <div class="py-3 h-100 d-flex flex-column justify-content-center">
+                                                
+                                                <?php
+                                                    if($selectedItem['standard_sizing'] > 0){ ?>
+
+                                                        <div id="standard-measurement" class="measurements mb-3">
+                                                            <div class="w-100 fs-6 fw-bold mb-3"> This style uses standard sizing </div>
+                                                            <select class="selectSize form-control mb-2">
+                                                                <option value="">Select Size</option>
+                                                                <?php foreach (json_decode($selectedItem['sizes_available'], true) as $key => $value): ?>
+                                                                    <option> <?= $key; ?> </option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </div>
+                                                        <?=$error_p; ?> <button class="btn btn-fade fade-r mt-5 mb-4 sort-btn" onclick="addItem('<?= $selectedItem['pid'] ?>')"> Continue </button>
+                                                        
+                                                <?php  } else { ?>
+
+                                                    <div class="w-100 fs-6 fw-bold mb-3 text-center"> This style requires your precise measurements for a perfect fit <br> <?=$upload_m ?> </div>
+                                                        
+                                                <?php  } ?>
+
+                                            </div>
+
+                                        <?php endif; ?>
+
+                                    </div>
+                                    
                                 </div>
-                                <div class="btn btn-fade rounded-5 px-0">
-                                    <a href="<?= SITE_URL ?>" class="p-5 fs-6">
-                                        Find a tailor
-                                    </a>
-                                </div>
+                                <input type="hidden" id="standard" value="<?= $selectedItem['standard_sizing'] ?>">
                             </div>
 
                             <hr class="pin-divider">
@@ -246,15 +207,21 @@
                             <!-- Engagement: like, comment, share -->
                             <div class="engagement-row">
 
-                                <button class="engage-btn" aria-label="Like (<?= $likes->num_rows; ?> likes)">
+                                <button class="engage-btn" aria-label="Like (<?= $likeCount; ?> likes)">
                                     <div class="engage-icon-wrap">
                                     <span class="material-symbols-outlined">favorite</span>
-                                    <span class="engage-count"><?= $likes->num_rows; ?></span>
+                                    <span class="engage-count"><?= $likeCount; ?></span>
                                     </div>
                                     <span class="engage-label">Like</span>
                                 </button>
 
-                                
+                                <button class="engage-btn ms-2" aria-label="Pin (<?= $pinCount; ?> pins)">
+                                    <div class="engage-icon-wrap">
+                                    <span class="material-symbols-outlined" onclick="openModal('<?= $selectedItem['pid'] ?>','<?= $selectedItem['username'] ?>')" style="transform: rotate(35deg);">keep</span>
+                                    <span class="engage-count"><?= $pinCount; ?></span>
+                                    </div>
+                                    <span class="engage-label">Pin</span>
+                                </button>
 
                             </div>
 
@@ -266,38 +233,26 @@
             <div class="masonry-grid">
     
                 <?php foreach ($myStyles as $item): ?>
+
                     <div class="masonry-item">
                         <div class="style-card shadow-sm">
-    
-                            <img
-                                src="<?= SITE_URL ?>img/<?= $allCat ?>/<?= htmlspecialchars($item['img']) ?>"
-                                alt="<?= htmlspecialchars($item['name'] ?: $item['category']) ?>"
-                            >
-    
-                            <a href="<?= SITE_URL ?>inspiration/<?=$item['pid']; ?>" class="overlay">
-                                
+                            <img src="<?= SITE_URL ?>img/<?= $allCat ?>/<?= $item['img'] ?>" alt="<?= $item['name'] ?: $item['category'] ?>">
+                            <a href="<?= SITE_URL . $allCat ?>/<?=$item['pid']; ?>" class="overlay">
                             </a>
-    
                             <!-- Pin button -->
                             <div class="pin-btn">
-                                <div
-                                    onclick="openModal('<?= htmlspecialchars($item['pid']) ?>','<?= htmlspecialchars($item['username']) ?>')"
-                                    class="btn btn-primary"
-                                >
+                                <div onclick="openModal('<?= $item['pid'] ?>','<?= $item['username'] ?>')" class="btn btn-primary">
                                     <span class="material-symbols-outlined" style="font-size:18px;">keep</span>
                                 </div>
                             </div>
-    
                             <!-- Title + category overlay -->
                             <div class="card-title-overlay">
-                                <div class="cat-pill"><?= htmlspecialchars($item['category']) ?></div>
-                                <?php if (!empty($item['name'])): ?>
-                                    <div><?= htmlspecialchars($item['name']) ?></div>
-                                <?php endif; ?>
+                                <div class="fs-6"><?= $item['name'] ?? '' ?></div>
+                                <div class="cat-pill fs-9 mt-1 text-light fw-lighter"><?= $app->priceRange($item['price'], $item['compatible_fabrics']) ?></div>
                             </div>
-    
                         </div>
                     </div>
+
                 <?php endforeach; ?>
             </div>
 
@@ -343,3 +298,4 @@
 <?php include './fileasset/footer.php'; ?>
 <script src="<?=SITE_URL?>js/selections.js"></script>
 <script src="<?=SITE_URL?>js/inspiration.js"></script>
+<script src="<?=SITE_URL?>js/placeorder.js"></script>

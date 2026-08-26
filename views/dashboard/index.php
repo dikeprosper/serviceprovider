@@ -99,7 +99,7 @@ $history = [
 
                     <!-- Avatar -->
                     <img
-                        src="<?= SITE_URL . "img/profile/" . $user['photo_url'] ?>"
+                        src="<?= SITE_URL . $user['photo_url'] ?>"
                         alt="<?= $user['name'] ?>"
                         class="profile-avatar"
                     />

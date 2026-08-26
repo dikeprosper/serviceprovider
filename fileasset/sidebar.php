@@ -1,5 +1,5 @@
 <?php
-$user = $app->user->authCheck();
+
 require_once './fileasset/page_info.php'; ?>
 
 

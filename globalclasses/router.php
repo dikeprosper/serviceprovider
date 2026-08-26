@@ -169,6 +169,7 @@ class Router {
     // -----------------------------------------------
 
     public function redirect(string $url, string $error_msg = ''): void {
+        
         header('Location: ' . $url);
         exit;
     }

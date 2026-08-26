@@ -3,4 +3,5 @@
 require_once __DIR__ . '/config/config.php';
 
 // $app->setAlert("Entry made successfully", "danger");
+
 $app->routing();

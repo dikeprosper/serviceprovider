@@ -2,7 +2,6 @@
 include 'config/config.php';
 header('Content-Type: application/json');
 
-
 // Check if this is an AJAX request with filter data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -89,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: ' . SITE_URL . 'login');
         }
     }
-
 }
 
 

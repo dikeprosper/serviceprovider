@@ -1,3 +1,12 @@
+// var button = document.getElementById("myBtn");
+
+// button.addEventListener("click", () => {
+
+//     Notification.requestPermission().then(perm => {
+//         alert(perm)
+//     })
+// })
+
 function popup(e,checkBoxId) {
 
     const checkBox = e.parentElement.querySelector("#" + checkBoxId);
@@ -24,7 +33,7 @@ function popup(e,checkBoxId) {
 
     if (window.innerWidth < 768){
 
-        checkBox.focus();
+        checkBox.focus({ preventScroll: true });
         return;
     }
 
@@ -38,11 +47,11 @@ function popup(e,checkBoxId) {
 
     } else if (touchingTop) {
         
+        popup.classList.remove("centernow");
         popup.classList.remove("topnow");
     }
 
-
-    checkBox.focus();
+    checkBox.focus({ preventScroll: true });
 }
 
 var popCcontainer = document.querySelectorAll('.pop-up-container');
@@ -55,11 +64,11 @@ popCcontainer.forEach(container => {
     container.addEventListener("click", function(e){
 
         let clicked = e.target;
-       
 
         if(clicked.data-id == "focusme") {
             return;
         }
+
         myToggler.focus();
 
     });

@@ -50,21 +50,21 @@
             'subtext' => 'Rating/Reviews',
         ],
         [
-            'href'    => SITE_URL . 'about',
-            'icon'    => 'info',
-            'label'   => 'Learn More',
-            'subtext' => 'About StitchNG',
-        ],
-        [
-            'href'    => SITE_URL . 'contact',
-            'icon'    => 'perm_phone_msg',
-            'label'   => 'Contact Us',
-            'subtext' => 'Get in touch',
+            'href'    => SITE_URL . 'order',
+            'icon'    => 'local_mall',
+            'label'   => 'Place an Order',
+            'subtext' => 'Get your dress made',
         ]
     ];
 
     // Navigation Links
     $browse_links = [
+        [
+            'href'    => SITE_URL . 'order',
+            'icon'    => 'local_mall',
+            'label'   => 'Place an Order',
+            'subtext' => 'Get your dress made',
+        ],
         [
             'href'    => SITE_URL . 'offers',
             'icon'    => 'percent_discount',

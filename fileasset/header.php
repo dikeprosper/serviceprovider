@@ -1,4 +1,17 @@
-﻿<?php require_once 'page_info.php'; ?>
+﻿<?php require_once 'page_info.php'; 
+
+ // User Info
+
+if($folder == "dashboard")  {
+     
+    $user = $app->user->authCheck();
+    
+} elseif(isset($_SESSION['user'])) {
+    
+    $user = $_SESSION['user'];
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -97,7 +110,7 @@
         
                                 <?php else: ?>
         
-                                    <a href="<?=SITE_URL . "dashboard"?>" class="profile_img d-flex ms-2"> <img src="<?=SITE_URL ?>img/profile/<?=htmlspecialchars($profile_img, ENT_QUOTES, 'UTF-8')?>" alt=""> </a>
+                                    <a href="<?=SITE_URL . "dashboard"?>" class="profile_img d-flex ms-2"> <img src="<?=SITE_URL . $profile_img; ?>" alt=""> </a>
         
                                 <?php endif; ?>
                                 

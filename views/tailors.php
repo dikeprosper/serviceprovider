@@ -28,12 +28,6 @@ $allowAccess  = $s && $f;
 $showNoStyle  = $f && !$s;
 $showNoFabric = $s && !$f;
 $showBoth     = !$s && !$f;
-
-// ===== PRICE RANGE CONFIGURATION =====
-// Adjust these variables to set the min and max price range for filtering
-$minPrice = 5000;      // Minimum price in Naira
-$maxPrice = 500000;    // Maximum price in Naira
-// ====================================
 ?>
 
 <link rel="stylesheet" href="./css/providers.css">
@@ -44,68 +38,40 @@ $maxPrice = 500000;    // Maximum price in Naira
         
         <div class="bg-white w-100 pt-3 pb-2 filter">
 
-            <div class="col-lg-4">
-            
-                <div class="position-relative pop-up-container">
-            
-                    <Button onclick="popup(this,'provider-toggle')" class="form-select rounded-2 px-5 py-2 fs-7 mb-0 mb-lg-3 d-flex align-items-center">
-                        
-                        <div class="filter-title filterIcon">
-                            <span class="material-symbols-outlined">filter_list</span>
-                            Filters
-                        </div>
-                    </button>
-                
-                    <input type="text" name="" class="myToggler" id="provider-toggle">
-                    <div class="pop-up2 rounded-4 p-4 overflow-auto">
-                        <button id="closePop" class="btn btn-light mb-4 title rounded-2 d-lg-none">Close</button>
-    
-                        <div class="d-flex flex-wrap gap-3 align-items-center border-bottom pb-3">
-                            
-                            <div class="w-100 fs-6 fw-bold mb-3">Rating</div>
-    
-                            <button class="btn btn-fade rounded-3 px-3 fs-7" data-id="rating" data-value="top">Top Rated</button>
-                            <button class="btn btn-fade rounded-3 px-3 fs-7" data-id="rating" data-value="new">New Providers</button>
-                            <button class="btn btn-secondary rounded-3 px-3 fs-7 btn-clear" data-group="rating">Clear</button>
-                        </div>
+            <div class="row">
 
+                <div class="mb-3 col-md-6 col-lg-4">
+                    <input type="text" class="form-control" placeholder="Search for a tailor" id="searchInput" oninput="filterProviders()">
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-3">
     
-                        <div class="d-flex flex-wrap gap-3 align-items-center border-bottom py-3">
-    
-                            <div class="w-100 fs-6 fw-bold mb-2">Price Range (₦)</div>
-    
-                            <div class="w-100 mb-1">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span class="fs-8 text-muted">Min: <strong id="priceMinDisplay">₦0</strong></span>
-                                    <span class="fs-8 text-muted">Max: <strong id="priceMaxDisplay">₦500,000</strong></span>
-                                </div>
-    
-                                <div id="priceTrack" style="position:relative; height:6px; background:#dee2e6; border-radius:3px; margin: 14px 0 24px;">
-                                    <div id="priceFill" style="position:absolute; height:100%; background:#000; border-radius:3px;"></div>
-                                    <div id="thumbMin" tabindex="0" role="slider" aria-label="Minimum price" style="position:absolute; width:18px; height:18px; background:#fff; border:2px solid #000; border-radius:50%; top:50%; transform:translate(-50%,-50%); cursor:pointer; z-index:2;"></div>
-                                    <div id="thumbMax" tabindex="0" role="slider" aria-label="Maximum price" style="position:absolute; width:18px; height:18px; background:#fff; border:2px solid #000; border-radius:50%; top:50%; transform:translate(-50%,-50%); cursor:pointer; z-index:2;"></div>
-                                </div>
+                    <div class="position-relative pop-up-container">
+                
+                        <Button onclick="popup(this,'provider-toggle')" class="form-select rounded-2 px-5 py-2 fs-7 mb-0 mb-lg-3 d-flex align-items-center">
+                            
+                            <div class="filter-title filterIcon">
+                                <span class="material-symbols-outlined">filter_list</span>
+                                Filters
                             </div>
-    
-                            <div class="d-flex gap-2 w-100 mb-2">
-                                <div id="btnLowToHigh" class="btn-fade fs-6 rounded-3 px-4 py-2">↑ Low to high</div>
-                                <div id="btnHighToLow" class="btn-fade fs-6 rounded-3 px-4 py-2">↓ High to low</div>
+                        </button>
+                    
+                        <input type="text" name="" class="myToggler" id="provider-toggle">
+                        <div class="pop-up2 rounded-4 p-4 overflow-auto">
+                            <button id="closePop" class="btn btn-light mb-4 title rounded-2 d-lg-none">Close</button>
+        
+                            <div class="d-flex flex-wrap gap-3 align-items-center border-bottom pb-3">
+                                
+                                <div class="w-100 fs-6 fw-bold mb-3">Rating</div>
+        
+                                <button class="btn btn-fade rounded-3 px-3 fs-7" data-id="rating" data-value="top">Top Rated</button>
+                                <button class="btn btn-fade rounded-3 px-3 fs-7" data-id="rating" data-value="new">New Providers</button>
+                                <button class="btn btn-secondary rounded-3 px-3 fs-7 btn-clear" data-group="rating">Clear</button>
                             </div>
-    
-                            <button class="btn btn-secondary rounded-3 px-3 fs-7 btn-clear" data-group="price">Clear</button>
-    
+        
+                            <button class="btn btn-primary mt-5 mb-4 sort-btn">Sort</button>
+        
                         </div>
-    
-                        <div class="d-flex flex-wrap gap-3 align-items-center border-bottom py-3">
-                            <div class="w-100 fs-6 fw-bold mb-3">Promo</div>
-                            <div class="btn-fade fs-6 rounded-3 px-4 py-2"> <a data-id="deals" data-value="discount"> Discounts deals  </a> </div>
-                            <div class="btn-fade fs-6 rounded-3 px-4 py-2"> <a data-id="deals" data-value="loyalty"> Loyalty card  </a> </div>
-                            <button class="btn btn-secondary rounded-3 px-3 fs-7 btn-clear" data-group="deals">Clear</button>
-    
-                        </div>
-    
-                        <button class="btn btn-primary mt-5 mb-4 sort-btn">Sort</button>
-    
                     </div>
                 </div>
             </div>
@@ -158,5 +124,5 @@ $maxPrice = 500000;    // Maximum price in Naira
 
 <?php include_once './fileasset/footer.php'; ?>
 
+<script src="<?= SITE_URL?>/js/order.js"></script>
 <script src="<?= SITE_URL?>/js/tailors.js"></script>
-<script src="<?=SITE_URL?>js/selections.js"></script>

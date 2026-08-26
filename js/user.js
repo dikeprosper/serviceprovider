@@ -1,140 +1,141 @@
-// Finish registration
+// ===== DOM References =====
+const registration = document.querySelector('#registration');
 const firstStep = document.querySelector('#firstStep');
 const lastStep = document.querySelector('#lastStep');
-lastStep.style.display = 'none';
-const registration = document.querySelector('#registration');
+
+const email = document.querySelector('#email');
+const password = document.querySelector('#password');
+const username = document.querySelector('#username');
 
 const emailValidate = document.querySelector('.emailValidate');
 const passwordValidate = document.querySelector('.passwordValidate');
 const usernameValidate = document.querySelector('.usernameValidate');
-const username = document.querySelector('#username');
 
-// username.addEventListener("input", function () {
+lastStep.style.display = 'none';
 
-//     username.value = username.value.replaceAll(" ", "_");
-// })
+// ===== Username input formatting =====
+username.addEventListener('input', () => {
+    username.value = username.value.replaceAll(' ', '_');
 
+    if (username.value.length > 12) {
+        username.value = username.value.slice(0, -1); // remove only the last character
+        setValidationState(usernameValidate, 1, 'Username cannot be more than 12 characters.');
+        return;
+    }
+
+    if (username.value.length < 5) {
+        setValidationState(usernameValidate, 1, 'Username must be at least 5 characters');
+        return;
+    }
+
+    // Clear the error once they're back under the limit
+    setValidationState(usernameValidate, 0, '');
+});
+
+// ===== Helpers =====
+
+function setValidationState(el, errorNum, message) {
+    el.classList.remove('error-0', 'error-1');
+    el.classList.add(`error-${errorNum}`);
+    if (message !== undefined) el.innerHTML = message;
+}
+
+function resetValidationStates() {
+    [emailValidate, passwordValidate, usernameValidate].forEach(el => {
+        el.classList.remove('error-0', 'error-1');
+    });
+}
+
+function isValidEmailFormat(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+async function checkServerValidation(payload) {
+    const formData = new FormData();
+    Object.entries(payload).forEach(([key, value]) => formData.append(key, value));
+
+    try {
+        const response = await fetch(siteUrl + 'user_action.php', {
+            method: 'POST',
+            body: formData,
+        });
+        return await response.json(); // { errorNum, msg }
+    } catch (error) {
+        alert('Error: Please try again later ' + error);
+        return { errorNum: 1, msg: 'Please try again later' };
+    }
+}
+
+// ===== Field validators =====
+
+async function validateEmail() {
+    if (!isValidEmailFormat(email.value)) {
+        setValidationState(emailValidate, 1, 'Not an email');
+        return false;
+    }
+
+    const data = await checkServerValidation({ validateUser: '1', email: email.value });
+    setValidationState(emailValidate, data.errorNum, data.msg);
+    return data.msg === 'Looks good';
+}
+
+function validatePassword() {
+    if (password.value.length < 6) {
+        setValidationState(passwordValidate, 1, 'Password must be at least 6 characters');
+        return false;
+    }
+
+    setValidationState(passwordValidate, 0, 'Looks good');
+    return true;
+}
+
+async function validateUsername() {
+    if (username.value.length < 5) {
+        setValidationState(usernameValidate, 1, 'Username must be at least 5 characters');
+        return false;
+    }
+
+    const data = await checkServerValidation({ username: username.value });
+    setValidationState(usernameValidate, data.errorNum, data.msg);
+    return data.msg === 'Looks good';
+}
+
+// ===== Step navigation =====
+// If step 1 (email + password) passes but username is too short,
+// advance to step 2 instead of showing an error immediately.
+
+function goToLastStep() {
+    firstStep.style.display = 'none';
+    lastStep.style.display = 'block';
+}
+
+// ===== Main submit handler =====
 
 async function submitForm() {
-    
-    var error = 0;
+    resetValidationStates();
 
-    // Validate email
-    const email = document.querySelector('#email');
-    const password = document.querySelector('#password');
+    const emailOk = await validateEmail();
+    const passwordOk = validatePassword();
+    const step1Ok = emailOk && passwordOk;
 
-    emailValidate.classList.remove(`error-0`, `error-1`);
-    passwordValidate.classList.remove(`error-0`, `error-1`);
-    usernameValidate.classList.remove(`error-0`, `error-1`);
+    const usernameTooShort = username.value.length < 5;
 
-    if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
-
-        const regData = new FormData();
-        regData.append('validateUser', '1');
-        regData.append('email', email.value);
-
-
-        
-        const emailValid = await fetch(siteUrl+'user_action.php', {
-            method: 'POST',
-            body: regData,
-        })
-        .then(response => response.json())
-        .then(data => {
-
-            // Update the email validation message
-            emailValidate.classList.add(`error-${data.errorNum}`);
-            emailValidate.innerHTML = data.msg;
-    
-        })
-        .catch(error => {
-
-            emailValidate.classList.add('error-1');
-            alert('Error: Please try again later'+error);
-
-        });
-
-
-    } else {
-
-        emailValidate.classList.add('error-1');
-        emailValidate.innerHTML = "Not an email";
+    if (usernameTooShort && lastStep.style.display === 'none' && step1Ok) {
+        // Step 1 passed, username not filled in yet -> move to step 2
+        goToLastStep();
+        return;
     }
 
-    if(emailValidate.innerHTML != "Looks good"){
-        error = 1;
-    }
+    const usernameOk = await validateUsername();
 
-    // Validate password
-    if(password.value.length < 6){
-
-        passwordValidate.classList.add('error-1');
-        passwordValidate.innerHTML = "Password must be at least 6 characters";
-        error += 1;
-
-    } else {
-
-        passwordValidate.classList.add('error-0');
-        passwordValidate.innerHTML = "Looks good";
-    }
-    
-    // If there are no errors, show the last step
-    
-    // Validate username
-    if(username.value.length < 5){
-        
-        usernameValidate.classList.add('error-1');
-        
-        if(lastStep.style.display == 'none' && error == 0){
-
-            firstStep.style.display = 'none';
-            lastStep.style.display = 'block';
-
-        } else {
-            
-            usernameValidate.innerHTML = "Username must be at least 5 characters";
-        }
-
-        error += 1;
-
-    } else {
-
-        const userData = new FormData();
-        userData.append('username', username.value);
-
-        const userValid = await fetch(siteUrl+'user_action.php', {
-            method: 'POST',
-            body: userData,
-        })
-        .then(response => response.json())
-        .then(data => {
-        
-            // Update the username validation message
-            usernameValidate.classList.add(`error-${data.errorNum}`);
-            usernameValidate.innerHTML = data.msg;
-        
-        })
-        .catch(error => {
-        
-            usernameValidate.classList.add('error-1');
-            alert('Error: Please try again later'+error);
-        
-        });
-    }
-
-    // If there are no errors, submit our registration form
-
-    if(usernameValidate.innerHTML != "Looks good"){
-        error = 1;
-    }
-
-    if(error == 0){
+    if (step1Ok && usernameOk) {
         registration.submit();
     }
 }
 
+// ===== Form submit binding =====
+
 registration.addEventListener('submit', (e) => {
     e.preventDefault();
+    submitForm();
 });
-
-registration.addEventListener('submit', submitForm);

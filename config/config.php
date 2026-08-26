@@ -86,7 +86,7 @@ class app{
 
         $stmt = $this->db->query($sql);
 
-        return $stmt->get_result();
+        // return $stmt->get_result();
     }
 
     // Sanitize POST input
@@ -97,6 +97,19 @@ class app{
         }
 
         $value = trim($_POST[$key]);
+        $value = strip_tags($value);
+
+        return $value;
+    }
+
+    // Sanitize GET input
+    public function get($key,$default = null) {
+
+        if(!isset($_GET[$key])){
+            return $default;
+        }
+
+        $value = trim($_GET[$key]);
         $value = strip_tags($value);
 
         return $value;
@@ -184,3 +197,4 @@ class app{
 
 $app = new app();
 $currentUser = $_SESSION['user'] ?? null;
+$error_msg = "THERE WAS AN ERROR.";

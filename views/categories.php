@@ -224,6 +224,6 @@ return '
     </div>
 </main>
 
-<script src="js/categories.js"></script>
+<script src="<?= SITE_URL ?>js/categories.js"></script>
 
 <?php include_once './fileasset/footer.php'; ?>
